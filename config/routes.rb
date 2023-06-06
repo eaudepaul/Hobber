@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  root "user_matches#new"
+  root "pages#index"
 
   resources :users, only: [:show] do
     resources :user_matches, only: %i[new create]
