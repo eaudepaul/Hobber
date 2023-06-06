@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   root "pages#index"
   resources :users do
-    resources :user_matches [:new, :edit]
+    resources :user_matches, only: %i[new edit]
   end
 end
