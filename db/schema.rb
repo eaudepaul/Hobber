@@ -70,12 +70,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_083659) do
   end
 
   create_table "user_matches", force: :cascade do |t|
-    t.integer "primary_user_id"
+    t.bigint "user_id", null: false
     t.bigint "match_id", null: false
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["match_id"], name: "index_user_matches_on_match_id"
+    t.index ["user_id"], name: "index_user_matches_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -103,5 +104,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_083659) do
   add_foreign_key "user_games", "games"
   add_foreign_key "user_games", "users"
   add_foreign_key "user_matches", "matches"
-  add_foreign_key "user_matches", "users", column: "primary_user_id"
+  add_foreign_key "user_matches", "users"
 end
