@@ -1,0 +1,9 @@
+<div class="banner">
+  <div class="container-fluid w-75">
+    <h1>Welcome to Hobber!</h1>
+    <p>Happy nerds looking for happy buddies</p>
+    <% unless user_signed_in? %>
+      <%= link_to "Join Us", new_user_registration_path, class: "btn btn-flat" %>
+    <% end %>
+  </div>
+</div>
