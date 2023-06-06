@@ -4,8 +4,6 @@ class CreateUserMatches < ActiveRecord::Migration[7.0]
       t.integer :primary_user_id
       t.references :match, null: false, foreign_key: true
       t.string :status
-      t.references :appointment, null: false, foreign_key: true
-      t.references :chatroom, null: false, foreign_key: true
 
       t.timestamps
     end
