@@ -1,6 +1,7 @@
 class UserMatch < ApplicationRecord
+  has_many :appointments
+  has_many :chatrooms
   belongs_to :match
-  belongs_to :appointment
-  belongs_to :chatroom
-  belongs_to :primary_user, class_name: "User"
+  belongs_to :user
+  belongs_to :match
 end
