@@ -20,18 +20,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_083659) do
     t.time "start_time"
     t.time "end_time"
     t.bigint "game_id", null: false
-    t.bigint "user_matches_id", null: false
+    t.bigint "user_match_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_appointments_on_game_id"
-    t.index ["user_matches_id"], name: "index_appointments_on_user_matches_id"
+    t.index ["user_match_id"], name: "index_appointments_on_user_match_id"
   end
 
   create_table "chatrooms", force: :cascade do |t|
-    t.bigint "user_matches_id", null: false
+    t.bigint "user_match_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_matches_id"], name: "index_chatrooms_on_user_matches_id"
+    t.index ["user_match_id"], name: "index_chatrooms_on_user_match_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -96,8 +96,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_083659) do
   end
 
   add_foreign_key "appointments", "games"
-  add_foreign_key "appointments", "user_matches", column: "user_matches_id"
-  add_foreign_key "chatrooms", "user_matches", column: "user_matches_id"
+  add_foreign_key "appointments", "user_matches"
+  add_foreign_key "chatrooms", "user_matches"
   add_foreign_key "matches", "users", column: "secondary_user_id"
   add_foreign_key "reviews", "appointments"
   add_foreign_key "user_games", "games"
