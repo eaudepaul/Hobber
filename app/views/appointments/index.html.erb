@@ -1,0 +1,6 @@
+<h1>Here you can find a list of you appointments</h1>
+<ul>
+<% @appointments.each do |appointment| %>
+<li><%= appointment.address %></li>
+<% end %>
+</ul>

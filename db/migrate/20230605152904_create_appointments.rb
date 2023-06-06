@@ -6,6 +6,7 @@ class CreateAppointments < ActiveRecord::Migration[7.0]
       t.time :start_time
       t.time :end_time
       t.references :game, null: false, foreign_key: true
+      t.references :user_match, null: false, foreign_key: true
 
       t.timestamps
     end
