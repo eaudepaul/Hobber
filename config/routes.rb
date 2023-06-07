@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root "pages#index"
 
-  resources :users, only: [:show] do
+  resources :users, only: %i[show edit update] do
     resources :user_matches, only: %i[new create]
   end
 
@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   end
 
   resources :appointments, only: %i[index destroy]
+
+  resources :games, only: %i[index new create]
 end
