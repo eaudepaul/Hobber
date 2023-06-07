@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   end
 
   resources :appointments, only: %i[index destroy]
+
+  resources :games, only: %i[index new create]
 end
