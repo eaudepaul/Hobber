@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chatrooms/index'
   get 'matches/new'
   get 'matches/create'
   get 'appointments/index'
@@ -7,12 +8,10 @@ Rails.application.routes.draw do
 
   root "pages#index"
 
-  resources :users, only: [:show] do
-    resources :user_matches, only: %i[new create]
-  end
+  resources :user_matches, only: %i[new create]
 
-  resources :user_matches, only: %i[new edit] do
-    resources :appointments, only: %i[new create]
+  resources :user_matches, only: %i[edit] do
+    resources :appointments, only: %i[index new create]
   end
 
   resources :appointments, only: %i[show edit] do
