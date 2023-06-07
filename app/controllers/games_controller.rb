@@ -1,10 +1,12 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.all
-  end
-
-  def new
-    @game = Game.new
+    if params[:query].present?
+      @games = Game.where("name ILIKE ?", "%#{params[:query]}%")
+    else
+      @games = Game.all
+    end
+    @user_games = current_user.games
+    @user_game = UserGame.new
   end
 
   def create

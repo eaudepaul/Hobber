@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_06_083659) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_092939) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_083659) do
     t.bigint "appointment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["appointment_id"], name: "index_reviews_on_appointment_id"
   end
 
@@ -82,7 +83,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_083659) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "name"
     t.string "username"
     t.integer "age"
     t.string "bio"
@@ -101,6 +101,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_083659) do
   add_foreign_key "chatrooms", "user_matches"
   add_foreign_key "matches", "users", column: "secondary_user_id"
   add_foreign_key "reviews", "appointments"
+  add_foreign_key "reviews", "users"
   add_foreign_key "user_games", "games"
   add_foreign_key "user_games", "users"
   add_foreign_key "user_matches", "matches"
