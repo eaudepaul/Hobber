@@ -1,0 +1,47 @@
+.navbar-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFBD00;
+  position: fixed;
+  width: 390px;
+  height: 54px;
+  left: -1px;
+  top: 756px;
+}
+
+.navbar-bottom ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar-bottom li {
+  flex: 1;
+  text-align: center;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-top: 28px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+}
+
+#icon-left {
+  margin-left: -60px;
+}
+
+#icon-right {
+  margin-right: -60px;
+}
+
