@@ -1,10 +1,12 @@
-<div class="banner">
-  <div class="container-fluid w-75">
+<div id="banner">
+  <div class="baran-container">
     <h1>Welcome to Hobber!</h1>
-    <p>Happy nerds looking for happy buddies</p>
-    <% unless user_signed_in? %>
-      <%= link_to "Join Us", new_user_registration_path, class: "btn btn-flat" %>
-    <% end %>
+    <p>Happy Nerds looking for Buddies</p>
   </div>
-      <%= button_to "Log out", destroy_user_session_path, class: "btn btn-primary", method: :delete, data: {turbo: false} %>
+  <div class="buttons">
+    <% unless user_signed_in? %>
+      <%= link_to "Join Us", new_user_registration_path, class: " btn btn-primary Join-us-button" %>
+    <% end %>
+      <%= button_to "Sign In", destroy_user_session_path, class: "btn btn-light Sign-In-button", method: :delete, data: {turbo: false} %>
+  </div>
 </div>
