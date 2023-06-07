@@ -2,7 +2,9 @@
   <div class="container-fluid w-75">
     <h1>Welcome to Hobber!</h1>
     <p>Happy nerds looking for happy buddies</p>
-    <% unless user_signed_in? %>
+    <% if user_signed_in? && !current_user.username.present? && !current_user.age.present? && !current_user.address.present? && !current_user.bio.present? %>
+      <%= link_to "Complete your profile", edit_user_path(current_user) %>
+    <% else %>
       <%= link_to "Join Us", new_user_registration_path, class: "btn btn-flat" %>
     <% end %>
   </div>
