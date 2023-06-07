@@ -10,7 +10,7 @@ class AppointmentsController < ApplicationController
   def create
     @appointment = appointment.new(appointment_params)
     @user_match.id = User_match.find(params[:user_match_id])
-    @appointment.user_match.id = @user_match.id
+    @appointment.user_match_id = @user_match.id
     if @appointment.save!
       redirect_to appointments_path
     else
