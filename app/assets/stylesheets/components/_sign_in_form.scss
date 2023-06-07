@@ -1,0 +1,38 @@
+.sign-in-wrapper {
+  background-color: lightgrey;
+  border-radius: 27px;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 8em;
+  padding-bottom: 3em;
+  h1 {
+    text-align: center;
+    padding-top: 2em;
+  }
+  .sign-in-form {
+    padding: 1em 2em 0em;
+  }
+  .log-in-button {
+    text-align: center;
+    border-radius: 27px;
+    background-color: black;
+    color: white;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding: 0.5em;
+  }
+  .log-in-links {
+    text-align: center;
+    margin-top: 1em;
+  }
+  .log-in-input {
+    border-radius: 27px;
+    padding: 0.75em;
+  }
+  .form-label {
+    margin-left: 0.5rem;
+  }
+  .form-check {
+    margin-left: 0.5rem;
+  }
+}
