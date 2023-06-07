@@ -1,21 +1,34 @@
+# frozen_string_literal: true
+
+# Top-level documentation comment
 class ReviewsController < ApplicationController
+  def index
+    # Reviews that current user received: this finds all the reviews left by a secondary_user for the current user, who is defined in a Match instance
+    @reviews = Review.where(user_id: current_user.matches.pluck(:secondary_user_id))
+  end
+
+  def show
+    @review = Review.find(params[:id])
+  end
+
   def new
     @review = Review.new
   end
 
-  def show
-    @review = Review.find_by(id: params["id"])
-  end
-
   def create
-    @review = Review.new(review_params)
-      @review.save
-    redirect_to @review
+    @appointment = appointment.new(appointment_params)
+    @appointment.id = Appointment.find(params[:appointment_id])
+    @review.appointment_id = @appointment.id
+    if @review.save!
+      redirect_to appointments_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:title, :content, :rating, :game_id, :user_id, :appointment_id)
+    params.require(:review).permit(:content, :rating, :appointment_id)
   end
 end
