@@ -10,6 +10,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "components/sign_in_form";
+@import "components/create_profile_form";
 
 #banner {
   background-image: url(BackgroundHomepage.png);
@@ -69,7 +71,3 @@ h1 {
   text-align: center;
   margin-bottom: 100px;
 }
-
-@import "components/sign_in_form";
-@import "components/create_profile_form";
-

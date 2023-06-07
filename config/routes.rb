@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   root "pages#index"
 
+  resources :users, only: %i[new edit update]
   resources :user_matches, only: %i[new create]
 
   resources :user_matches, only: %i[edit] do
