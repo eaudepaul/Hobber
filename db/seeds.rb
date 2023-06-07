@@ -24,11 +24,12 @@ User.destroy_all
 
 puts 'Creating users...'
 antonio = User.create(email: 'antonio@example.com', password: '123456', username: 'Antonio', age: 36, bio: 'Eleganza!', address: 'Italy')
+
 paul = User.create(email: 'paul@example.com', password: '123456', username: 'Paul', age: 31, bio: 'Free muffins!', address: 'Ireland')
 
-baran = User.create(email: 'baran@example.com', password: '123456', name: 'Baran', username: 'Baran', age: 23, bio: 'Gym, gym, gym', address: 'Turkey')
+baran = User.create(email: 'baran@example.com', password: '123456', username: 'Baran', age: 23, bio: 'Gym, gym, gym', address: 'Turkey')
 
-charlotte = User.create(email: 'charlotte@example.com', password: '123456', name: 'Charlotte', username: 'Charlotte', age: 18, bio: 'German baguette', address: 'Glasgow')
+charlotte = User.create(email: 'charlotte@example.com', password: '123456', username: 'Charlotte', age: 18, bio: 'German baguette', address: 'Glasgow')
 
 puts 'Creating matches...'
 match = Match.create(secondary_user_id: paul.id)
