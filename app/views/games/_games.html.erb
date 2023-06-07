@@ -1,0 +1,37 @@
+<h1>games to be a partial</h1>
+
+<div class="container">
+<div>
+
+  <% @games %>
+  <% choice = @games.sample(5)%>
+  <% choice.each do |game| %>
+      <div class="game">
+        <h6><%= link_to game.name, root_path %></h6>
+      </div>
+    <% end %>
+</div>
+
+<br>
+
+<%= form_with url: root_path, method: :get, class: "d-flex" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Didn't find what you're looking for? Search here"
+  %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+
+<br>
+
+  <div class="add-game">
+    <h6>Add a game:</h6>
+    <%= form_with(model: Game.new, url: games_path, method: :post) do |f| %>
+      <%= f.text_field :name, placeholder: "Game Name" %>
+      <%= f.submit "Add" %>
+    <% end %>
+  </div>
+
+</div>
