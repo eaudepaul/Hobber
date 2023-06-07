@@ -13,10 +13,10 @@
                   input_html: { autocomplete: "current-password", class: "log-in-input" },
                   placeholder: "Password" %>
       <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-    </div>
 
-    <div class="form-actions log-in-button">
-      <%= f.button :submit, "Log in", class: "log-in-button" %>
+      <div class="form-actions">
+        <%= f.button :submit, "Log in", class: "log-in-button" %>
+      </div>
     </div>
   <% end %>
 
