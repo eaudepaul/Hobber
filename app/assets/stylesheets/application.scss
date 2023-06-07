@@ -10,5 +10,66 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+#banner {
+  background-image: url(BackgroundHomepage.png);
+  background-size: cover;
+  background-position: center;
+  height: 850px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.baran-container {
+  align-items: center;
+  width: 75%;
+  margin-top: 50px;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.Join-us-button{
+  display:inline-block;
+  font-weight: bold !important;
+  padding:0.6em 2.4em;
+  margin:0 0.1em 0.1em 0;
+  border:0.16em solid rgba(255,255,255,0);
+  border-radius:3px;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight: 300;
+  color: white;
+  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+  text-align: center;
+}
+
+.Sign-In-button{
+  display:inline-block;
+  padding:0.2em 0.2em;
+  margin-top: 0.5rem;
+  border:0.16em solid rgba(255,255,255,0);
+  border-radius:3px;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight: 300;
+  color: blue;
+  text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+  text-align: center;
+}
+
+.buttons{
+  text-align: center;
+  margin-bottom: 100px;
+}
+
 @import "components/sign_in_form";
 @import "components/create_profile_form";
+
