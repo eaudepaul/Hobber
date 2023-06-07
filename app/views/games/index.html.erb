@@ -1,0 +1,37 @@
+<h1>games partial</h1>
+
+<div class="container">
+  <div>
+    <% choice = @games.sample(5)%>
+    <% choice.each do |game| %>
+        <div class="game">
+          <%= simple_form_for [game, @user_game] do |f| %>
+            <%= f.submit game.name %>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+
+  <br>
+
+  <%= form_with url: games_path, method: :get, class: "d-flex" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Didn't find what you're looking for? Search here"
+    %>
+    <%= submit_tag "Search" %>
+  <% end %>
+
+
+  <br>
+
+  <div class="add-game">
+    <h6>Add a game:</h6>
+    <%= form_with(model: Game.new, url: games_path, method: :post) do |f| %>
+      <%= f.text_field :name, placeholder: "Game Name" %>
+      <%= f.submit "Add" %>
+    <% end %>
+  </div>
+
+</div>

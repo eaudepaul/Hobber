@@ -21,5 +21,7 @@ Rails.application.routes.draw do
 
   resources :appointments, only: %i[index destroy]
 
-  resources :games, only: %i[index new create]
+  resources :games, only: %i[index new create] do
+    resources :user_games, only: %i[create new index]
+  end
 end
