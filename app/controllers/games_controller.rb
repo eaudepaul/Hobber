@@ -18,14 +18,6 @@ class GamesController < ApplicationController
     end
   end
 
-  def update_popularity
-    raise
-    @game = Game.find(params[:id])
-    @game.popularity += 1
-    @game.save
-    redirect_to games_path
-  end
-
   private
 
   def game_params
