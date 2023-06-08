@@ -51,8 +51,7 @@ katharine.save
 
 puts 'Creating matches...'
 match = Match.create(secondary_user_id: paul.id)
-charlotte.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-charlotte.save
+
 
 puts 'Creating user_matches...'
 user_match1 = UserMatch.new(user_id: antonio.id, match_id: match.id, status: 'pending')
