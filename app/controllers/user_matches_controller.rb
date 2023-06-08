@@ -3,11 +3,11 @@
 # Top-level documentation comment
 class UserMatchesController < ApplicationController
   def index
-    @user_matches = UserMatch.where(status: 'approved')
+    @user_matches = UserMatch.where(status: 'approved').where('user_id = ? OR match_id IN (SELECT id FROM matches WHERE secondary_user_id = ?)', current_user.id, current_user.id)
   end
 
   def new
-    @potential_match = User.all.sample
+    @potential_match = User.where.not(user_id: current_user.id).sample
     @user_match_exists = user_match_exists
     @user_match_exists ? set_user_match : @user_match = UserMatch.new
   end
