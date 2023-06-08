@@ -1,7 +1,12 @@
 <h1>User Matches</h1>
 <ul>
 <% @user_matches.each do |user_match| %>
-<li><%= user_match.match.secondary_user.username %></li>
+<% if current_user == user_match.match.secondary_user %>
+  <% match = user_match.user %>
+<% else %>
+  <% match = user_match.match.secondary_user %>
+<% end %>
+<li><%= match.username %></li>
 <% end %>
 </ul>
 <%= render 'shared/navbar_bottom' %>
