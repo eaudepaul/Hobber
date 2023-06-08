@@ -16,3 +16,16 @@
     top: 100%;
     left: 0;
 }
+
+.dropdown-menu li {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 0.5em 0;
+    color: black;
+    text-decoration: none;
+}

@@ -3,12 +3,18 @@
     <a href="/">
       <%= image_tag "logo", width: 30, height: 40%>
 </a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
         <% if user_signed_in? %>
           <li class="dropdown">
-          <%= cl_image_tag user.photo.key, class: "avatar", width: 30, height: 40, id: "navbarDropdown", role: "button", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false do %>
-            <%=  %>
-						<% end %>
+          <% if current_user.photo.key %>
+            <%= cl_image_tag current_user.photo.key, class: "avatar", width: 30, height: 40, id: "navbarDropdown", role: "button", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% else %>
+            <%= image_tag "Hobber", class: "avatar", width: 30, height: 40, id: "navbarDropdown", role: "button", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% end %>
+          
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My Profile", "/users/:id", class: "dropdown-item" %>
               <%= link_to "My Matches", "/user_matches/new", class: "dropdown-item" %>
