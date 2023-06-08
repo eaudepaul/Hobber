@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root "pages#index"
 
-  resources :user_matches, only: %i[edit index new create] do
+  resources :user_matches, only: %i[update index new create] do
     resources :appointments, only: %i[new create]
   end
 
@@ -23,5 +23,4 @@ Rails.application.routes.draw do
   resources :games, only: %i[index new create] do
     resources :user_games, only: %i[create new index]
   end
-
 end
