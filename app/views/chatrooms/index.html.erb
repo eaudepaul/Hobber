@@ -1,3 +1,4 @@
+<%= render 'shared/top_navbar_browse' %>
 <h1>All chats</h1>
 <%  @user_matches.each do |user_match| %>
   <% if user_match.chatrooms.first.blank?  %>
@@ -16,3 +17,4 @@
     <% end %>
   <% end %>
 <% end %>
+<%= render 'shared/navbar_bottom' %>
