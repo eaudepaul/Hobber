@@ -3,11 +3,22 @@
 # Top-level documentation comment
 class UserMatchesController < ApplicationController
   def index
-    @user_matches = UserMatch.where(status: 'approved')
+    @user_matches = UserMatch.where(status: 'approved').where('user_id = ? OR match_id IN (SELECT id FROM matches WHERE secondary_user_id = ?)', current_user.id, current_user.id)
   end
 
   def new
-    @potential_match = User.all.sample
+    # Exclude current user:
+    potential_matches = User.where.not(id: current_user.id)
+    # Exclude users with whom a user_match exists and:
+    # secondary_user_id: current_user.id and status: 'denied' (current users won't see users who disliked his profile)
+    # OR
+    # user_id: current_user.id (current users won't see users he has already voted)
+
+
+
+    @potential_match = potential_matches.sample
+    # The code below will be used in the view to determine
+    # if the form presented to the user should have a post or put method
     @user_match_exists = user_match_exists
     @user_match_exists ? set_user_match : @user_match = UserMatch.new
   end
@@ -22,7 +33,7 @@ class UserMatchesController < ApplicationController
   end
 
   def update
-    @user_match = UserMatch.joins(:match).find_by(matches: { secondary_user_id: current_user.id })
+    @user_match = set_user_match
     redirect_to new_user_match_path if @user_match.update(user_match_params)
   end
 
@@ -37,7 +48,7 @@ class UserMatchesController < ApplicationController
     # There is a naming conflict with the match keyword, which is a reserved keyword in PostgreSQL.
     # To resolve the issue, we use joins(:match) to perform an inner join with the matches table.
     # Then, we use where(matches: { secondary_user_id: current_user.id }) to specify the condition for the join.
-    @user_match = UserMatch.joins(:match).find_by(matches: { secondary_user_id: current_user.id })
+    @user_match = UserMatch.joins(:match).where(matches: { secondary_user_id: current_user.id })
   end
 
   def user_match_params

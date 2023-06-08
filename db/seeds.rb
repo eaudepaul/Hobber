@@ -28,12 +28,12 @@ baran = User.create(email: 'baran@example.com', password: '123456', username: 'B
 charlotte = User.create(email: 'charlotte@example.com', password: '123456', username: 'Charlotte', age: 18, bio: 'German baguette', address: 'Glasgow')
 katharine = User.create(email: 'katharine@example.com', password: '123456', username: 'katzenjammer', age: 29, bio: 'Texas forever', address: 'Boulder')
 
-puts 'Creating matches...'
-match = Match.create(secondary_user_id: paul.id)
+# puts 'Creating matches...'
+# match = Match.create(secondary_user_id: paul.id)
 
-puts 'Creating user_matches...'
-user_match1 = UserMatch.new(user_id: antonio.id, match_id: match.id, status: 'pending')
-user_match1.save!
+# puts 'Creating user_matches...'
+# user_match1 = UserMatch.new(user_id: antonio.id, match_id: match.id, status: 'pending')
+# user_match1.save!
 
 puts 'Creating games...'
 game1 = Game.create(name: 'Chess')
@@ -46,10 +46,10 @@ puts 'Creating user_games...'
 UserGame.create(user_id: antonio.id, game_id: game1.id)
 UserGame.create(user_id: paul.id, game_id: game2.id)
 
-puts 'Creating appointments...'
-appointment1 = Appointment.create(address: 'Le Wagon, Berlin', date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game1.id, user_match_id: user_match1.id)
-appointment2 = Appointment.create(address: "At Paul's, Berlin", date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game2.id, user_match_id: user_match1.id)
+# puts 'Creating appointments...'
+# appointment1 = Appointment.create(address: 'Le Wagon, Berlin', date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game1.id, user_match_id: user_match1.id)
+# appointment2 = Appointment.create(address: "At Paul's, Berlin", date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game2.id, user_match_id: user_match1.id)
 
-puts 'Creating reviews...'
-Review.create(content: "It was the best gaming session ever, Paul loses like it's nobody's business", rating: 10, appointment_id: appointment1.id, user_id: antonio.id)
-Review.create(content: "Antonio won 10 times in a row, man is a legend", rating: 8, appointment_id: appointment1.id, user_id: paul.id)
+# puts 'Creating reviews...'
+# Review.create(content: "It was the best gaming session ever, Paul loses like it's nobody's business", rating: 10, appointment_id: appointment1.id, user_id: antonio.id)
+# Review.create(content: "Antonio won 10 times in a row, man is a legend", rating: 8, appointment_id: appointment1.id, user_id: paul.id)
