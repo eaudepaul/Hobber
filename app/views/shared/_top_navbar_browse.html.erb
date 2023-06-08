@@ -1,20 +1,14 @@
-<div class="fixed-top navbar navbar-expand-sm browse-navbar" style="background-color: #FFBD00;">
+<div class="browse-navbar" >
   <div class="container-fluid">
     <a href="/">
       <%= image_tag "logo.png", width: 30, height: 40%>
 </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
 
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
-            <%= cl_image_tag user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= image_tag "https://img.freepik.com/premium-vector/logo-pet-shop-pet-care-your-own-dog-with-beagle-dog_152710-142.jpg", id: "navbarDropdown", role: "button", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false do %>
+            <%= cl_image_tag user.photo.key, class: "avatar", width: 30, height: 40 %>
+						<% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My Profile", "/users/:id", class: "dropdown-item" %>
               <%= link_to "My Matches", "/user_matches/new", class: "dropdown-item" %>
