@@ -26,6 +26,7 @@ antonio = User.create(email: 'antonio@example.com', password: '123456', username
 paul = User.create(email: 'paul@example.com', password: '123456', username: 'Paul', age: 31, bio: 'Free muffins!', address: 'Ireland')
 baran = User.create(email: 'baran@example.com', password: '123456', username: 'Baran', age: 23, bio: 'Gym, gym, gym', address: 'Turkey')
 charlotte = User.create(email: 'charlotte@example.com', password: '123456', username: 'Charlotte', age: 18, bio: 'German baguette', address: 'Glasgow')
+katharine = User.create(email: 'katharine@example.com', password: '123456', username: 'katzenjammer', age: 29, bio: 'Texas forever', address: 'Boulder') 
 
 puts 'Creating matches...'
 match = Match.create(secondary_user_id: paul.id)
