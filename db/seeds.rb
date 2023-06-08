@@ -62,8 +62,8 @@ katharine.save
 # user_match1 = UserMatch.new(user_id: antonio.id, match_id: match.id, status: 'pending')
 # user_match1.save!
 
-puts 'Creating chatroom...'
-Chatroom.create(name: "My chatroom", user_match_id: user_match1.id)
+# puts 'Creating chatroom...'
+# Chatroom.create(name: "My chatroom", user_match_id: user_match1.id)
 
 puts 'Creating games...'
 game1 = Game.create(name: 'Chess')

@@ -8,7 +8,7 @@ class UserMatchesController < ApplicationController
 
   def new
     # Exclude current user:
-    @potential_match = User.where.not(user_id: current_user.id).sample
+    @potential_match = User.where.not(id: current_user.id).sample
     # TODO here: Exclude users with whom a user_match exists and:
     # secondary_user_id: current_user.id and status: 'denied' (current users won't see users who disliked his profile)
     # OR
