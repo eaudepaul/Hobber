@@ -45,7 +45,7 @@ class UserMatchesController < ApplicationController
     # There is a naming conflict with the match keyword, which is a reserved keyword in PostgreSQL.
     # To resolve the issue, we use joins(:match) to perform an inner join with the matches table.
     # Then, we use where(matches: { secondary_user_id: current_user.id }) to specify the condition for the join.
-    @user_match = UserMatch.joins(:match).where(matches: { secondary_user_id: current_user.id })
+    @user_match = UserMatch.joins(:match).find_by(matches: { secondary_user_id: current_user.id })
   end
 
   def user_match_params
