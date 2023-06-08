@@ -1,5 +1,10 @@
+.backgroundlogo{
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}
 .sign-in-wrapper {
-  background-color: lightgrey;
+  background-color: #E7882AAA;
   border-radius: 27px;
   margin-left: 1em;
   margin-right: 1em;
@@ -46,7 +51,7 @@
       }
     .sign-up-button {
       border-radius: 27px;
-      background-color: black;
+      background-color: #39AD04;
       color: white;
       padding: 0.75em;
       width: 100%;
@@ -55,5 +60,6 @@
   }
   .form-text {
     margin-left: 0.5rem;
+        color: #F0F0F0;
   }
 }
