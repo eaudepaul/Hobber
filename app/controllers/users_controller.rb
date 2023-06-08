@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[destroy edit update]
+
   def index
     @users = User.all
   end
@@ -16,24 +18,22 @@ class UsersController < ApplicationController
     if @user.save!
       redirect_to user_path(@user)
     else
-    render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @user = User.find_by(id: params["id"])
   end
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(user)
+      redirect_to games_path
     else
-      render status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @user = User.find_by(id: params["id"])
     @user.destroy
     redirect_to "/pages/index"
   end
@@ -42,5 +42,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :username, :bio, :address, :age)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

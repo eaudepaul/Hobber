@@ -1,7 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
 require 'faker'
 require 'date'
 puts 'Deleting reviews...'
@@ -22,14 +18,15 @@ Match.destroy_all
 puts 'Deleting users...'
 User.destroy_all
 
+puts 'Deleting user_games...'
+UserGame.destroy_all
+
 puts 'Creating users...'
 antonio = User.create(email: 'antonio@example.com', password: '123456', username: 'Antonio', age: 36, bio: 'Eleganza!', address: 'Italy')
-
 paul = User.create(email: 'paul@example.com', password: '123456', username: 'Paul', age: 31, bio: 'Free muffins!', address: 'Ireland')
-
 baran = User.create(email: 'baran@example.com', password: '123456', username: 'Baran', age: 23, bio: 'Gym, gym, gym', address: 'Turkey')
-
 charlotte = User.create(email: 'charlotte@example.com', password: '123456', username: 'Charlotte', age: 18, bio: 'German baguette', address: 'Glasgow')
+katharine = User.create(email: 'katharine@example.com', password: '123456', username: 'katzenjammer', age: 29, bio: 'Texas forever', address: 'Boulder') 
 
 puts 'Creating matches...'
 match = Match.create(secondary_user_id: paul.id)
@@ -45,8 +42,11 @@ game2 = Game.create(name: 'Clue')
   Game.create(name: Faker::Game.title)
 end
 
-puts 'Creating appointments...'
+puts 'Creating user_games...'
+UserGame.create(user_id: antonio.id, game_id: game1.id)
+UserGame.create(user_id: paul.id, game_id: game2.id)
 
+puts 'Creating appointments...'
 appointment1 = Appointment.create(address: 'Le Wagon, Berlin', date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game1.id, user_match_id: user_match1.id)
 appointment2 = Appointment.create(address: "At Paul's, Berlin", date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game2.id, user_match_id: user_match1.id)
 
