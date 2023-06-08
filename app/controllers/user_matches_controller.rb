@@ -13,8 +13,8 @@ class UserMatchesController < ApplicationController
     match = Match.create!(secondary_user_id: params[:user_match][:match_id])
     user_match = UserMatch.new(user_match_params)
     user_match.user_id = current_user.id
-    user_match.match_id = match.secondary_user_id
-    user_match.save
+    user_match.match_id = match.id
+    user_match.save!
     redirect_to new_user_match_path
   end
 
