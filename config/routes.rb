@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'chatrooms/index'
   get 'matches/new'
   get 'matches/create'
@@ -31,8 +30,5 @@ Rails.application.routes.draw do
     end
     resources :user_games, only: %i[create new index]
   end
-
-  authenticate :user, ->(user) { user.admin? } do
-    mount Blazer::Engine, at: "blazer"
-  end
 end
+

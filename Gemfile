@@ -56,9 +56,6 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "devise"
 gem "faker"
 gem "cloudinary"
-gem "rails_admin", "3.0"
-gem "blazer"
-
 
 
 group :development, :test do
@@ -84,4 +81,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-gem "sassc-rails"
