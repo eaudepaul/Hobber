@@ -1,13 +1,13 @@
 <div class="browse-navbar" >
   <div class="container-fluid">
     <a href="/">
-      <%= image_tag "logo.png", width: 30, height: 40%>
+      <%= image_tag "logo", width: 30, height: 40%>
 </a>
 
         <% if user_signed_in? %>
-          <li class="nav-item dropdown">
-          <%= image_tag "https://img.freepik.com/premium-vector/logo-pet-shop-pet-care-your-own-dog-with-beagle-dog_152710-142.jpg", id: "navbarDropdown", role: "button", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false do %>
-            <%= cl_image_tag user.photo.key, class: "avatar", width: 30, height: 40 %>
+          <li class="dropdown">
+          <%= cl_image_tag user.photo.key, class: "avatar", width: 30, height: 40, id: "navbarDropdown", role: "button", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false do %>
+            <%=  %>
 						<% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My Profile", "/users/:id", class: "dropdown-item" %>
