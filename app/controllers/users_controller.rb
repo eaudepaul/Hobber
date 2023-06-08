@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.all.sample
+    @chatroom = Chatroom.new
   end
 
   def new
