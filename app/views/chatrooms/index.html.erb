@@ -1,2 +1,18 @@
-<h1>Chatrooms#index</h1>
-<p>Find me in app/views/chatrooms/index.html.erb</p>
+<h1>All chats</h1>
+<%  @user_matches.each do |user_match| %>
+  <% if user_match.chatrooms.first.blank?  %>
+    <p> Chat with <%= user_match.user.username %> </p>
+    <%= simple_form_for Chatroom.new do |f| %>
+      <%= f.input :user_match_id,
+          as: "hidden",
+          input_html: {value: user_match.id} %>
+      <%= f.submit "Chat" %>
+    <% end %>
+  <% else %>
+    <% if user_match.user == current_user %>
+      <%= link_to user_match.match.secondary_user.username, chatroom_path(user_match.chatrooms.first) %>
+    <% elsif user_match.match.secondary_user == current_user %>
+      <%= link_to user_match.user.username, chatroom_path(user_match.chatrooms.first) %>
+    <% end %>
+  <% end %>
+<% end %>
