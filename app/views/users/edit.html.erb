@@ -1,21 +1,23 @@
-<div class="create-profile-wrapper">
-  <h1>Create your profile</h1>
-  <%= simple_form_for @user do |f| %>
-    <div class="form-inputs">
-      <%= f.input :username,
-                  required: true,
-                  input_html: { autocomplete: "Username", class: "create-profile-input" } %>
-      <%= f.input :age,
-                  required: true,
-                  input_html: { autocomplete: "age", class: "create-profile-input" } %>
-      <%= f.input :address,
-                  required: true,
-                  input_html: { autocomplete: "Where are you from?", class: "create-profile-input" } %>
-      <%= f.input :bio,
-                  as: :text,
-                  required: true,
-                  input_html: { autocomplete: "Tell us about yourself, what do you like?", class: "bio-input", rows: 5 } %>
-      <%= f.submit "Add your favourite games", class: "create-form-button" %>
+<div class="background">
+  <div class="create-profile-wrapper">
+    <h1>Create your profile</h1>
+    <%= simple_form_for @user do |f| %>
+      <div class="form-inputs">
+        <%= f.input :username,
+                    required: true,
+                    input_html: { autocomplete: "Username", class: "create-profile-input" } %>
+        <%= f.input :age,
+                    required: true,
+                    input_html: { autocomplete: "age", class: "create-profile-input" } %>
+        <%= f.input :address,
+                    required: true,
+                    input_html: { autocomplete: "Where are you from?", class: "create-profile-input" } %>
+        <%= f.input :bio,
+                    as: :text,
+                    required: true,
+                    input_html: { autocomplete: "Tell us about yourself, what do you like?", class: "bio-input", rows: 5 } %>
+        <%= f.submit "Add Games", class: "create-form-button" %>
+    </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
