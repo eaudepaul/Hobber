@@ -8,15 +8,12 @@ class UserMatchesController < ApplicationController
 
   def new
     # Exclude current user:
-    potential_matches = User.where.not(id: current_user.id)
-    # Exclude users with whom a user_match exists and:
+    @potential_match = User.where.not(user_id: current_user.id).sample
+    # TODO here: Exclude users with whom a user_match exists and:
     # secondary_user_id: current_user.id and status: 'denied' (current users won't see users who disliked his profile)
     # OR
     # user_id: current_user.id (current users won't see users he has already voted)
 
-
-
-    @potential_match = potential_matches.sample
     # The code below will be used in the view to determine
     # if the form presented to the user should have a post or put method
     @user_match_exists = user_match_exists
