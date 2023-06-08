@@ -3,7 +3,7 @@
 # Top-level documentation comment
 class UserMatchesController < ApplicationController
   def index
-    @user_matches = UserMatch.all
+    @user_matches = UserMatch.where(status: 'approved')
   end
 
   def new
