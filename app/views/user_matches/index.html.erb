@@ -1,7 +1,7 @@
 <h1>User Matches</h1>
-
-
-
-
-
+<ul>
+<% @user_matches.each do |user_match| %>
+<li><%= user_match.match.secondary_user.username %></li>
+<% end %>
+</ul>
 <%= render 'shared/navbar_bottom' %>
