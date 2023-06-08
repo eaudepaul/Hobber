@@ -2,11 +2,10 @@
 
 <div class="container">
   <div>
-    <% choice = @games.sample(5)%>
-    <% choice.each do |game| %>
+    <% @games.each do |game_name, _popularity| %>
         <div class="game">
-          <%= simple_form_for [game, @user_game] do |f| %>
-            <%= f.submit game.name %>
+          <%= simple_form_for [Game.find_by(name: game_name), @user_game] do |f| %>
+            <%= f.submit game_name %>
           <% end %>
         </div>
       <% end %>
