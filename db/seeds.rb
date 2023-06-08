@@ -53,3 +53,6 @@ appointment2 = Appointment.create(address: "At Paul's, Berlin", date: Date.today
 puts 'Creating reviews...'
 Review.create(content: "It was the best gaming session ever, Paul loses like it's nobody's business", rating: 10, appointment_id: appointment1.id, user_id: antonio.id)
 Review.create(content: "Antonio won 10 times in a row, man is a legend", rating: 8, appointment_id: appointment1.id, user_id: paul.id)
+
+puts 'Creating chatroom...'
+Chatroom.create(name: "My chatroom", user_match_id: user_match1.id)

@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     resources :appointments, only: %i[new create]
   end
 
+  resources :chatrooms, only: %i[show index create destroy] do
+    resources :messages, only: :create
+  end
+
   resources :users, only: %i[new edit update]
 
   resources :appointments, only: %i[show edit] do
