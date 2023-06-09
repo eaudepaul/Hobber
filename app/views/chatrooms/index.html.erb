@@ -11,9 +11,9 @@
     <% end %>
   <% else %>
     <% if user_match.user == current_user %>
-      <%= link_to user_match.match.secondary_user.username, chatroom_path(user_match.chatrooms.first) %>
+      <%= link_to user_match.match.secondary_user.username, chatroom_path(user_match.chatrooms.first, user_match_id: user_match.id) %>
     <% elsif user_match.match.secondary_user == current_user %>
-      <%= link_to user_match.user.username, chatroom_path(user_match.chatrooms.first) %>
+      <%= link_to user_match.user.username, chatroom_path(user_match.chatrooms.first, user_match_id: user_match.id) %>
     <% end %>
   <% end %>
 <% end %>

@@ -1,0 +1,60 @@
+.spielbox{
+  text-align: center;
+}
+.main-container{
+  min-height: 100vh;
+  overflow: scroll;
+
+  .user-container{
+    position: relative;
+    top: 65px;
+    .name{
+      position: absolute;
+      top:12px;
+      z-index: 1;
+      left: 20px;
+    }
+    .icon{
+      position: absolute;
+      z-index: 1;
+      left: 344px;
+    }
+    .background-image{
+      position: absolute;
+      z-index: 0;
+    }
+    .form-accept{
+      position: absolute;
+      z-index: 1;
+      margin-top: 463px;
+      margin-left: 230px;
+    }
+    .form-reject{
+      position: absolute;
+      z-index: 1;
+      margin-top: 463px;
+      margin-left: 19px;
+    }
+    .card-text{
+      z-index: 99;
+      position: relative;
+      top: 719px;
+    }
+    .button-decline{
+      padding: 0 24px;
+      border-radius: 50px;
+      min-width: 150px;
+      height: 50px;
+      font-size: 18px;
+      background-color: red;
+    }
+    .button-accept{
+      padding: 0 24px;
+      border-radius: 50px;
+      min-width: 150px;
+      height: 50px;
+      font-size: 18px;
+      background-color: green;
+    }
+  }
+}
