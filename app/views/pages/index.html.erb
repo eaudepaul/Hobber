@@ -3,17 +3,15 @@
     <div class="logo-container" > <%= image_tag "logo.png" %></div>
     <h1>Welcome to  obber!</h1>
     <p>Where nerds find nerds</p>
-     <div class="buttons">
-      <% if !user_signed_in? %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-flat Join-us-button" %>
-        <%= link_to "Log in", new_user_session_path, class: "btn btn-flat Join-us-button" %>
-      <% elsif user_signed_in? && !current_user.username.present? && !current_user.age.present? && !current_user.address.present? && !current_user.bio.present? %>
+     <div class="buttons justify-content-center">
+      <% if user_signed_in? && !current_user.username.present? && !current_user.age.present? && !current_user.address.present? && !current_user.bio.present? %>
         <%= link_to "Complete your profile", edit_user_path(current_user) %>
       <% elsif user_signed_in? && current_user.username.present? && current_user.age.present? && current_user.address.present? && current_user.bio.present? %>
-        <%= link_to "Find your fellow nerds!", new_user_match_path %>
-      <%= button_to "Log out", destroy_user_session_path, class: "btn btn-light Sign-In-button", method: :delete, data: {turbo: false} %>
+        <%= link_to "Find your fellow nerds!", new_user_match_path, class: "button-lg" %>
       <% else %>
+        <%= link_to "Join Us", new_user_registration_path, class: "button-lg" %>
       <% end %>
+      <%= button_to "Log out", destroy_user_session_path, class: "button-log-out", method: :delete, data: {turbo: false} %>
      </div>
   </div>
 </div>
