@@ -56,6 +56,7 @@ katharine.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
 katharine.save
 
 puts 'Creating matches...'
+
 match = Match.create(secondary_user_id: paul.id)
 match2 = Match.create(secondary_user_id: katharine.id)
 match3 = Match.create(secondary_user_id: charlotte.id)
