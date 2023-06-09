@@ -82,7 +82,7 @@ UserGame.create(user_id: antonio.id, game_id: game1.id)
 UserGame.create(user_id: paul.id, game_id: game2.id)
 
 # puts 'Creating appointments...'
-# appointment1 = Appointment.create(address: 'Le Wagon, Berlin', date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game1.id, user_match_id: user_match1.id)
+appointment1 = Appointment.create(address: 'Le Wagon, Berlin', date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game1.id, user_match_id: user_match_katharine_antonio.id)
 # appointment2 = Appointment.create(address: "At Paul's, Berlin", date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game2.id, user_match_id: user_match1.id)
 
 # puts 'Creating reviews...'
