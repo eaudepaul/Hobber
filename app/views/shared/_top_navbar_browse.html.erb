@@ -8,7 +8,7 @@
   <div class="navbar-right">
     <div class="dropdown-toggle-container">
       <%= cl_image_tag current_user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
-      <div class="dropdown-menu open" id="dropdown-menu">
+      <div class="dropdown-menu" id="dropdown-menu">
         <ul>
           <li><%= link_to "My Profile", "/users/:id" %></li>
           <li><%= link_to "My Matches", "/chatrooms/index" %></li>
