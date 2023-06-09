@@ -13,7 +13,7 @@
   <div class="appointment-button">
     <%= link_to "Schedule a duel", new_user_match_appointment_path(@user_match)  %>
   </div>
-  
+
   <div class="chatroom-message-form">
     <%= simple_form_for [@chatroom, @message],
       html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
@@ -27,5 +27,3 @@
     <% end %>
   </div>
 </div>
-
-<%= link_to "Make appointment", new_user_match_appointment_path(@user_match) %>

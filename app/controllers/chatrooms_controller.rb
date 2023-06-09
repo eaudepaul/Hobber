@@ -4,7 +4,7 @@ class ChatroomsController < ApplicationController
   end
 
   def show
-    @user_match = UserMatch.find(params[:id])
+    @user_match = UserMatch.find(params[:user_match_id])
     @appointment = Appointment.new
     @appointment.user_match = @user_match
     @chatroom = Chatroom.find(params[:id])
