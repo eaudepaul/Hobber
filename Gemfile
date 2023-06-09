@@ -58,6 +58,7 @@ gem "faker"
 gem "cloudinary"
 gem "rails_admin", "3.0"
 gem "blazer"
+gem "pry-byebug"
 
 
 
