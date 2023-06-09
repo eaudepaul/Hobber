@@ -25,7 +25,7 @@ class UserMatchesController < ApplicationController
   end
 
   def update
-    @user_match = set_user_match
+    set_user_match
     redirect_to new_user_match_path if @user_match.update(user_match_params)
   end
 
@@ -48,19 +48,19 @@ class UserMatchesController < ApplicationController
     potential_matches = User.where.not(id: current_user.id)
     # Exclude users with whom a user_match exists and:
     # secondary_user_id: current_user.id and status: 'denied' (current user won't see users who disliked his profile)
-    users_who_disliked_current_user = []
-    user_matches_where_users_disliked_current_user = UserMatch.joins(match: :secondary_user).where(status: 'denied', matches: { secondary_user_id: current_user.id })
-    user_matches_where_users_disliked_current_user.each do |user_match|
-      users_who_disliked_current_user.push(user_match.user)
+    users_that_disliked_current_user_or_that_current_user_voted_2nd = []
+    user_matches_where_current_user_was_disliked_or_current_user_voted_2nd = UserMatch.joins(match: :secondary_user).where(status: ['denied', 'approved'], matches: { secondary_user_id: current_user.id })
+    user_matches_where_current_user_was_disliked_or_current_user_voted_2nd.each do |user_match|
+      users_that_disliked_current_user_or_that_current_user_voted_2nd.push(user_match.user)
     end
     # OR
     # user_id: current_user.id (current user won't see users he has already voted)
-    already_voted_users = []
-    user_matches_where_current_user_voted = UserMatch.where(user_id: current_user.id)
-    user_matches_where_current_user_voted.each do |user_match|
-      already_voted_users.push(user_match.match.secondary_user)
+    users_that_current_user_voted_1st = []
+    user_matches_where_current_user_voted_1st = UserMatch.where(user_id: current_user.id)
+    user_matches_where_current_user_voted_1st.each do |user_match|
+      users_that_current_user_voted_1st.push(user_match.match.secondary_user)
     end
-    @potential_match = (potential_matches - users_who_disliked_current_user - already_voted_users)
+    @potential_match = (potential_matches - users_that_disliked_current_user_or_that_current_user_voted_2nd - users_that_current_user_voted_1st).sample
   end
 
   def user_match_params
