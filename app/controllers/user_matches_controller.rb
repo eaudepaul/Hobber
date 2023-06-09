@@ -8,16 +8,25 @@ class UserMatchesController < ApplicationController
 
   def new
     # Exclude current user:
-    @potential_match = User.where.not(id: current_user.id).sample
+    potential_matches = User.where.not(id: current_user.id)
     # Exclude users with whom a user_match exists and:
     # secondary_user_id: current_user.id and status: 'denied' (current user won't see users who disliked his profile)
-    users_who_disliked_current_user = UserMatch.joins(match: :secondary_user).where(status: 'denied', matches: { secondary_user_id: current_user.id })
+    users_who_disliked_current_user = []
+    user_matches_where_users_disliked_current_user = UserMatch.joins(match: :secondary_user).where(status: 'denied', matches: { secondary_user_id: current_user.id })
+    user_matches_where_users_disliked_current_user.each do |user_match|
+      users_who_disliked_current_user.push(user_match.user)
+    end
     # OR
     # user_id: current_user.id (current user won't see users he has already voted)
-    already_voted_users = UserMatch.where(user_id: current_user.id)
+    already_voted_users = []
+    user_matches_where_current_user_voted = UserMatch.where(user_id: current_user.id)
+    user_matches_where_current_user_voted.each do |user_match|
+      already_voted_users.push(user_match.match.secondary_user)
+    end
+
+    @potential_match = (potential_matches - users_who_disliked_current_user - already_voted_users).sample
     # The code below will be used in the view to determine
     # if the form presented to the user should have a post or put method
-    raise
     @user_match_exists = user_match_exists
     @user_match_exists ? set_user_match : @user_match = UserMatch.new
   end
