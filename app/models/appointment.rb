@@ -1,7 +1,6 @@
 class Appointment < ApplicationRecord
   belongs_to :game
   belongs_to :user_match
-  has_many :chatrooms, through: :user_matches
   has_many :reviews
 
   validates :game_id, presence: true
