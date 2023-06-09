@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[new edit update]
 
-  resources :appointments, only: %i[show edit] do
+  resources :appointments, only: %i[new show edit] do
     resources :reviews, only: %i[new create]
   end
 
