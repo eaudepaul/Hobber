@@ -7,4 +7,14 @@ class UserGamesController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+      user_game = UserGame.find(params[:id])
+    if user_game.destroy
+      flash[:notice] = "#{Game.find(params[:game_id]).name} has been removed from your list of games."
+      redirect_to games_path
+    else
+      render :new
+    end
+  end
 end
