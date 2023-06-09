@@ -1,4 +1,48 @@
-
 <h1>My duels</h1>
+
+<% @user_matches.each do |user_match| %>
+  <div class="appointment-date">
+    <% user_match.appointments.each do |appointment| %>
+      <%= appointment.date %>
+    <% end %>
+  </div>
+
+  <div class="appointment-other-user">
+    <% if user_match.user == current_user %>
+      <h2>Game with <%= user_match.match.secondary_user.username %> </h2>
+    <% else %>
+      <h2>Game with <%= user_match.user.username %> </h2>
+    <% end %>
+  </div>
+
+  <div class="appointment-time-status">
+    <% user_match.appointments.each do |appointment| %>
+      <p><%= appointment.start_time %>-<%= appointment.end_time %></p>
+      <p>Status: <%= appointment.status %></p>
+    <% end %>
+  </div>
+
+  <div class="appointment-buttons">
+    <% user_match.appointments.each do |appointment| %>
+      <% if appointment.status == 'pending' %>
+        <%= simple_form_for appointment, method: :put do |f| %>
+          <%= f.input :status, :as => :hidden, :input_html => { :value => "accepted" } %>
+          <%= f.button :submit, 'Accept', class: "btn btn-success" %>
+        <% end %>
+        <%= simple_form_for appointment, method: :put do |f| %>
+          <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
+          <%= f.button :submit, 'Decline', class: "btn btn-danger" %>
+        <% end %>
+        <%= link_to "Chat" %>
+      <% elsif appointment.status == 'accepted' %>
+      <%= simple_form_for appointment, method: :put do |f| %>
+          <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
+          <%= f.button :submit, 'cancel duel', data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>
 
 <%= render 'shared/navbar_bottom' %>
