@@ -65,13 +65,13 @@ puts 'Creating user_matches...'
 user_match1 = UserMatch.new(user_id: antonio.id, match_id: match.id, status: 'pending')
 user_match1.save!
 
-user_match2 = UserMatch.new(user_id: paul.id, match_id: match2.id, status: 'pending')
+user_match2 = UserMatch.new(user_id: paul.id, match_id: match2.id, status: 'approved')
 user_match2.save!
 
-user_match3 = UserMatch.new(user_id: paul.id, match_id: match3.id, status: 'pending')
+user_match3 = UserMatch.new(user_id: paul.id, match_id: match3.id, status: 'approved')
 user_match3.save!
 
-user_match4 = UserMatch.new(user_id: paul.id, match_id: match4.id, status: 'pending')
+user_match4 = UserMatch.new(user_id: paul.id, match_id: match4.id, status: 'approved')
 user_match4.save!
 
 puts 'Creating chatroom...'
@@ -90,7 +90,9 @@ UserGame.create(user_id: paul.id, game_id: game2.id)
 
 puts 'Creating appointments...'
 appointment1 = Appointment.create(address: 'Le Wagon, Berlin', date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game1.id, user_match_id: user_match1.id)
-appointment2 = Appointment.create(address: "At Paul's, Berlin", date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game2.id, user_match_id: user_match1.id)
+appointment2 = Appointment.create(address: "At Paul's, Berlin", date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game2.id, user_match_id: user_match2.id)
+appointment3 = Appointment.create(address: "Charlotte I Pizza, Berlin", date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game1.id, user_match_id: user_match3.id)
+appointment4 = Appointment.create(address: "La Gino, Berlin", date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game2.id, user_match_id: user_match4.id)
 
 # puts 'Creating reviews...'
 # Review.create(content: "It was the best gaming session ever, Paul loses like it's nobody's business", rating: 10, appointment_id: appointment1.id, user_id: antonio.id)
