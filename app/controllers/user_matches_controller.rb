@@ -60,7 +60,7 @@ class UserMatchesController < ApplicationController
     user_matches_where_current_user_voted.each do |user_match|
       already_voted_users.push(user_match.match.secondary_user)
     end
-    @potential_match = (potential_matches - users_who_disliked_current_user - already_voted_users).sample
+    @potential_match = (potential_matches - users_who_disliked_current_user - already_voted_users)
   end
 
   def user_match_params

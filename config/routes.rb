@@ -26,10 +26,7 @@ Rails.application.routes.draw do
   resources :appointments, only: %i[index destroy]
 
   resources :games, only: %i[index new create] do
-    member do
-      put :update_popularity
-    end
-    resources :user_games, only: %i[create new index]
+    resources :user_games, only: %i[create new index delete]
   end
 
   authenticate :user, ->(user) { user.admin? } do

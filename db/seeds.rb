@@ -81,7 +81,7 @@ Chatroom.create(name: "My chatroom", user_match_id: user_match1.id)
 puts 'Creating games...'
 game1 = Game.create(name: 'Chess')
 game2 = Game.create(name: 'Clue')
-20.times do
+90.times do
   Game.create(name: Faker::Game.title)
 end
 
