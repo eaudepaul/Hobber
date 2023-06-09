@@ -4,11 +4,18 @@ class AppointmentsController < ApplicationController
   end
 
   def new
+    @user_match = UserMatch.find(params[:user_match_id])
     @appointment = Appointment.new
+  
+  end
+
+  def show
+    
+    @game = Appointment.new
   end
 
   def create
-    @appointment = appointment.new(appointment_params)
+    @appointment = Appointment.new(appointment_params)
     @user_match.id = User_match.find(params[:user_match_id])
     @appointment.user_match_id = @user_match.id
     if @appointment.save!
