@@ -49,21 +49,21 @@ class UserMatchesController < ApplicationController
     potential_matches = User.where.not(id: current_user.id)
     # Exclude users with whom a user_match exists and:
     # secondary_user_id: current_user.id and status: 'denied' (current user won't see users who disliked his profile)
-    fucking_users = []
-    fucking_user_matches = UserMatch.joins(match: :secondary_user).where(status: ['denied', 'approved'], matches: { secondary_user_id: current_user.id })
+    users_that_disliked_current_user_or_that_current_user_voted_2nd = []
+    user_matches_where_current_user_was_disliked_or_current_user_voted_2nd = UserMatch.joins(match: :secondary_user).where(status: ['denied', 'approved'], matches: { secondary_user_id: current_user.id })
 
-    fucking_user_matches.each do |user_match|
-      fucking_users.push(user_match.user)
+    user_matches_where_current_user_was_disliked_or_current_user_voted_2nd.each do |user_match|
+      users_that_disliked_current_user_or_that_current_user_voted_2nd.push(user_match.user)
     end
     # OR
     # user_id: current_user.id (current user won't see users he has already voted)
-    already_voted_users = []
-    user_matches_where_current_user_voted = UserMatch.where(user_id: current_user.id)
+    users_that_current_user_voted_1st = []
+    user_matches_where_current_user_voted_1st = UserMatch.where(user_id: current_user.id)
 
-    user_matches_where_current_user_voted.each do |user_match|
-      already_voted_users.push(user_match.match.secondary_user)
+    user_matches_where_current_user_voted_1st.each do |user_match|
+      users_that_current_user_voted_1st.push(user_match.match.secondary_user)
     end
-    @potential_match = (potential_matches - fucking_users - already_voted_users).sample
+    @potential_match = (potential_matches - users_that_disliked_current_user_or_that_current_user_voted_2nd - users_that_current_user_voted_1st).sample
   end
 
   def user_match_params
