@@ -1,9 +1,9 @@
 <%= render 'shared/top_navbar_browse' %>
-<h2>Do you like the loser below?</h2>
 <%# TODO: replace this Boostrap card with a CSS card: %>
 <% if @potential_match.nil? %>
-<h2>Fuck you</h2>
+<h2>You have no more people to match with, fuck you!!!</h2>
 <% else %>
+<h2>Do you like the loser below?</h2>
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="..." alt="Card image cap">
   <div class="card-body">
