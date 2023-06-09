@@ -1,8 +1,6 @@
 class ChatroomsController < ApplicationController
   def index
-    @user_matches = UserMatch.joins(:match).where("user_matches.status = 'approved' AND user_matches.user_id = :user OR matches.secondary_user_id = :user", user: current_user.id)
-    # @chatrooms = Chatroom.where(user_match_id: @user_match.id)
-    # @chatrooms = Chatroom.all
+    @user_matches = UserMatch.joins(:match).where("user_matches.status = 'approved' AND (user_matches.user_id = :user OR matches.secondary_user_id = :user)", user: current_user.id)
   end
 
   def show
@@ -11,7 +9,6 @@ class ChatroomsController < ApplicationController
     @appointment.user_match = @user_match
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
-    @user_match = UserMatch.find(@chatroom.user_match_id)
   end
 
   def create

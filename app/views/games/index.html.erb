@@ -1,14 +1,27 @@
-<%= render 'shared/top_navbar_browse' %>
-<h1>games partial</h1>
+<%# <%= render 'shared/top_navbar_browse' %>
+<h1>What games are you hoping to play?</h1>
 
+
+<div class="container">
 <% if flash[:notice].present? %>
   <div class="notice">
     <%= flash[:notice] %>
   </div>
 <% end %>
 
-<div class="container">
   <div>
+  <h4>All your games</h4>
+    <% @user_games.each do |user_game| %>
+      <div class="game">
+        <ul>
+          <li><%= user_game.name %></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <h4>What do you want to play?</h4>
     <% @games.each do |game_name, _popularity| %>
         <div class="game">
           <%= simple_form_for [Game.find_by(name: game_name), @user_game] do |f| %>
@@ -19,7 +32,7 @@
   </div>
 
   <br>
-
+  <h4>Didn't find what you're looking for? Search here</h4>
   <%= form_with url: games_path, method: :get, class: "d-flex" do %>
     <%= text_field_tag :query,
       params[:query],
@@ -33,7 +46,7 @@
   <br>
 
   <div class="add-game">
-    <h6>Add a game:</h6>
+    <h4>Not in our database? Add it here!</h4>
     <%= form_with(model: Game.new, url: games_path, method: :post) do |f| %>
       <%= f.text_field :name, placeholder: "Game Name" %>
       <%= f.submit "Add" %>
