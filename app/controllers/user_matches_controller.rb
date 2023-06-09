@@ -51,7 +51,6 @@ class UserMatchesController < ApplicationController
     # secondary_user_id: current_user.id and status: 'denied' (current user won't see users who disliked his profile)
     users_that_disliked_current_user_or_that_current_user_voted_2nd = []
     user_matches_where_current_user_was_disliked_or_current_user_voted_2nd = UserMatch.joins(match: :secondary_user).where(status: ['denied', 'approved'], matches: { secondary_user_id: current_user.id })
-
     user_matches_where_current_user_was_disliked_or_current_user_voted_2nd.each do |user_match|
       users_that_disliked_current_user_or_that_current_user_voted_2nd.push(user_match.user)
     end
@@ -59,7 +58,6 @@ class UserMatchesController < ApplicationController
     # user_id: current_user.id (current user won't see users he has already voted)
     users_that_current_user_voted_1st = []
     user_matches_where_current_user_voted_1st = UserMatch.where(user_id: current_user.id)
-
     user_matches_where_current_user_voted_1st.each do |user_match|
       users_that_current_user_voted_1st.push(user_match.match.secondary_user)
     end
