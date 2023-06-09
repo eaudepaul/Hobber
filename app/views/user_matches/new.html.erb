@@ -1,32 +1,35 @@
 <%= render 'shared/top_navbar_browse' %>
 <h2>Do you like the loser below?</h2>
 <%# TODO: replace this Boostrap card with a CSS card: %>
+<% if @potential_match.nil? %>
+<h2>Fuck you</h2>
+<% else %>
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="..." alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title"><%= @potential_match.username %></h5>
     <p class="card-text"><%= @potential_match.bio %></p>
     <div class="accept-deny-form">
-      <% # TODO: Method should be post if the user_match does not exist yet, put otherwise, define if statement %>
-      <% if @user_match_exists %>
-        <%= simple_form_for @user_match, method: :put do |f| %>
-          <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" } %>
-          <%= f.button :submit, '👍', class: "btn btn-success" %>
-        <% end %>
-        <%= simple_form_for @user_match, method: :put do |f| %>
-          <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
-          <%= f.button :submit, '👎', class: "btn btn-danger" %>
-        <% end %>
-      <% else %>
-        <%= simple_form_for @user_match do |f| %>
-          <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
-          <%= f.input :status, :as => :hidden, :input_html => { :value => "pending" } %>
-          <%= f.button :submit, '👍', class: "btn btn-success" %>
-        <% end %>
-        <%= simple_form_for @user_match do |f| %>
-          <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
-          <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
-          <%= f.button :submit, '👎', class: "btn btn-danger" %>
+        <% if @user_match_exists %>
+          <%= simple_form_for @user_match, method: :put do |f| %>
+            <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" } %>
+            <%= f.button :submit, '👍', class: "btn btn-success" %>
+          <% end %>
+          <%= simple_form_for @user_match, method: :put do |f| %>
+            <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
+            <%= f.button :submit, '👎', class: "btn btn-danger" %>
+          <% end %>
+        <% else %>
+          <%= simple_form_for @user_match do |f| %>
+            <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
+            <%= f.input :status, :as => :hidden, :input_html => { :value => "pending" } %>
+            <%= f.button :submit, 'yes', class: "btn btn-success" %>
+          <% end %>
+          <%= simple_form_for @user_match do |f| %>
+            <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
+            <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
+            <%= f.button :submit, 'no', class: "btn btn-danger" %>
+          <% end %>
         <% end %>
       <% end %>
     </div>
