@@ -11,6 +11,7 @@ class ChatroomsController < ApplicationController
     @appointment.user_match = @user_match
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
+    @user_match = UserMatch.find(@chatroom.user_match_id)
   end
 
   def create
