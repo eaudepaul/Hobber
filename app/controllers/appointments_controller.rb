@@ -6,11 +6,9 @@ class AppointmentsController < ApplicationController
   def new
     @user_match = UserMatch.find(params[:user_match_id])
     @appointment = Appointment.new
-  
   end
 
   def show
-    
     @game = Appointment.new
   end
 
