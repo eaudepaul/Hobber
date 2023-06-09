@@ -1,12 +1,12 @@
 <%= render 'shared/top_navbar_browse' %>
 <h1>Choose your dueling time</h1>
-<%= simple_form_for [@game], data: { controller: 'flatpickr' } do |f| %>
+<%= simple_form_for [@user_matches, @appointment] do |f| %>
   <%= f.input :start_time, 
 	        	 	as: :string, 
-							input_html: { data: { flatpickr_target: "startTime" } }%>
+							input_html: { data: { controller: 'flatpickr' } }%>
   <%= f.input :end_time, 
 							as: :string, 
-							input_html: { data: { flatpickr_target: "endTime" } } %>
+							input_html: { data: { controller: 'flatpickr' } } %>
   <%= f.submit "Send request"%>
 <% end %>
 
