@@ -26,8 +26,9 @@ Rails.application.routes.draw do
   resources :appointments, only: %i[index destroy]
 
   resources :games, only: %i[index new create] do
-    resources :user_games, only: %i[create new index delete]
+    resources :user_games, only: %i[create new index]
   end
+  resources :user_games, only: %i[destroy]
 
   authenticate :user, ->(user) { user.admin? } do
     mount Blazer::Engine, at: "blazer"
