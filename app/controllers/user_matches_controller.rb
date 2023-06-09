@@ -2,33 +2,18 @@
 
 # Top-level documentation comment
 class UserMatchesController < ApplicationController
+  before_action :set_potential_match, only: %i[new create]
+
   def index
     @user_matches = UserMatch.where(status: 'approved').where('user_id = ? OR match_id IN (SELECT id FROM matches WHERE secondary_user_id = ?)', current_user.id, current_user.id)
   end
 
   def new
-    # Exclude current user:
-    potential_matches = User.where.not(id: current_user.id)
-    # Exclude users with whom a user_match exists and:
-    # secondary_user_id: current_user.id and status: 'denied' (current user won't see users who disliked his profile)
-    users_who_disliked_current_user = []
-    user_matches_where_users_disliked_current_user = UserMatch.joins(match: :secondary_user).where(status: 'denied', matches: { secondary_user_id: current_user.id })
-    user_matches_where_users_disliked_current_user.each do |user_match|
-      users_who_disliked_current_user.push(user_match.user)
-    end
-    # OR
-    # user_id: current_user.id (current user won't see users he has already voted)
-    already_voted_users = []
-    user_matches_where_current_user_voted = UserMatch.where(user_id: current_user.id)
-    user_matches_where_current_user_voted.each do |user_match|
-      already_voted_users.push(user_match.match.secondary_user)
-    end
-
-    @potential_match = (potential_matches - users_who_disliked_current_user - already_voted_users).sample
     # The code below will be used in the view to determine
     # if the form presented to the user should have a post or put method
     @user_match_exists = user_match_exists
     @user_match_exists ? set_user_match : @user_match = UserMatch.new
+    raise
   end
 
   def create
@@ -57,6 +42,26 @@ class UserMatchesController < ApplicationController
     # To resolve the issue, we use joins(:match) to perform an inner join with the matches table.
     # Then, we use where(matches: { secondary_user_id: current_user.id }) to specify the condition for the join.
     @user_match = UserMatch.joins(:match).find_by(matches: { secondary_user_id: current_user.id })
+  end
+
+  def set_potential_match
+    # Exclude current user:
+    potential_matches = User.where.not(id: current_user.id)
+    # Exclude users with whom a user_match exists and:
+    # secondary_user_id: current_user.id and status: 'denied' (current user won't see users who disliked his profile)
+    users_who_disliked_current_user = []
+    user_matches_where_users_disliked_current_user = UserMatch.joins(match: :secondary_user).where(status: 'denied', matches: { secondary_user_id: current_user.id })
+    user_matches_where_users_disliked_current_user.each do |user_match|
+      users_who_disliked_current_user.push(user_match.user)
+    end
+    # OR
+    # user_id: current_user.id (current user won't see users he has already voted)
+    already_voted_users = []
+    user_matches_where_current_user_voted = UserMatch.where(user_id: current_user.id)
+    user_matches_where_current_user_voted.each do |user_match|
+      already_voted_users.push(user_match.match.secondary_user)
+    end
+    @potential_match = (potential_matches - users_who_disliked_current_user - already_voted_users)
   end
 
   def user_match_params
