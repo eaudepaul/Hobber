@@ -2,7 +2,7 @@
 
 # Top-level documentation comment
 class UserMatchesController < ApplicationController
-  before_action :set_potential_match, only: %i[new create]
+  before_action :set_potential_match, only: %i[new]
 
   def index
     @user_matches = UserMatch.where(status: 'approved').where('user_id = ? OR match_id IN (SELECT id FROM matches WHERE secondary_user_id = ?)', current_user.id, current_user.id)
@@ -17,7 +17,7 @@ class UserMatchesController < ApplicationController
 
   def create
     match = Match.create!(secondary_user_id: params[:user_match][:match_id])
-    user_match = UserMatch.new(user_match_params)
+    user_match = UserMatch.new(status: params[:user_match][:status])
     user_match.user_id = current_user.id
     user_match.match_id = match.id
     user_match.save!
@@ -25,8 +25,8 @@ class UserMatchesController < ApplicationController
   end
 
   def update
-    @user_match = set_user_match
-    redirect_to new_user_match_path if @user_match.update(user_match_params)
+    @user_match = UserMatch.find(params[:id])
+    redirect_to new_user_match_path if @user_match.update(status: params[:user_match][:status])
   end
 
   def user_match_exists
@@ -71,10 +71,5 @@ class UserMatchesController < ApplicationController
     end
 
     @potential_match = (@potential_matches_except_current_user - @users_that_current_user_voted_1st - @users_that_disliked_current_user - @users_that_current_user_liked_back).sample
-    # raise
-  end
-
-  def user_match_params
-    params.require(:user_match).permit(:status)
   end
 end

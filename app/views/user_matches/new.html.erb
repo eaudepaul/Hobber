@@ -1,12 +1,3 @@
-<h6>user_match_exists: <%= @user_match_exists %></h6>
-<h6>user_match: <%= @user_match %></h6>
-<h6>potential_matches_except_current_user: <%= @potential_matches_except_current_user %></h6>
-<h6>users_that_disliked_current_user: <%= @users_that_disliked_current_user %></h6>
-<h6>users_that_liked_current_user: <%= @users_that_liked_current_user %></h6>
-<h6>users_that_current_user_voted_1st: <%= @users_that_current_user_voted_1st %></h6>
-<h6>user_matches_where_current_user_voted_1st: <%= @user_matches_where_current_user_voted_1st %></h6>
-
-
 <%= render 'shared/top_navbar_browse' %>
 <% if @potential_match.nil? %>
   <h2>You have no more people to match with, fuck you!!!</h2>
