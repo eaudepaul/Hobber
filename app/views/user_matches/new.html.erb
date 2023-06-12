@@ -1,37 +1,56 @@
+<h6>user_match_exists: <%= @user_match_exists %></h6>
+<h6>user_match: <%= @user_match %></h6>
+<h6>potential_matches_except_current_user: <%= @potential_matches_except_current_user %></h6>
+<h6>users_that_disliked_current_user: <%= @users_that_disliked_current_user %></h6>
+<h6>users_that_liked_current_user: <%= @users_that_liked_current_user %></h6>
+<h6>users_that_current_user_voted_1st: <%= @users_that_current_user_voted_1st %></h6>
+<h6>user_matches_where_current_user_voted_1st: <%= @user_matches_where_current_user_voted_1st %></h6>
+
+
 <%= render 'shared/top_navbar_browse' %>
-<%# TODO: replace this Boostrap card with a CSS card: %>
 <% if @potential_match.nil? %>
-<h2>You have no more people to match with, fuck you!!!</h2>
+  <h2>You have no more people to match with, fuck you!!!</h2>
 <% else %>
-<h2>Do you like the loser below?</h2>
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><%= @potential_match.username %></h5>
-    <p class="card-text"><%= @potential_match.bio %></p>
-    <div class="accept-deny-form">
+  <h2>Do you like the loser below?</h2>
+  <h2 class="spielbox">Matches</h2>
+  <div class="main-container">
+    <div class="user-container">
+      <div class="name">
+        <h5 class="card-title"><%= @potential_match.username %></h5>
+      </div>
+      <div class="icon">
+        <i class="fa-solid fa-circle-info fa-2xl"></i>
+      </div>
+      <div class="background-image">
+        <%= cl_image_tag current_user.photo.key %>
+      </div>
+      <div class="form-accept">
         <% if @user_match_exists %>
           <%= simple_form_for @user_match, method: :put do |f| %>
-            <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" } %>
-            <%= f.button :submit, '👍', class: "btn btn-success" %>
+            <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
+            <%= f.button :submit, 'put yes', class: "btn btn-success" %>
           <% end %>
           <%= simple_form_for @user_match, method: :put do |f| %>
-            <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
-            <%= f.button :submit, '👎', class: "btn btn-danger" %>
+            <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
+            <%= f.button :submit, 'put no', class: "btn btn-danger" %>
           <% end %>
         <% else %>
           <%= simple_form_for @user_match do |f| %>
             <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
-            <%= f.input :status, :as => :hidden, :input_html => { :value => "pending" } %>
-            <%= f.button :submit, 'yes', class: "btn btn-success" %>
+            <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
+            <%= f.button :submit, 'post yes', class: "btn btn-success" %>
           <% end %>
           <%= simple_form_for @user_match do |f| %>
             <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
-            <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
-            <%= f.button :submit, 'no', class: "btn btn-danger" %>
+            <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
+            <%= f.button :submit, 'post no', class: "btn btn-danger" %>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
+      <div>
+        <p class="card-text"><%= @potential_match.bio %></p>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
+<%= render 'shared/navbar_bottom' %>

@@ -55,16 +55,16 @@ katharine = User.create(email: 'katharine@example.com', password: '123456', user
 katharine.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
 katharine.save
 
-puts 'Creating matches...'
-match_paul = Match.create(secondary_user_id: paul.id)
-match_baran = Match.create(secondary_user_id: baran.id)
-match_antonio = Match.create(secondary_user_id: antonio.id)
+# puts 'Creating matches...'
+# match_paul = Match.create(secondary_user_id: paul.id)
+# match_baran = Match.create(secondary_user_id: baran.id)
+# match_antonio = Match.create(secondary_user_id: antonio.id)
 
-puts 'Creating user_matches...'
-user_match_antonio_paul = UserMatch.create(user_id: antonio.id, match_id: match_paul.id, status: 'pending')
-user_match_antonio_baran = UserMatch.create(user_id: antonio.id, match_id: match_baran.id, status: 'denied')
-user_match_katharine_antonio = UserMatch.create(user_id: katharine.id, match_id: match_antonio.id, status: 'pending')
-user_match_charlotte_antonio = UserMatch.create(user_id: charlotte.id, match_id: match_antonio.id, status: 'denied')
+# puts 'Creating user_matches...'
+# user_match_antonio_paul = UserMatch.create(user_id: antonio.id, match_id: match_paul.id, status: 'pending')
+# user_match_antonio_baran = UserMatch.create(user_id: antonio.id, match_id: match_baran.id, status: 'denied')
+# user_match_katharine_antonio = UserMatch.create(user_id: katharine.id, match_id: match_antonio.id, status: 'pending')
+# user_match_charlotte_antonio = UserMatch.create(user_id: charlotte.id, match_id: match_antonio.id, status: 'denied')
 
 # puts 'Creating chatroom...'
 # Chatroom.create(name: "My chatroom", user_match_id: user_match1.id)
