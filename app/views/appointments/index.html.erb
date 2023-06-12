@@ -33,12 +33,12 @@
           <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
           <%= f.button :submit, 'Decline', class: "btn btn-danger" %>
         <% end %>
-        <%= link_to "Chat", chatroom_path(appointment.user_match.chatrooms.first) %>
+        <%= link_to "Chat", chatroom_path(user_match.chatrooms.first) %>
       <% elsif appointment.status == 'accepted' %>
       <%= simple_form_for appointment, method: :put do |f| %>
           <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
           <%= f.button :submit, 'cancel duel', data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
-          <%= link_to "Chat", chatroom_path(appointment.user_match.chatrooms.first) %>
+          <%= link_to "Chat", chatroom_path(user_match.chatrooms.first) %>
         <% end %>
       <% end %>
     <% end %>
