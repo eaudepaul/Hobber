@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  resources :users, only: %i[new edit update]
+  resources :users, only: %i[new edit update show]
 
   resources :appointments, only: %i[new show edit] do
     resources :reviews, only: %i[new create]

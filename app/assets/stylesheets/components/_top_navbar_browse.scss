@@ -1,17 +1,16 @@
 .navbar {
     display: flex;
-    display: none;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     background: #FFBD00;
   }
-  
+
   .navbar-left {
     display: flex;
     align-items: center;
   }
-  
+
   .navbar-right {
     display: flex;
     align-items: center;
@@ -48,7 +47,7 @@
 .dropdown-menu ul li {
     margin-bottom: 10px;
   }
-  
+
   .dropdown-menu ul li a {
     color: #333;
     text-decoration: none;
