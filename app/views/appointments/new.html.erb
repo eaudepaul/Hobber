@@ -1,10 +1,13 @@
-<%= simple_form_for(restaurant) do |f| %>
-  <%= f.input :address %>
-  <%= f.input :date %>
-  <%= f.input :start_time %>
-  <%= f.input :end_time %>
-  <%= f.submit %>
+<%= render 'shared/top_navbar_browse' %>
+<h1>Choose your dueling time</h1>
+<%= simple_form_for [@user_matches, @appointment] do |f| %>
+  <%= f.input :start_time, 
+	        	 	as: :string, 
+							input_html: { data: { controller: 'flatpickr' } }%>
+  <%= f.input :end_time, 
+							as: :string, 
+							input_html: { data: { controller: 'flatpickr' } } %>
+  <%= f.submit "Send request"%>
 <% end %>
-
 
 <%= render 'shared/navbar_bottom' %>

@@ -17,20 +17,18 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-  resources :users, only: %i[new edit update]
+  resources :users, only: %i[new edit update show]
 
-  resources :appointments, only: %i[show edit] do
+  resources :appointments, only: %i[new show edit] do
     resources :reviews, only: %i[new create]
   end
 
   resources :appointments, only: %i[index destroy]
 
   resources :games, only: %i[index new create] do
-    member do
-      put :update_popularity
-    end
     resources :user_games, only: %i[create new index]
   end
+  resources :user_games, only: %i[destroy]
 
   authenticate :user, ->(user) { user.admin? } do
     mount Blazer::Engine, at: "blazer"

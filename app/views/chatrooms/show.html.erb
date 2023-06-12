@@ -1,12 +1,32 @@
+<%= render 'shared/top_navbar_browse' %>
 <div class="container chatroom"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-  <h1>#<%= @chatroom.name %></h1>
+
+  <div class="chatroom-show-header">
+    <div class="chatroom-back-arrow">
+      <%= link_to chatrooms_path do %>
+        <i class="fa-solid fa-angle-left"></i>
+      <% end %>
+    </div>
+    <div class="chatroom-avatar">
+      <% if current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
+      <% else %>
+        <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
+      <% end %>
+    </div>
+    <h1><%= current_user ? @user_match.match.secondary_user.username : @user_match.user.username %></h1>
+  </div>
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>
     <% end %>
+  </div>
+
+  <div class="appointment-button">
+    <%= link_to "Schedule a duel", new_user_match_appointment_path(@user_match)  %>
   </div>
 
   <div class="chatroom-message-form">

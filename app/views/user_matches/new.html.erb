@@ -1,5 +1,9 @@
 <%= render 'shared/top_navbar_browse' %>
-<h2 class="spielbox" >Matches</h2>
+
+<% if @potential_match.nil? %>
+<h2>You have no more people to match with, fuck you!!!</h2>
+<% else %>
+ <h2 class="spielbox" >Matches</h2>
 <div class="main-container">
   <div class="user-container">
     <div class="name" > <h5 class="card-title"><%= @potential_match.username %></h5></div>
@@ -31,9 +35,10 @@
           <%= f.button :submit, '👎', class: "btn btn-danger" %>
         <% end %>
       <% end %>
+          </div>
+      <div><p class="card-text"><%= @potential_match.bio %></p></div>
     </div>
-    <div><p class="card-text"><%= @potential_match.bio %></p></div>
   </div>
-</div>
-
+<% end %>
 <%= render 'shared/navbar_bottom' %>
+      
