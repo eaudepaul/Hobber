@@ -84,13 +84,22 @@ Chatroom.create(name: "My chatroom", user_match_id: user_match1.id)
 puts 'Creating games...'
 game1 = Game.create(name: 'Chess')
 game2 = Game.create(name: 'Clue')
+game3 = Game.create(name: 'Dice')
+game4 = Game.create(name: 'Poker')
+game5 = Game.create(name: 'Hearts')
+game6 = Game.create(name: 'klondike')
 90.times do
   Game.create(name: Faker::Game.title)
 end
 
 puts 'Creating user_games...'
 UserGame.create(user_id: antonio.id, game_id: game1.id)
+UserGame.create(user_id: antonio.id, game_id: game2.id)
+UserGame.create(user_id: antonio.id, game_id: game3.id)
 UserGame.create(user_id: paul.id, game_id: game2.id)
+UserGame.create(user_id: paul.id, game_id: game4.id)
+UserGame.create(user_id: paul.id, game_id: game5.id)
+UserGame.create(user_id: katharine.id, game_id: game4.id)
 
 puts 'Creating appointments...'
 appointment1 = Appointment.create(address: 'Le Wagon, Berlin', date: Date.today, start_time: Time.now, end_time: Time.now, game_id: game1.id, user_match_id: user_match1.id, status: 'pending')
