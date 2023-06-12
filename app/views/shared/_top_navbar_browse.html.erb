@@ -7,7 +7,12 @@
   </div>
   <div class="navbar-right">
     <div class="dropdown-toggle-container">
-      <%= cl_image_tag current_user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
+      <% if current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
+      <% else %>
+        <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
+      <% end %>
+
       <div class="dropdown-menu" id="dropdown-menu">
         <ul>
           <li><%= link_to "My Profile", "/users/:id" %></li>
