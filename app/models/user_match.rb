@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserMatch < ApplicationRecord
   has_many_attached :photos
   has_many :appointments
@@ -7,5 +9,5 @@ class UserMatch < ApplicationRecord
   belongs_to :match
 
   validates :user_id, :match_id, presence: true
-  validates :status, inclusion: { in: ["pending", "approved", "denied"] }
+  validates :status, inclusion: { in: %w[pending approved denied] }
 end
