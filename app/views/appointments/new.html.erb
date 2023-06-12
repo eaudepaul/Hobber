@@ -2,10 +2,12 @@
 <%= simple_form_for [@user_matches, @appointment] do |f| %>
   <%= f.input :start_time,
 	        	 	as: :string,
-							input_html: { data: { controller: 'flatpickr' } }%>
+							input_html: { data: { controller: 'flatpickr' } },
+              placeholder: "Select a start time"%>
   <%= f.input :end_time,
 							as: :string,
-							input_html: { data: { controller: 'flatpickr' } } %>
+							input_html: { data: { controller: 'flatpickr' } },
+              placeholder: "Select an end time" %>
   <%= f.submit "Send request"%>
 <% end %>
 
