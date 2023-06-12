@@ -6,7 +6,7 @@ class GamesController < ApplicationController
     else
       @games = Game.joins(:user_games).group_by_name_and_count.first(5) # hash of game names as keys, and upvotes as value
     end
-    @user_games = current_user.games # This an array of Game instances
+    @user_games = current_user.user_games # This an array of Game instances
     @user_game = UserGame.new
   end
 
