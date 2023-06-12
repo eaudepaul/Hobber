@@ -13,9 +13,8 @@
     <% @user_games.each do |user_game| %>
       <div class="game">
         <ul>
-          <li><%= user_game.name %></li>
-          <%# <li><%= link_to "Delete", user_game_path(user_game), method: :destroy %>
-          <%# SANTI PROBLEM %>
+          <li><%= user_game.game.name %></li>
+          <li><%= link_to "Delete", user_game_path(user_game), data: {turbo_method: :delete} %> </li>
         </ul>
       </div>
     <% end %>
