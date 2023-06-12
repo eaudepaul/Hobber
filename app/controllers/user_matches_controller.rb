@@ -5,7 +5,9 @@ class UserMatchesController < ApplicationController
   before_action :set_potential_match, only: %i[new]
 
   def index
-    @user_matches = UserMatch.where(status: 'approved').where('user_id = ? OR match_id IN (SELECT id FROM matches WHERE secondary_user_id = ?)', current_user.id, current_user.id)
+    @user_matches = UserMatch.where(status: 'approved').where(
+      'user_id = ? OR match_id IN (SELECT id FROM matches WHERE secondary_user_id = ?)', current_user.id, current_user.id
+    )
   end
 
   def new
@@ -26,12 +28,13 @@ class UserMatchesController < ApplicationController
 
   def update
     @user_match = UserMatch.find(params[:id])
-   if @user_match.update(status: params[:user_match][:status])
-      if @user_match.status == "approved"
-        @chatroom = Chatroom.create!(user_match: @user_match, name: user_match.user == current_user ? user_match.match.secondary_user.username : user_match.user.username)
-      end
-      redirect_to new_user_match_path
+    return unless @user_match.update(status: params[:user_match][:status])
+
+    if @user_match.status == 'approved'
+      @chatroom = Chatroom.create!(user_match: @user_match,
+                                   name: user_match.user == current_user ? user_match.match.secondary_user.username : user_match.user.username)
     end
+    redirect_to new_user_match_path
   end
 
   def user_match_exists
@@ -60,13 +63,15 @@ class UserMatchesController < ApplicationController
     end
 
     @users_that_disliked_current_user = []
-    @user_matches_where_current_user_was_disliked = UserMatch.joins(match: :secondary_user).where(status: 'denied', matches: { secondary_user_id: current_user.id })
+    @user_matches_where_current_user_was_disliked = UserMatch.joins(match: :secondary_user).where(status: 'denied',
+                                                                                                  matches: { secondary_user_id: current_user.id })
     @user_matches_where_current_user_was_disliked.each do |user_match|
       @users_that_disliked_current_user.push(user_match.user)
     end
 
     @users_that_liked_current_user = []
-    @user_matches_where_current_user_was_liked = UserMatch.joins(match: :secondary_user).where(status: 'pending', matches: { secondary_user_id: current_user.id })
+    @user_matches_where_current_user_was_liked = UserMatch.joins(match: :secondary_user).where(status: 'pending',
+                                                                                               matches: { secondary_user_id: current_user.id })
     @user_matches_where_current_user_was_liked.each do |user_match|
       @users_that_liked_current_user.push(user_match.user)
     end

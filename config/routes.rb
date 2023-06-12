@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'chatrooms/index'
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  root "pages#index"
+  root 'pages#index'
 
   resources :user_matches, only: %i[update index new create] do
     resources :appointments, only: %i[new create]
@@ -31,6 +33,6 @@ Rails.application.routes.draw do
   resources :user_games, only: %i[destroy]
 
   authenticate :user, ->(user) { user.admin? } do
-    mount Blazer::Engine, at: "blazer"
+    mount Blazer::Engine, at: 'blazer'
   end
 end
