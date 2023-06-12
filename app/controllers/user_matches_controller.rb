@@ -26,12 +26,12 @@ class UserMatchesController < ApplicationController
 
   def update
     @user_match = UserMatch.find(params[:id])
-   if @user_match.update(status: params[:user_match][:status])
-      if @user_match.status == "approved"
-        @chatroom = Chatroom.create!(user_match: @user_match, name: @user_match.user == current_user ? @user_match.match.secondary_user.username : @user_match.user.username)
-      end
-      redirect_to new_user_match_path
+    return unless @user_match.update(status: params[:user_match][:status])
+
+    if @user_match.status == 'approved'
+      @chatroom = Chatroom.create!(user_match: @user_match, name: @user_match.user == current_user ? @user_match.match.secondary_user.username : @user_match.user.username)
     end
+    redirect_to new_user_match_path
   end
 
   def user_match_exists
@@ -77,6 +77,6 @@ class UserMatchesController < ApplicationController
       @users_that_current_user_liked_back.push(user_match.user)
     end
 
-    @potential_match = (@potential_matches_except_current_user - @users_that_current_user_voted_1st - @users_that_disliked_current_user - @users_that_current_user_liked_back).sample
+    @potential_match = (@users_with_common_games - @users_that_current_user_voted_1st - @users_that_disliked_current_user - @users_that_current_user_liked_back).sample
   end
 end
