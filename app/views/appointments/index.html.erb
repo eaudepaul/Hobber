@@ -16,7 +16,7 @@
       <% @user_matches.each do |user_match| %>
         <div class="appointment-date">
           <% user_match.appointments.each do |appointment| %>
-            <%= appointment.date %>
+            <%= appointment.date.year < Date.today.year ? appointment.date.strftime('%d %b %Y') : appointment.date.strftime('%b %d') %>
           <% end %>
         </div>
 
@@ -30,7 +30,7 @@
 
         <div class="appointment-time-status">
           <% user_match.appointments.each do |appointment| %>
-            <p><%= appointment.start_time %>-<%= appointment.end_time %></p>
+            <p><%= appointment.start_time.strftime('%l:%M %p') %> –<%= appointment.end_time.strftime('%l:%M %p %Z') %></p>
             <p>Status: <%= appointment.status %></p>
           <% end %>
         </div>
