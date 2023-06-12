@@ -1,20 +1,18 @@
-<%= render 'shared/top_navbar_browse' %>
 <h1>All chats</h1>
-<%  @user_matches.each do |user_match| %>
-  <% if user_match.chatrooms.first.blank?  %>
-    <p> Chat with <%= user_match.user.username %> </p>
-    <%= simple_form_for Chatroom.new do |f| %>
-      <%= f.input :user_match_id,
-          as: "hidden",
-          input_html: {value: user_match.id} %>
-      <%= f.submit "Chat" %>
-    <% end %>
-  <% else %>
+
+<div class="chatroom-card">
+  <%  @user_matches.each do |user_match| %>
+    <% if current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
+      <% else %>
+        <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
+      <% end %>
     <% if user_match.user == current_user %>
-      <%= link_to user_match.match.secondary_user.username, chatroom_path(user_match.chatrooms.first) %>
+      <%= link_to user_match.match.secondary_user.username, chatroom_path(user_match.chatrooms.first, user_match_id: user_match.id) %>
     <% elsif user_match.match.secondary_user == current_user %>
-      <%= link_to user_match.user.username, chatroom_path(user_match.chatrooms.first) %>
+      <%= link_to user_match.user.username, chatroom_path(user_match.chatrooms.first, user_match_id: user_match.id) %>
     <% end %>
+    <p><%= user_match.chatrooms.first.messages.last.content %></p>
   <% end %>
-<% end %>
+</div>
 <%= render 'shared/navbar_bottom' %>

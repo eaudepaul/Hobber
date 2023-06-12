@@ -1,9 +1,64 @@
-<h1>Here you can find a list of you appointments</h1>
-<ul>
-<% @appointments.each do |appointment| %>
-<li><%= appointment.address %></li>
-<% end %>
-</ul>
+<h1>My duels</h1>
 
+<div class="appointments-tabs">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming" type="button" role="tab" aria-controls="upcoming duels" aria-selected="true">Upcoming duels</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past" type="button" role="tab" aria-controls="past duels" aria-selected="false">Past</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-duels-tab">
+      <% @user_matches.each do |user_match| %>
+        <div class="appointment-date">
+          <% user_match.appointments.each do |appointment| %>
+            <%= appointment.date.year < Date.today.year ? appointment.date.strftime('%d %b %Y') : appointment.date.strftime('%b %d') %>
+          <% end %>
+        </div>
+
+        <div class="appointment-other-user">
+          <% if user_match.user == current_user %>
+            <h2>Game with <%= user_match.match.secondary_user.username %> </h2>
+          <% else %>
+            <h2>Game with <%= user_match.user.username %> </h2>
+          <% end %>
+        </div>
+
+        <div class="appointment-time-status">
+          <% user_match.appointments.each do |appointment| %>
+            <p><%= appointment.start_time.strftime('%l:%M %p') %> –<%= appointment.end_time.strftime('%l:%M %p %Z') %></p>
+            <p>Status: <%= appointment.status %></p>
+          <% end %>
+        </div>
+
+        <div class="appointment-buttons">
+          <% user_match.appointments.each do |appointment| %>
+            <% if appointment.status == 'pending' %>
+              <%= simple_form_for appointment, method: :put do |f| %>
+                <%= f.input :status, :as => :hidden, :input_html => { :value => "accepted" } %>
+                <%= f.button :submit, 'Accept', class: "btn btn-success" %>
+              <% end %>
+              <%= simple_form_for appointment, method: :put do |f| %>
+                <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
+                <%= f.button :submit, 'Decline', class: "btn btn-danger" %>
+              <% end %>
+              <%= link_to "Chat", chatroom_path(user_match.chatrooms.first) %>
+            <% elsif appointment.status == 'accepted' %>
+            <%= simple_form_for appointment, method: :put do |f| %>
+                <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
+                <%= f.button :submit, 'cancel duel', data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
+                <%= link_to "Chat", chatroom_path(user_match.chatrooms.first) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-duels-tab">...</div>
+  </div>
+</div>
 
 <%= render 'shared/navbar_bottom' %>

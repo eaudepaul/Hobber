@@ -1,7 +1,46 @@
-<%= render 'shared/top_navbar_browse' %>
 <h1>User Show</h1>
 
+<div class="dog-profile d-flex container justify-content-between" >
+  <div class="dog-wrapper d-flex mx-2 w-100">
+    <div class="dog-img">
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, class: "profilepage-img", gravity: :face %>
+      <% else %>
+        <%= image_tag("Hobber.png") %>
+      <% end %>
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex align-items-center d-inline-block justify-content-between">
+          <h1><%= @user.username %></h1>
+          <% if @user.id == current_user.id%>
+              <%= link_to edit_user_path(@user.id) do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+          <% end %>
+        </div>
+        <div>
+          <h5><%= @user.age %></h5>
+        </div>
+        <hr>
+        <p><%= @user.bio %></p>
+      </div>
+    </div>
+  </div>
+    </div>
 
+      <h4>All your games</h4>
+    <% @user.user_games.each do |user_game| %>
+      <div class="game">
+        <ul>
+          <li><%= user_game.name %></li>
+          <%# <li><%= link_to "Delete", user_game_path(user_game), method: :destroy %>
+          <%# SANTI PROBLEM %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 
+</div>
+<%# blatherrrrrrrr %>
 
 <%= render 'shared/navbar_bottom' %>

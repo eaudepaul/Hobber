@@ -16,6 +16,10 @@
                     as: :text,
                     required: true,
                     input_html: { autocomplete: "Tell us about yourself, what do you like?", class: "bio-input", rows: 5 } %>
+        <%= f.input :photo,
+                    as: :file,
+                    required: true,
+                    input_html: { autocomplete: "Upload a photo or avatar", class: "create-profile-input" } %>
         <%= f.submit "Add Games", class: "create-form-button" %>
     </div>
     <% end %>
