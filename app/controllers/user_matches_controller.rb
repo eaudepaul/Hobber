@@ -26,9 +26,9 @@ class UserMatchesController < ApplicationController
 
   def update
     @user_match = UserMatch.find(params[:id])
-   if @user_match.update(status: params[:user_match][:status])
+    if @user_match.update(status: params[:user_match][:status])
       if @user_match.status == "approved"
-        @chatroom = Chatroom.create!(user_match: @user_match, name: user_match.user == current_user ? user_match.match.secondary_user.username : user_match.user.username)
+        @chatroom = Chatroom.create!(user_match: @user_match, name: @user_match.user == current_user ? @user_match.match.secondary_user.username : @user_match.user.username)
       end
       redirect_to new_user_match_path
     end

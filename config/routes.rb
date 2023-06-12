@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[new create]
   end
 
-  resources :appointments, only: %i[index destroy]
+  resources :appointments, only: %i[index update destroy]
 
   resources :games, only: %i[index new create] do
     resources :user_games, only: %i[create new index]

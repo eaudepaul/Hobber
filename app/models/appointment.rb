@@ -4,6 +4,7 @@ class Appointment < ApplicationRecord
   has_many :reviews
 
   validates :game_id, presence: true
-  validates :user_match_id, uniqueness: true, presence: true
+  validates :user_match_id, presence: true
   validates :start_time, :end_time, :address, presence: true
+  validates :status, inclusion: { in: ["pending", "approved", "denied"] }
 end
