@@ -51,6 +51,8 @@ class UserMatchesController < ApplicationController
   def set_potential_match
     @potential_matches_except_current_user = User.where.not(id: current_user.id)
 
+    @users_with_common_games = @potential_matches_except_current_user.joins(:games).where(games: { id: current_user.games })
+
     @users_that_current_user_voted_1st = []
     @user_matches_where_current_user_voted_1st = UserMatch.where(user_id: current_user.id)
     @user_matches_where_current_user_voted_1st.each do |user_match|
