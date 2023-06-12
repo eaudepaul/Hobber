@@ -1,12 +1,51 @@
 <%= render 'shared/top_navbar_browse' %>
 <h1>User Show</h1>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.username %>
-</p>
+<div class="dog-profile d-flex container justify-content-between" >
+  <div class="dog-wrapper d-flex mx-2 w-100">
+    <div class="dog-img">
+      <% if @dog.photo.attached? %>
+        <%= cl_image_tag @dog.photo.key, crop: :fill, class: "dog-profile-img", gravity: :face %>
+      <% else %>
+        <%= cl_image_tag("dog_yxjo1u") %>
+      <% end %>
+    </div>
 
-
+    <div class="row dog-info">
+      <div class="col-12">
+        <div class="d-flex align-items-center d-inline-block justify-content-between">
+          <h1><%= @dog.name %></h1>
+          <% if @dog.user_id == current_user.id%>
+              <%= link_to edit_dog_path(@dog.id) do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+          <% end %>
+        </div>
+        <div class="breed d-flex">
+          <i class="fa-solid fa-dog"></i>
+          <h5><%= @dog.breed %></h5>
+        </div>
+        <div class="age-and-cuddliness">
+          <% if @dog.age == 1 %>
+            <h5><strong>Age: </strong><%= @dog.age %> year old</h5>
+          <% else %>
+            <h5><strong>Age: </strong><%= @dog.age %> years old</h5>
+          <% end %>
+          <div class="cuddliness-hearts d-flex">
+            <div class="cuddliness d-flex">
+              <h5><strong>Cuddliness</strong></h5>
+              <% @dog.cuddliness.times do |heart| %>
+                <p><i class="fa-solid fa-heart"></i></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <p><%= @dog.details %></p>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
