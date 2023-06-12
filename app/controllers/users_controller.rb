@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[destroy edit update]
+  before_action :set_user, only: %i[destroy edit update show]
 
   def index
     @users = User.all
   end
 
   def show
-    @user = current_user.id
     @chatroom = Chatroom.new
   end
 
