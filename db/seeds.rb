@@ -55,6 +55,7 @@ katharine = User.create(email: 'katharine@example.com', password: '123456', user
 katharine.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
 katharine.save
 
+
 puts 'Creating matches...'
 
 match = Match.create(secondary_user_id: paul.id)

@@ -1,42 +1,37 @@
 <% if @potential_match.nil? %>
-<h2>You have no more people to match with, fuck you!!!</h2>
+  <h2>You have no more people to match with, fuck you!!!</h2>
 <% else %>
+
  <h2 class="spielbox" >Matches</h2>
 <div class="main-container">
   <div class="user-container">
     <div class="name" > <h5 class="card-title"><%= @potential_match.username %></h5></div>
     <div class="background-image"> <%= cl_image_tag current_user.photo.key  %> </div>
-    <div class="form-accept">
-      <% if @user_match_exists %>
-        <%= simple_form_for @user_match, method: :put do |f| %>
-          <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" } %>
-          <%= f.button :submit, '👍', class: "button-accept" %>
+      <div class="form-accept">
+        <% if @user_match_exists %>
+          <%= simple_form_for @user_match, method: :put do |f| %>
+            <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
+            <%= f.button :submit, 'put yes', class: "button-accept" %>
+          <% end %>
+          <%= simple_form_for @user_match, method: :put do |f| %>
+            <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
+            <%= f.button :submit, 'put no', class: "button-decline" %>
+          <% end %>
+        <% else %>
+          <%= simple_form_for @user_match do |f| %>
+            <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
+            <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
+            <%= f.button :submit, 'post yes', class: "button-accept" %>
+          <% end %>
+          <%= simple_form_for @user_match do |f| %>
+            <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
+            <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
+            <%= f.button :submit, 'post no', class: "button-decline" %>
+          <% end %>
         <% end %>
-      <% else %>
-        <%= simple_form_for @user_match do |f| %>
-          <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
-          <%= f.input :status, :as => :hidden, :input_html => { :value => "pending" } %>
-          <%= f.button :submit, '👍', class: "btn btn-success" %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="form-reject">
-      <% if @user_match_exists %>
-        <%= simple_form_for @user_match, method: :put do |f| %>
-          <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
-          <%= f.button :submit, '👎', class: "button-decline" %>
-        <% end %>
-      <% else %>
-        <%= simple_form_for @user_match do |f| %>
-          <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
-          <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
-          <%= f.button :submit, '👎', class: "btn btn-danger" %>
-        <% end %>
-      <% end %>
           </div>
       <div><p class="card-text"><%= @potential_match.bio %></p></div>
     </div>
   </div>
 <% end %>
 <%= render 'shared/navbar_bottom' %>
-      
