@@ -4,15 +4,20 @@
 .main-container{
   min-height: 100vh;
   overflow: scroll;
+  margin-bottom: 60px;
 
   .user-container{
     position: relative;
     top: 65px;
     .name{
       position: absolute;
-      top:12px;
+      top: 345px;
       z-index: 1;
       left: 20px;
+      color: #000000CC;
+      background-color: #ffffffCC;
+      border-radius: 3px;
+      padding: 1px;
     }
     .icon{
       position: absolute;
@@ -22,23 +27,29 @@
     .background-image{
       position: absolute;
       z-index: 0;
+      margin-left: 8px;
+      img{
+        border-radius: 5px;
+        width: 98%;
+        }
     }
     .form-accept{
       position: absolute;
       z-index: 1;
-      margin-top: 463px;
+      margin-top: 380px;
       margin-left: 230px;
     }
     .form-reject{
       position: absolute;
       z-index: 1;
-      margin-top: 463px;
+      margin-top: 380px;
       margin-left: 19px;
     }
     .card-text{
       z-index: 99;
       position: relative;
-      top: 719px;
+      top: 470px;
+      background-color: #80808020;
     }
     .button-decline{
       padding: 0 24px;

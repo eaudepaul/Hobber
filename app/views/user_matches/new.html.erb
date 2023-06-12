@@ -3,7 +3,6 @@
 <div class="main-container">
   <div class="user-container">
     <div class="name" > <h5 class="card-title"><%= @potential_match.username %></h5></div>
-    <div class="icon"> <i class="fa-solid fa-circle-info fa-2xl"></i></div>
     <div class="background-image"> <%= cl_image_tag current_user.photo.key  %> </div>
     <div class="form-accept">
       <% if @user_match_exists %>
