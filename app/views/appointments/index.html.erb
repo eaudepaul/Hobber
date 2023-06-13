@@ -20,9 +20,11 @@
 
         <div class="appointment-other-user">
           <% if user_match.user == current_user %>
-            <h2>Game with <%= user_match.match.secondary_user.username %> </h2>
+            <% user_match.appointments.each do |appointment| %>
+              <h2><%= appointment.game.name %> with <%= user_match.match.secondary_user.username %> </h2>
+            <% end %>
           <% else %>
-            <h2>Game with <%= user_match.user.username %> </h2>
+            <h2><%= appointment.game.name %> with <%= user_match.user.username %> </h2>
           <% end %>
         </div>
 
