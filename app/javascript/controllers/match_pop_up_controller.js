@@ -3,15 +3,11 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static values = {
     potentialMatchUsername: String,
-    potentialMatchId: String,
     matchChatroomId: String
   }
 
   connect() {
     console.log("Hello from the match pop-up controller");
-    console.log(this.potentialMatchUsernameValue);
-    console.log(this.potentialMatchIdValue);
-    console.log(this.matchChatroomIdValue);
   }
 
   pop_up() {
