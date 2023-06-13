@@ -18,3 +18,6 @@ application.register("match-pop-up", MatchPopUpController)
 
 import TimepickerController from "./timepicker_controller"
 application.register("timepicker", TimepickerController)
+
+import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
+eagerLoadControllersFrom("controllers", application)
