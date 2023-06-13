@@ -22,7 +22,6 @@ class GamesController < ApplicationController
     else
       render :new
     end
-
   end
 
   private
