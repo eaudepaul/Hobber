@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Chatroom < ApplicationRecord
   belongs_to :user_match
   has_many :users, through: :user_matches

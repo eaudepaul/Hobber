@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   def index
     # just to maintain functionality, readd once views have progressed

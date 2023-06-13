@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 class AppointmentsController < ApplicationController
   before_action :set_user_match, only: %i[new]
 
   def index
-    @user_matches = UserMatch.joins(:match).where("user_matches.status = 'approved' AND (user_matches.user_id = :user OR matches.secondary_user_id = :user)", user: current_user.id)
+    @user_matches = UserMatch.joins(:match).where(
+      "user_matches.status = 'approved' AND (user_matches.user_id = :user OR matches.secondary_user_id = :user)", user: current_user.id
+    )
   end
 
   def new

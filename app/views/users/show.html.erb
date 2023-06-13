@@ -1,8 +1,6 @@
-<h1>User Show</h1>
-
-<div class="dog-profile d-flex container justify-content-between" >
-  <div class="dog-wrapper d-flex mx-2 w-100">
-    <div class="dog-img">
+<div>
+  <div>
+    <div>
       <% if @user.photo.attached? %>
         <%= cl_image_tag @user.photo.key, class: "profilepage-img", gravity: :face %>
       <% else %>
@@ -32,15 +30,13 @@
     <% @user.user_games.each do |user_game| %>
       <div class="game">
         <ul>
-          <li><%= user_game.name %></li>
-          <%# <li><%= link_to "Delete", user_game_path(user_game), method: :destroy %>
-          <%# SANTI PROBLEM %>
+          <li><%= user_game.game.name %> <button> <%= link_to "Delete", user_game_path(user_game), data: {turbo_method: :delete} %> </button> </li>
         </ul>
       </div>
     <% end %>
   </div>
 
 </div>
-<%# blatherrrrrrrr %>
+
 
 <%= render 'shared/navbar_bottom' %>
