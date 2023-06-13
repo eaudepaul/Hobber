@@ -20,7 +20,8 @@ class GamesController < ApplicationController
         flash[:notice] = "#{@game.name} has been added to your list of games."
         redirect_to games_path
     else
-      render :new
+      flash[:notice] = "#{@game.name} already exists. Try searching."
+      redirect_to games_path
     end
   end
 
