@@ -5,7 +5,7 @@
   <div class="chatroom-show-header">
     <div class="chatroom-back-arrow">
       <%= link_to chatrooms_path do %>
-        <i class="fa-solid fa-angle-left"></i>
+        <i class="fa-solid fa-backward fa-2xl"></i>
       <% end %>
     </div>
 
@@ -39,7 +39,7 @@
   </div>
 
   <div class="appointment-button">
-    <%= link_to "Schedule a duel", new_user_match_appointment_path(@user_match)  %>
+    <%= link_to "Schedule a duel", new_user_match_appointment_path(@user_match), class: "button-lg"  %>
   </div>
 
   <div class="chatroom-message-form">
@@ -51,7 +51,9 @@
         placeholder: "Message ##{@chatroom.name}",
         wrapper_html: {class: "flex-grow-1"}
       %>
-      <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+      <%= f.submit "Send", class: "btn button-sm mb-3" do %>
+        <i class="fa-sharp fa-light fa-rocket-launch"></i>
+      <% end %>
     <% end %>
   </div>
 </div>
