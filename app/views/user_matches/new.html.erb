@@ -7,10 +7,11 @@
 
       <div class="form-accept">
         <% if @user_match_exists %>
-          <%= simple_form_for @user_match, method: :put do |f| %>
-            <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
-            <%= f.button :submit, 'put yes', class: "button-accept" %>
-          <% end %>
+          <%= simple_form_for @user_match do |f| %>
+  <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
+  <%= f.button :submit, 'put yes', class: "button-accept", data: { controller: "match-pop-up", action: "click->match-pop-up#pop_up", match_pop_up_potential_match_username_value: @potential_match.username, match_pop_up_match_chatroom_id_value: @chatroom.id } %>
+<% end %>
+
           <%= simple_form_for @user_match, method: :put do |f| %>
             <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
             <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
