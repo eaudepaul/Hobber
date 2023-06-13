@@ -36,8 +36,30 @@
     .form-accept{
       position: absolute;
       z-index: 1;
-      margin-top: 380px;
-      margin-left: 230px;
+      margin-left: -45px;
+      margin-top: 188px;
+      display: flex;
+      white-space: pre-wrap;
+      .submit{
+        text-decoration: none;
+        font-size: xx-large;
+        .fa-heart{
+          color: green;
+        }
+        .fa-x{
+          color: red;
+        }
+      }
+    }
+    .Bio{
+      color: black;
+    margin-top: 443px;
+    position: absolute;
+    margin-left: 4px;
+    background: #ffa500d4;
+    height: 27px;
+    width: 98%;
+    border-radius: 2px;
     }
     .form-reject{
       position: absolute;
@@ -49,7 +71,26 @@
       z-index: 99;
       position: relative;
       top: 470px;
-      background-color: #80808020;
+      background-color: #FFD580;
+      width: 382px;
+      left: 4px;
+    }
+    .gamelist-swipe{
+      position: relative;
+      top: 483px;
+      .header-gamelist{
+        background-color: #ffa500d4;
+      height: 27px;
+      width: 98%;
+      margin-top: -9px;
+     margin-left: 4px;
+      }
+      .card-games{
+        background-color: #FFD580;
+        width: 382px;
+        margin-left: 4px;
+      }
+
     }
     .button-decline{
       padding: 0 24px;
@@ -67,5 +108,37 @@
       font-size: 18px;
       background-color: green;
     }
+
   }
+  .thebar {
+    width: 374px;
+    height: 65px;
+    background-color: #E9DCC9;
+    top: 501px;
+    z-index: 0;
+    position: absolute;
+    margin-left: 8px;
+    border-radius: 3px;
+  }
+  .thebar2 {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    top: 504px;
+    z-index: 0;
+    position: absolute;
+    margin-left: 255px;
+    border-radius: 100px;
+  }
+  .thebar3 {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    top: 504px;
+    z-index: 0;
+    position: absolute;
+    margin-left: 81px;
+    border-radius: 100px;
+  }
+
 }

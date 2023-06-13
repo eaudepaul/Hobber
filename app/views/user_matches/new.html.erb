@@ -1,8 +1,6 @@
 <% if @potential_match.nil? %>
   <h2>You have no more people to match with, fuck you!!!</h2>
 <% else %>
-
- <h2 class="spielbox" >Matches</h2>
 <div class="main-container">
   <div class="user-container">
     <div class="name" > <h5 class="card-title"><%= @potential_match.username %></h5></div>
@@ -15,23 +13,48 @@
           <% end %>
           <%= simple_form_for @user_match, method: :put do |f| %>
             <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
-            <%= f.button :submit, 'put no', class: "button-decline" %>
+            <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+                <i class="fa-solid fa-heart fa-xl"></i>
+            </a>
+
           <% end %>
         <% else %>
           <%= simple_form_for @user_match do |f| %>
             <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
             <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
-            <%= f.button :submit, 'post yes', class: "button-accept" %>
-          <% end %>
+            <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+              <i class="fa-solid fa-heart fa-xl"></i>
+            </a>
+            <% end %>
           <%= simple_form_for @user_match do |f| %>
             <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
             <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
-            <%= f.button :submit, 'post no', class: "button-decline" %>
-          <% end %>
+            <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+              <i class="fa-solid fa-x fa-xl"></i>
+            </a>
+            <% end %>
         <% end %>
           </div>
+          <div class="Bio"> <h1>BIO</h1></div>
       <div><p class="card-text"><%= @potential_match.bio %></p></div>
+        <div class="gamelist-swipe">
+          <div class="header-gamelist">
+            <h4>Games I Play</h4>
+          </div>
+          <div class="card-games">
+          <% @user_games.each do |user_game| %>
+            <div class="game-swipe">
+                <span>
+                <i class="fa-solid fa-gamepad"></i><%= user_game.game.name %>
+                </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
+    <div class="thebar"></div>
+    <div class="thebar2"></div>
+    <div class="thebar3"></div>
   </div>
 <% end %>
 <%= render 'shared/navbar_bottom' %>
