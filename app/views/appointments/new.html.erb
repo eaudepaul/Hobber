@@ -1,13 +1,19 @@
 <h1>Choose your dueling time</h1>
-<%= simple_form_for [@user_matches, @appointment] do |f| %>
-  <%= f.input :start_time,
+<%= simple_form_for [@user_match, @appointment] do |f| %>
+  <%= f.input :date,
 	        	 	as: :string,
-							input_html: { data: { controller: 'flatpickr' } },
-              placeholder: "Select a start time"%>
+							input_html: { data: { controller: 'flatpickr', action: 'date' } },
+              placeholder: "Select a date"%>
+  <%= f.input :start_time,
+              as: :string,
+              input_html: { data: { controller: 'timepicker', action: 'time' } },
+              placeholder: "Select a start time" %>
   <%= f.input :end_time,
-							as: :string,
-							input_html: { data: { controller: 'flatpickr' } },
+              as: :string,
+              input_html: { data: { controller: 'timepicker', action: 'time' } },
               placeholder: "Select an end time" %>
+  <%= f.input :address %>
+  <%= f.input :game, collection: Game.all.map { |game| [game.name, game.id] } %>
   <%= f.submit "Send request"%>
 <% end %>
 

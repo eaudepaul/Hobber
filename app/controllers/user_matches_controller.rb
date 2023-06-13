@@ -28,13 +28,15 @@ class UserMatchesController < ApplicationController
 
   def update
     @user_match = UserMatch.find(params[:id])
-    return unless @user_match.update(status: params[:user_match][:status])
 
-    if @user_match.status == 'approved'
-      @chatroom = Chatroom.create!(user_match: @user_match,
-                                   name: user_match.user == current_user ? user_match.match.secondary_user.username : user_match.user.username)
+    if @user_match.update(status: params[:user_match][:status])
+      if @user_match.status == "approved"
+        @chatroom = Chatroom.create!(user_match: @user_match, name: @user_match.user == current_user ? @user_match.match.secondary_user.username : @user_match.user.username)
+      end
+      redirect_to new_user_match_path
+    else
+      render :new, status: :unprocessable_entity
     end
-    redirect_to new_user_match_path
   end
 
   def user_match_exists

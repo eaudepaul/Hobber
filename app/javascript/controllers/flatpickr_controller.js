@@ -4,9 +4,7 @@ import flatpickr from "flatpickr";
 // Connects to data-controller="flatpickr"
 export default class extends Controller {
   connect() {
-    flatpickr(this.element, {
-      enableTime: true,
-      dateFormat: "H:i",
-    })
-}
+    console.log("Connected");
+    flatpickr(this.element)
+  }
 }
