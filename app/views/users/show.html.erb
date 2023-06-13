@@ -1,50 +1,71 @@
 <div>
-  <div>
-    <div>
-      <% if @user.photo.attached? %>
-        <%= cl_image_tag @user.photo.key, class: "profilepage-img", gravity: :face %>
-      <% else %>
-        <%= image_tag("Hobber.png") %>
-      <% end %>
-    <div class="row">
-      <div class="col-12">
-        <div class="d-flex align-items-center d-inline-block justify-content-between">
-          <h1><%= @user.username %></h1>
-          <% if @user.id == current_user.id%>
-              <%= link_to edit_user_path(@user.id) do %>
-                <i class="fa-regular fa-pen-to-square"></i>
-              <% end %>
+  <div class="row">
+    <div class="col-12">
+      <div class="profile-card">
+        <div class="d-flex align-items-center">
+          <div class="profile-image">
+            <% if @user.photo.attached? %>
+              <%= cl_image_tag @user.photo.key, class: "profilepage-img large-image", gravity: :face %>
+            <% else %>
+              <div>
+                <%= image_tag("Hobber.png") %>
+              </div>
+            <% end %>
+          </div>
+          <div class="profile-details">
+            <h1 class="profile-username"><%= @user.username %></h1>
+            <hr>
+            <div class="profile-age">
+              <h5><%= @user.age %></h5>
+            </div>
+            <hr>
+            <div class="profile-address">
+              <h5><%= @user.address %></h5>
+            </div>
+          </div>
+        </div>
+        <% if @user.id == current_user.id %>
+          <div class="card-section">
+            <div class="card">
+              <div class="card-body">
+                <%= link_to edit_user_path(@user.id), class: "edit-profile-link" do %>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                  Edit profile
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <hr>
+        <div class="card-section">
+          <div class="card">
+            <div class="card-body">
+              <p class="profile-bio-container"><%= @user.bio %></p>
+            </div>
+          </div>
+        </div>
+        <div <% if @user.user_games.blank? %>class="hidden"<% end %>>
+        <hr>
+        <h4>All your games</h4>
+        <div class="games-container">
+          <% @user.user_games.each do |user_game| %>
+            <div class="game">
+              <ul class="submit-button">
+                <%= user_game.game.name %>
+                <button class="delete-link">
+                  <%= link_to user_game_path(user_game), data: { turbo_method: :delete }, class: "delete-link" do %>
+                    <i class="fa-solid fa-xmark"></i>
+                  <% end %>
+                </button>
+              </ul>
+            </div>
           <% end %>
         </div>
-        <div>
-          <h5><%= @user.age %></h5>
-        </div>
-        <hr>
-        <p><%= @user.bio %></p>
       </div>
     </div>
-  </div>
-    </div>
-<hr>
-  <div <% if @user.user_games.blank? %>class="hidden"<% end %>>
-  <h4>All your games</h4>
-  <div class="games-container">
-    <% @user.user_games.each do |user_game| %>
-      <div class="game">
-        <ul class="submit-button">
-          <%= user_game.game.name %>
-          <button class="delete-link">
-            <%= link_to user_game_path(user_game), data: { turbo_method: :delete }, class: "delete-link" do %>
-              <i class="fa-solid fa-xmark"></i>
-            <% end %>
-          </button>
-        </ul>
-      </div>
-    <% end %>
   </div>
 </div>
 
-</div>
 
 
 <%= render 'shared/navbar_bottom' %>
