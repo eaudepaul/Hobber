@@ -5,10 +5,11 @@
   min-height: 100vh;
   overflow: scroll;
   margin-bottom: 60px;
+  margin: 0;
 
   .user-container{
     position: relative;
-    top: 65px;
+    
     .name{
       position: absolute;
       top: 345px;
@@ -43,10 +44,10 @@
       .submit{
         text-decoration: none;
         font-size: xx-large;
-        .fa-heart{
+        .fa-dice{
           color: green;
         }
-        .fa-x{
+        .fa-radiation{
           color: red;
         }
       }
@@ -141,4 +142,8 @@
     border-radius: 100px;
   }
 
+}
+
+.no-matches {
+  margin: 10px;
 }

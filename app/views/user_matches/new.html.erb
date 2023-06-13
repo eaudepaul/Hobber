@@ -1,10 +1,13 @@
-<% if @potential_match.nil? %>
-  <h2>You have no more people to match with, fuck you!!!</h2>
-<% else %>
+  <div class="no-matches">
+    <% if @potential_match.nil? %>
+      <h2>Sorry, no more matches. Try again later <i class="fa-solid fa-dragon"></i></h2>
+      <h4>Connect more games with your profile</h4>
+    <% else %>
+  </div>
 <div class="main-container">
   <div class="user-container">
     <div class="name" > <h5 class="card-title"><%= @potential_match.username %></h5></div>
-
+    <div class=“background-image”> <%= cl_image_tag @potential_match.photo.key  %> </div>
       <div class="form-accept">
         <% if @user_match_exists %>
           <%= simple_form_for @user_match, method: :put do |f| %>
@@ -14,23 +17,22 @@
           <%= simple_form_for @user_match, method: :put do |f| %>
             <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
             <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
-                <i class="fa-solid fa-heart fa-xl"></i>
+                <i class="fa-solid fa-dice fa-xl"></i>
             </a>
-
           <% end %>
         <% else %>
           <%= simple_form_for @user_match do |f| %>
             <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
             <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
             <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
-              <i class="fa-solid fa-heart fa-xl"></i>
+              <i class="fa-solid fa-dice fa-xl"></i>
             </a>
             <% end %>
           <%= simple_form_for @user_match do |f| %>
             <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
             <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
             <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
-              <i class="fa-solid fa-x fa-xl"></i>
+              <i class="fa-solid fa-radiation fa-xl"></i>
             </a>
             <% end %>
         <% end %>
