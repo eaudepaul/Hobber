@@ -1,16 +1,26 @@
 .chatroom {
   background: white;
-  margin-top: 9px;
-  height: calc(100vh - 75px);
+  height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+  margin: 0;
+  padding: 5;
+  margin-bottom: 0;
 
-  h1 {
+  .h1 {
     border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
     padding: 1rem;
+  }
+  .chatroom-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
   }
 
   .messages {
@@ -22,6 +32,7 @@
   #new_message {
     border-top: 1px solid $gray-200;
     padding: 1rem;
+    border-radius: 5px;
 
     .form-group {
       margin-bottom: 0;
@@ -30,5 +41,53 @@
 
   .chatroom-show-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
+}
+
+.chat-input {
+  border-radius: 10px;
+}
+
+.all-chats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-name {
+  text-decoration: none;
+  color: black;
+  background-color: #FFBD00;
+  padding: 7px;
+  margin-left: 30px;
+  border-radius: 10px;
+}
+
+.current-user-message {
+  background-color: #F6BD60;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-left: 50px;
+  margin-right: 10px;
+}
+
+.other-user-message {
+  background-color: #ADC178;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 50px;
+}
+
+.fa-backward {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: black;
 }

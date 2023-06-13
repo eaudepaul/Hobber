@@ -1,7 +1,16 @@
-<div id="message-<%= message.id %>">
-  <small>
-    <strong><%= message.user.username %></strong>
-    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-  </small>
-  <p><%= message.content %></p>
-</div>
+<% if message.message_type == nil %>
+  <div class="normal-message <%= message.user == current_user ? 'current-user-message' : 'other-user-message' %>" id="message-<%= message.id %>">
+    <small>
+      <strong><%= message.user.username %></strong>
+      <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+    </small>
+    <p><%= message.content %></p>
+  </div>
+<% else %>
+  <div class="appointment-message">
+    <div class="appointment-message-header">
+      <p><%= message.user == current_user ? "You sent a duel request" : "#{message.user.username} sent a duel request" %></p>
+    </div>
+    <%= link_to 'View your duels', appointments_path %>
+  </div>
+<% end %>

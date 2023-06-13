@@ -15,7 +15,8 @@ class UserMatchesController < ApplicationController
     # if the form presented to the user should have a post or put method
     @user_match_exists = @potential_match.nil? ? false : user_match_exists
     @user_match = @user_match_exists ? set_user_match : UserMatch.new
-    @chatroom = @user_match_exists ? set_chatroom : 'hello'
+    @user_games = UserGame.where(user_id: current_user.id)
+    @chatroom = @user_match_exists ? set_chatroom : 'no-chatroom'
   end
 
   def create
@@ -32,13 +33,7 @@ class UserMatchesController < ApplicationController
 
   def update
     @user_match = UserMatch.find(params[:id])
-    if @user_match.update(status: params[:user_match][:status])
-      # if @user_match.status == "approved"
-      #   @chatroom = Chatroom.create!(user_match: @user_match, name: @user_match.user == current_user ? @user_match.match.secondary_user.username : @user_match.user.username)
-      # end
-    else
-      render :new, status: :unprocessable_entity
-    end
+    render :new, status: :unprocessable_entity unless @user_match.update(status: params[:user_match][:status])
   end
 
   def user_match_exists

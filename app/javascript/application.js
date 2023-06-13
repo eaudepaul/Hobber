@@ -5,23 +5,3 @@ import "@rails/actioncable"
 console.log('Hello from application.js')
 import Swal from 'sweetalert2';
 window.Swal = Swal;
-
-document.addEventListener("DOMContentLoaded", function() {
-    const avatarToggle = document.getElementById("avatar-toggle");
-    const dropdownMenu = document.getElementById("dropdown-menu");
-
-
-    avatarToggle.addEventListener("click", function() {
-      dropdownMenu.classList.toggle("open");
-    });
-  });
-
-
-  // window.onload = function() {
-  //   const avatarToggle = document.getElementById("avatar-toggle");
-  //   const dropdownMenu = document.getElementById("dropdown-menu");
-
-  //   avatarToggle.addEventListener("mouseup", function() {
-  //     dropdownMenu.classList.toggle("open");
-  //   });
-  // };
