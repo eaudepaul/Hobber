@@ -23,3 +23,11 @@ document.addEventListener("DOMContentLoaded", function() {
   //     dropdownMenu.classList.toggle("open");
   //   });
   // };
+
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const mygameslist = document.getElementById('mygameslist');
+    if (mygameslist.innerHTML.trim() === '') {
+      mygameslist.style.display = 'none';
+    }
+  });

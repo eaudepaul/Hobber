@@ -14,7 +14,14 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
-    redirect_to games_path
+    if @game.save
+      gametest = UserGame.new(user_id: current_user.id, game_id: @game.id)
+      gametest.save!
+        flash[:notice] = "#{@game.name} has been added to your list of games."
+        redirect_to games_path
+    else
+      render :new
+    end
   end
 
   private
