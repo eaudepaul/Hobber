@@ -15,24 +15,27 @@ class UserMatchesController < ApplicationController
     # if the form presented to the user should have a post or put method
     @user_match_exists = @potential_match.nil? ? false : user_match_exists
     @user_match = @user_match_exists ? set_user_match : UserMatch.new
+    @chatroom = @user_match_exists ? set_chatroom : 'hello'
   end
 
   def create
     match = Match.create!(secondary_user_id: params[:user_match][:match_id])
-    user_match = UserMatch.new(status: params[:user_match][:status])
-    user_match.user_id = current_user.id
-    user_match.match_id = match.id
-    user_match.save!
+    @user_match = UserMatch.new(status: params[:user_match][:status])
+    @user_match.user_id = current_user.id
+    @user_match.match_id = match.id
+    @user_match.save!
+    if @user_match.status == 'pending'
+      @chatroom = Chatroom.create!(user_match: @user_match, name: @user_match.user == current_user ? @user_match.match.secondary_user.username : @user_match.user.username)
+    end
     redirect_to new_user_match_path
   end
 
   def update
     @user_match = UserMatch.find(params[:id])
     if @user_match.update(status: params[:user_match][:status])
-      if @user_match.status == "approved"
-        @chatroom = Chatroom.create!(user_match: @user_match, name: @user_match.user == current_user ? @user_match.match.secondary_user.username : @user_match.user.username)
-      end
-      redirect_to new_user_match_path
+      # if @user_match.status == "approved"
+      #   @chatroom = Chatroom.create!(user_match: @user_match, name: @user_match.user == current_user ? @user_match.match.secondary_user.username : @user_match.user.username)
+      # end
     else
       render :new, status: :unprocessable_entity
     end
@@ -50,6 +53,10 @@ class UserMatchesController < ApplicationController
     # To resolve the issue, we use joins(:match) to perform an inner join with the matches table.
     # Then, we use where(matches: { secondary_user_id: current_user.id }) to specify the condition for the join.
     UserMatch.joins(:match).find_by(matches: { secondary_user_id: current_user.id }, user_id: @potential_match.id)
+  end
+
+  def set_chatroom
+    Chatroom.find_by(user_match_id: @user_match.id)
   end
 
   def set_potential_match

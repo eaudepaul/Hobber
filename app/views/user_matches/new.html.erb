@@ -1,11 +1,4 @@
-
-          <div data-controller="match-pop-up">
-          <button class="btn btn-primary btn-lg"
-        data-controller="disable-button"
-        data-action="click->match-pop-up#pop_up">
-  Click me!
-</button>
-          </div>
+<h1><%= @chatroom %></h1>
 <% if @potential_match.nil? %>
   <h2>You have no more people to match with, fuck you!!!</h2>
 <% else %>
@@ -17,10 +10,10 @@
     <div class="background-image"> <%= cl_image_tag @potential_match.photo.key  %> </div>
       <div class="form-accept">
         <% if @user_match_exists %>
-          <%= simple_form_for @user_match, method: :put do |f| %>
-            <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
-            <%= f.button :submit, 'put yes', class: "button-accept" %>
-          <% end %>
+          <%= simple_form_for @user_match do |f| %>
+  <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
+  <%= f.button :submit, 'put yes', class: "button-accept", data: { controller: "match-pop-up", action: "click->match-pop-up#pop_up", match_pop_up_potential_match_username_value: @potential_match.username, match_pop_up_potential_match_id_value: @potential_match.id, match_pop_up_match_chatroom_id_value: @chatroom.id } %>
+<% end %>
 
           <%= simple_form_for @user_match, method: :put do |f| %>
             <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
