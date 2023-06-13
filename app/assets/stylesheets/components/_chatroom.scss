@@ -1,12 +1,13 @@
 .chatroom {
-  background: darkgreen;
-  height: calc(100vh - 75px);
+  background: white;
+  height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
   margin: 0;
   padding: 5;
+  margin-bottom: 0;
 
   .h1 {
     border-bottom: 1px solid $gray-200;
@@ -18,6 +19,8 @@
     height: 50px;
     border-radius: 50%;
     margin-top: 5px;
+    justify-content: center;
+    align-items: center;
   }
 
   .messages {
