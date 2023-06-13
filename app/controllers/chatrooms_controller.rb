@@ -3,7 +3,7 @@
 class ChatroomsController < ApplicationController
   def index
     @user_matches = UserMatch.joins(:match).where(
-      "user_matches.status = 'approved' AND (user_matches.user_id = :user OR matches.secondary_user_id = :user)", user: current_user.id
+      "user_matches.status = 'approved' AND (user_matches.user_id = :user OR matches.secondary_user_id = :user)", user: current_user
     )
   end
 
@@ -11,6 +11,7 @@ class ChatroomsController < ApplicationController
     @appointment = Appointment.new
     @appointment.user_match = @user_match
     @chatroom = Chatroom.find(params[:id])
+    @appointment_request = @chatroom.user_match.appointments.first
     @user_match = @chatroom.user_match
     @message = Message.new
   end
