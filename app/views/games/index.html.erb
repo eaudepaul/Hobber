@@ -1,5 +1,4 @@
-<h1>What games are you hoping to play?</h1>
-
+<div class="background">
 
 <div class="container">
 <% if flash[:notice].present? %>
@@ -8,49 +7,69 @@
   </div>
 <% end %>
 
-  <div>
+<div <% if @user_games.blank? %>class="hidden"<% end %>>
   <h4>All your games</h4>
+  <div class="games-container">
     <% @user_games.each do |user_game| %>
       <div class="game">
-        <ul>
-          <li><%= user_game.game.name %> <button> <%= link_to "Delete", user_game_path(user_game), data: {turbo_method: :delete} %> </button> </li>
+        <ul class="submit-button">
+          <%= user_game.game.name %>
+          <button class="delete-link">
+            <%= link_to user_game_path(user_game), data: { turbo_method: :delete }, class: "delete-link" do %>
+              <i class="fa-solid fa-xmark"></i>
+            <% end %>
+          </button>
         </ul>
       </div>
     <% end %>
   </div>
+</div>
 
-  <div>
-    <h4>What do you want to play?</h4>
+<div>
+  <h3>Let us know what you want to play</h3>
+  <div class="games-container">
     <% @games.each do |game_name, _popularity| %>
-        <div class="game">
-          <%= simple_form_for [Game.find_by(name: game_name), @user_game] do |f| %>
-            <%= f.submit game_name %>
-          <% end %>
-        </div>
-      <% end %>
+      <div class="game">
+        <%= simple_form_for [Game.find_by(name: game_name), @user_game] do |f| %>
+          <%= f.submit game_name, class: "submit-button" %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
+</div>
 
   <br>
-  <h4>Didn't find what you're looking for? Search here</h4>
-  <%= form_with url: games_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Didn't find what you're looking for? Search here"
-    %>
-    <%= submit_tag "Search" %>
-  <% end %>
-
-
-  <br>
-
-  <div class="add-game">
-    <h4>Not in our database? Add it here!</h4>
-    <%= form_with(model: Game.new, url: games_path, method: :post) do |f| %>
-      <%= f.text_field :name, placeholder: "Game Name" %>
-      <%= f.submit "Add" %>
+  <div>
+    <h4>Didn't find what you're looking for? Search here</h4>
+    <%= form_with url: games_path, method: :get, class: "d-flex search-form" do |f| %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-input",
+        placeholder: "Didn't find what you're looking for? Search here"
+      %>
+      <%= submit_tag "Search", class: "search-button" %>
     <% end %>
   </div>
 
+  <br>
+
+  <div>
+    <h4>Not in our database? Add it here!</h4>
+    <%= form_with(model: Game.new, url: games_path, method: :post, class: "add-form") do |f| %>
+      <%= f.text_field :name, placeholder: "Game Name", class: "add-input" %>
+      <%= f.submit "Add", class: "add-button" %>
+    <% end %>
+  </div>
+
+  <hr>
+
+<div>
+    <%= link_to new_user_match_path do %>
+      <div class= "quest-button">Find a challenger</div>
+    <% end%>
 </div>
+
+</div>
+</div>
+
 <%= render 'shared/navbar_bottom' %>

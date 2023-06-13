@@ -15,6 +15,7 @@ class UserMatchesController < ApplicationController
     # if the form presented to the user should have a post or put method
     @user_match_exists = @potential_match.nil? ? false : user_match_exists
     @user_match = @user_match_exists ? set_user_match : UserMatch.new
+    @user_games = UserGame.where(user_id: current_user.id)
   end
 
   def create
