@@ -1,5 +1,5 @@
 <% if message.message_type == nil %>
-  <div class="normal-message" id="message-<%= message.id %>">
+  <div class="normal-message <%= message.user == current_user ? 'current-user-message' : 'other-user-message' %>" id="message-<%= message.id %>">
     <small>
       <strong><%= message.user.username %></strong>
       <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
