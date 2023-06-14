@@ -13,7 +13,9 @@
               input_html: { data: { controller: 'timepicker', action: 'time' } },
               placeholder: "Select an end time" %>
   <%= f.input :address %>
-  <%= f.input :game, collection: Game.all.map { |game| [game.name, game.id] } %>
+  <%= f.input :game,
+              collection: @common_games.map { |game| [game.name, game.id] },
+              prompt: "Select a game" %>
   <%= f.submit "Send request"%>
 <% end %>
 

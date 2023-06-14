@@ -107,6 +107,9 @@ UserGame.create(user_id: antonio.id, game_id: game3.id)
 UserGame.create(user_id: paul.id, game_id: game2.id)
 UserGame.create(user_id: paul.id, game_id: game4.id)
 UserGame.create(user_id: paul.id, game_id: game5.id)
+UserGame.create(user_id: charlotte.id, game_id: game2.id)
+UserGame.create(user_id: charlotte.id, game_id: game4.id)
+UserGame.create(user_id: charlotte.id, game_id: game5.id)
 UserGame.create(user_id: katharine.id, game_id: game2.id)
 
 # puts 'Creating appointments...'
