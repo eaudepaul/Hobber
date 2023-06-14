@@ -9,6 +9,12 @@ class UsersController < ApplicationController
 
   def show
     @chatroom = Chatroom.new
+    reviews = @user.appointments.map { |appointment| appointment.reviews.where.not(user: @user) }.flatten
+    sum = 0
+    reviews.each do |review|
+      sum += review.rating
+    end
+    @average_rating = sum / reviews.length
   end
 
   def new
