@@ -88,11 +88,11 @@
                   <h6>Your review:</h6>
                   <p>
                     <% find_review(appointment.id).rating.times do %>
-                    <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
                     <% end %>
                     <% empty_stars = 5 - find_review(appointment.id).rating %>
                     <% empty_stars.times do %>
-                    <i class="fa-regular fa-star"></i>
+                      <i class="fa-regular fa-star"></i>
                     <% end %>
                   </p>
                   <p><%= find_review(appointment.id).content %></p>

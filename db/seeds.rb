@@ -122,6 +122,9 @@ appointment3 = Appointment.create(address: 'Charlotte I Pizza, Berlin', date: Da
 appointment4 = Appointment.create(address: 'La Gino, Berlin', date: Date.today, start_time: Time.now,
                                   end_time: Time.now, game_id: game2.id, user_match_id: user_match4.id, status: 'pending')
 
-# puts 'Creating reviews...'
-# Review.create(content: "It was the best gaming session ever, Paul loses like it's nobody's business", rating: 10, appointment_id: appointment1.id, user_id: antonio.id)
-# Review.create(content: "Antonio won 10 times in a row, man is a legend", rating: 8, appointment_id: appointment1.id, user_id: paul.id)
+puts 'Creating reviews...'
+Review.create(content: "It was the best gaming session ever, Paul loses like it's nobody's business", rating: 5, appointment_id: appointment1.id, user_id: antonio.id)
+Review.create(content: "Antonio won 10 times in a row, man is a legend", rating: 3, appointment_id: appointment1.id, user_id: paul.id)
+
+# Delete all after testing:
+Review.create(content: "Paul freaks me out!", rating: 2, appointment_id: appointment1.id, user_id: antonio.id)

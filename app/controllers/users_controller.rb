@@ -9,6 +9,11 @@ class UsersController < ApplicationController
 
   def show
     @chatroom = Chatroom.new
+    sum = 0
+    @user.reviews.all.each do |review|
+      sum += review.rating
+    end
+    @average_rating = sum / @user.reviews.all.length
   end
 
   def new
