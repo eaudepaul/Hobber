@@ -1,7 +1,8 @@
-<div class="sign-in-wrapper">
-  <h1>Log in</h1>
+<div class="backgroundlogo" style ="background: url('<%= image_url "BG-Login.png" %>');background-size: cover;">
+  <div class="sign-in-wrapper">
+    <h1>Log in</h1>
 
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-inputs sign-in-form">
       <%= f.input :email,
                   required: false,
@@ -18,9 +19,10 @@
         <%= f.button :submit, "Log in", class: "quest-button" %>
       </div>
     </div>
-  <% end %>
+    <% end %>
 
-  <div class="log-in-links">
-    <%= render "devise/shared/links" %>
-  </div>
+    <div class="log-in-links">
+     <%= render "devise/shared/links" %>
+    </div>
+  <div>
 </div>
