@@ -1,6 +1,4 @@
 // Specific CSS for your home-page
-
-
 #banner {
   background-image: url(BackgroundHomepage.png);
   background-size: cover;
@@ -23,17 +21,19 @@ h1 {
   font-weight: bold;
   text-align: center;
   font-family: $headers-font;
-  color: #B4A184;
+  color: #a08154;
 }
 
 p{
   font-family: $headers-font;
   text-align: center;
-  color: #B4A184;
+  color: #a08154;
 }
 
 .quest-button {
   text-decoration: none;
+  margin-top: 2rem;
+  font-weight: bold !important;
 }
 
 .Join-us-button{
@@ -56,7 +56,7 @@ p{
 .Sign-In-button{
   display:inline-block;
   padding:0.2em 0.2em;
-  margin-top: 0.5rem;
+  margin-top: 2rem;
   border:0.16em solid rgba(255,255,255,0);
   border-radius:3px;
   box-sizing: border-box;
