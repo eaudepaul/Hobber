@@ -1,27 +1,30 @@
+<% require "date" %>
+
 <h1>My duels</h1>
 
-<div class="appointments-tabs">
+<div data-controller="tabs" class="appointments-tabs">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming" type="button" role="tab" aria-controls="upcoming duels" aria-selected="true">Upcoming duels</button>
+      <button data-tabs-target="upcomingtab" data-action="click->tabs#upcoming" class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming" type="button" role="tab" aria-controls="upcoming duels" aria-selected="true">Upcoming duels</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past" type="button" role="tab" aria-controls="past duels" aria-selected="false">Past</button>
+      <button data-tabs-target="pasttab" data-action="click->tabs#past" class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past" type="button" role="tab" aria-controls="past duels" aria-selected="false">Past</button>
     </li>
   </ul>
+
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-duels-tab">
-      <% @user_matches.each do |user_match| %>
-        <div class="appointment-date">
-          <% appointments_order = user_match.appointments.order(date: :desc) %>
-          <% appointments_order.each do |appointment| %>
-            <%= appointment.date.year < Date.today.year ? appointment.date.strftime('%d %b %Y') : appointment.date.strftime('%b %d') %>
+    <div data-tabs-target="upcomingpage" class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-duels-tab">
+      <div class="appointment-card">
+        <% @appointments.where("date >= ?", Date.today).each do |appointment| %>
+            <div class="appointment-date">
+              <%= appointment.date.year < Date.today.year ? appointment.date.strftime('%d %b %Y') : appointment.date.strftime('%b %d') %>
+            </div>
 
             <div class="appointment-other-user">
-              <% if user_match.user == current_user %>
-                <h2><%= appointment.game.name %> with <%= user_match.match.secondary_user.username %> </h2>
+              <% if appointment.user_match.user == current_user %>
+                <h2><%= appointment.game.name %> with <%= appointment.user_match.match.secondary_user.username %> </h2>
               <% else %>
-                <h2><%= appointment.game.name %> with <%= user_match.user.username %> </h2>
+                <h2><%= appointment.game.name %> with <%= appointment.user_match.user.username %> </h2>
               <% end %>
             </div>
 
@@ -40,25 +43,53 @@
                   <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
                   <%= f.button :submit, 'Decline', class: "btn btn-danger" %>
                 <% end %>
-                <%= link_to "Chat", chatroom_path(user_match.chatrooms.first) %>
+                <%= link_to "Chat", chatroom_path(appointment.user_match.chatrooms.first) %>
               <% elsif appointment.status == 'approved' %>
                 <%= simple_form_for appointment, method: :patch do |f| %>
                   <%= f.input :status, :as => :hidden, :input_html => { :value => "cancelled" } %>
                   <%= f.button :submit, 'cancel duel', data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
-                  <%= link_to "Chat", chatroom_path(user_match.chatrooms.first) %>
+                  <%= link_to "Chat", chatroom_path(appointment.user_match.chatrooms.first) %>
                 <% end %>
               <% elsif appointment.status == 'cancelled' %>
-                <%= link_to "Reschedule", chatroom_path(user_match.chatrooms.first) %>
-              <% elsif appointment.status == 'denied' %>
-                <%= link_to "Reschedule", chatroom_path(user_match.chatrooms.first) %>
+                <%= link_to "Reschedule", chatroom_path(appointment.user_match.chatrooms.first) %>
+              <% else %>
+                <%= link_to "Reschedule", chatroom_path(appointment.user_match.chatrooms.first) %>
               <% end %>
             </div>
-          <% end %>
-        </div>
 
-      <% end %>
+        <% end %>
+      </div>
     </div>
-    <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-duels-tab">...</div>
+
+    <div data-tabs-target="pastpage" class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-duels-tab">
+      <div class="appointment-card">
+        <% @appointments.where("date < ?", Date.today).each do |appointment| %>
+            <div class="appointment-date">
+              <%= appointment.date.year < Date.today.year ? appointment.date.strftime('%d %b %Y') : appointment.date.strftime('%b %d') %>
+            </div>
+
+            <div class="appointment-other-user">
+              <% if appointment.user_match.user == current_user %>
+                <h2><%= appointment.game.name %> with <%= appointment.user_match.match.secondary_user.username %> </h2>
+              <% else %>
+                <h2><%= appointment.game.name %> with <%= appointment.user_match.user.username %> </h2>
+              <% end %>
+            </div>
+
+            <div class="appointment-time-status">
+              <p><%= appointment.start_time.strftime('%l:%M %p') %> – <%= appointment.end_time.strftime('%l:%M %p %Z') %></p>
+              <p>Status: <%= appointment.status %></p>
+            </div>
+
+            <div class="appointment-buttons">
+              <% if appointment.status == 'approved' %>
+                  <%= link_to "Write a review", new_appointment_review_path(appointment) %>
+              <% end %>
+            </div>
+
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

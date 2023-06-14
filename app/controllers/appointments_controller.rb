@@ -4,9 +4,9 @@ class AppointmentsController < ApplicationController
   before_action :set_user_match, only: :new
 
   def index
-    @user_matches = UserMatch.joins(:match).where(
+    @appointments = Appointment.joins(user_match: { match: :secondary_user }).where(
       "user_matches.status = 'approved' AND (user_matches.user_id = :user OR matches.secondary_user_id = :user)", user: current_user
-    )
+    ).order(date: :asc)
   end
 
   def new
