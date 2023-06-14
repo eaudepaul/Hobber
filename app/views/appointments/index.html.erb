@@ -96,6 +96,7 @@
                       <%= button_to "Write a review", new_appointment_review_path(appointment), method: :get, class: "btn button-sm" %>
                     <% elsif review_exists(appointment.id) %>
                       <div class="your-review">
+                        <hr>
                         <h6>Your review:</h6>
                         <p>
                           <% find_review(appointment.id).rating.times do %>

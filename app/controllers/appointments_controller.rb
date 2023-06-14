@@ -3,7 +3,7 @@
 class AppointmentsController < ApplicationController
   helper_method :review_exists
   helper_method :find_review
-  
+
   def index
     @appointments = Appointment.joins(user_match: { match: :secondary_user }).where(
       "user_matches.status = 'approved' AND (user_matches.user_id = :user OR matches.secondary_user_id = :user)", user: current_user
@@ -15,7 +15,7 @@ class AppointmentsController < ApplicationController
     @user_match = UserMatch.find(params[:user_match_id])
     @current_user_games = @user_match.user.games
     @secondary_user_games = @user_match.match.secondary_user.games
-    @common_games = @current_user_games & @secondary_user_games
+    @common_games = [@current_user_games, @secondary_user_games].flatten.uniq.map { |game| [game.name, game.id] }
   end
 
   def show
@@ -38,7 +38,7 @@ class AppointmentsController < ApplicationController
       @user_match = UserMatch.find(params[:user_match_id])
       @current_user_games = @user_match.user.games
       @secondary_user_games = @user_match.match.secondary_user.games
-      @common_games = @current_user_games & @secondary_user_games
+      @common_games = [@current_user_games, @secondary_user_games].flatten.uniq.map { |game| [game.name, game.id] }
       render :new, status: :unprocessable_entity
     end
   end
