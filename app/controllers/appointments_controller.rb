@@ -3,6 +3,7 @@
 class AppointmentsController < ApplicationController
   before_action :set_user_match, only: :new
   helper_method :review_exists
+  helper_method :find_review
 
   def index
     @appointments = Appointment.joins(user_match: { match: :secondary_user }).where(
@@ -49,7 +50,11 @@ class AppointmentsController < ApplicationController
   end
 
   def review_exists(appointment_id)
-    Review.exists?(appointment_id: appointment_id, user_id: current_user.id)
+    Review.exists?(appointment_id:, user_id: current_user.id)
+  end
+
+  def find_review(appointment_id)
+    Review.find_by(appointment_id:, user_id: current_user.id)
   end
 
   private
