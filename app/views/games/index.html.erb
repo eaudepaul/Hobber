@@ -1,12 +1,6 @@
 <div class="background">
 
 <div class="container">
-<% if flash[:notice].present? %>
-  <div class="notice">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
-
 <div <% if @user_games.blank? %>class="hidden"<% end %>>
   <h4>All your games</h4>
   <div class="games-container">
