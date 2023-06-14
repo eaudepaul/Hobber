@@ -1,6 +1,9 @@
 <h1>Write a review for <%= @appointment.user_match.user == current_user ? @appointment.user_match.match.secondary_user.username : @appointment.user_match.user.username %>!</h1>
 <%= simple_form_for [@appointment, @review] do |f| %>
-  <%= f.input :rating, collection: (1..5).to_a, label: "Rate your duel experience" %>
+  <%= f.input :rating,
+              collection: (1..5).to_a,
+              label: "Rate your duel experience",
+              input_html: { data: { controller: "star-rating" } } %>
   <%= f.input :content,
               as: :text,
               required: true,
