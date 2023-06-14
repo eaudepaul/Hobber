@@ -79,9 +79,9 @@
               <div class="appointment-info-container">
                 <div class="appointment-other-user">
                   <% if appointment.user_match.user == current_user %>
-                    <h2><%= appointment.game.name %> with <%= appointment.user_match.match.secondary_user.username %> </h2>
+                    <h2><%= appointment.game.name %> with <%= appointment.user_match.match.secondary_user.username %></h2>
                   <% else %>
-                    <h2><%= appointment.game.name %> with <%= appointment.user_match.user.username %> </h2>
+                    <h2><%= appointment.game.name %> with <%= appointment.user_match.user.username %></h2>
                   <% end %>
                 </div>
 
@@ -92,14 +92,27 @@
 
                 <div class="appointment-buttons-container">
                   <div class="appointment-buttons-status-approved">
-                    <% if appointment.status == 'approved' %>
-                        <%= button_to "Write a review", new_appointment_review_path(appointment), method: :get, class: "btn button-sm" %>
+                    <% if appointment.status == 'approved' && !review_exists(appointment.id) %>
+                      <%= button_to "Write a review", new_appointment_review_path(appointment), method: :get, class: "btn button-sm" %>
+                    <% elsif review_exists(appointment.id) %>
+                      <div class="your-review">
+                        <h6>Your review:</h6>
+                        <p>
+                          <% find_review(appointment.id).rating.times do %>
+                            <i class="fa-solid fa-star"></i>
+                          <% end %>
+                          <% empty_stars = 5 - find_review(appointment.id).rating %>
+                          <% empty_stars.times do %>
+                            <i class="fa-regular fa-star"></i>
+                          <% end %>
+                        </p>
+                        <p><%= find_review(appointment.id).content %></p>
+                      </div>
                     <% end %>
                   </div>
                 </div>
               </div>
             </div>
-
           <% end %>
         </div>
       </div>

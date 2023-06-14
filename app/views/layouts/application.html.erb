@@ -13,7 +13,8 @@
   </head>
 
 
-  <body data-controller="startup">
+  <body>
+  <%= render "shared/flashes" %>
   <% unless current_page?(new_user_session_path) || current_page?(root_path) || current_page?(new_user_registration_path) %>
     <%= render 'shared/top_navbar_browse' %>
   <% end  %>
