@@ -52,11 +52,13 @@
             <div class="game">
               <ul class="submit-button">
                 <%= user_game.game.name %>
-                <button class="delete-link">
-                  <%= link_to user_game_path(user_game), data: { turbo_method: :delete }, class: "delete-link" do %>
-                    <i class="fa-solid fa-xmark"></i>
+                  <% if current_user&.id == @user.id %>
+                    <button class="delete-link">
+                      <%= link_to user_game_path(user_game), data: { turbo_method: :delete }, class: "delete-link" do %>
+                        <i class="fa-solid fa-xmark"></i>
+                      <% end %>
+                    </button>
                   <% end %>
-                </button>
               </ul>
             </div>
           <% end %>
