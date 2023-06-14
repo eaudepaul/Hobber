@@ -1,61 +1,62 @@
 <% if @potential_match.nil? %>
-  <h2>You have no more people to match with, fuck you!!!</h2>
+  <h2>You have no more people to match with, come back later!</h2>
 <% else %>
-<div class="main-container">
-  <div class="user-container">
-    <div class="name" > <h5 class="card-title"><%= @potential_match.username %></h5></div>
-
-      <div class="form-accept">
-        <% if @user_match_exists %>
-          <%= simple_form_for @user_match do |f| %>
-  <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
-  <%= f.button :submit, 'put yes', class: "button-accept", data: { controller: "match-pop-up", action: "click->match-pop-up#pop_up", match_pop_up_potential_match_username_value: @potential_match.username, match_pop_up_match_chatroom_id_value: @chatroom.id } %>
-<% end %>
-
-          <%= simple_form_for @user_match, method: :put do |f| %>
-            <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
-            <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
-                <i class="fa-solid fa-heart fa-xl"></i>
-            </a>
-
-          <% end %>
-        <% else %>
-          <%= simple_form_for @user_match do |f| %>
-            <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
-            <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
-            <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
-              <i class="fa-solid fa-heart fa-xl"></i>
-            </a>
-            <% end %>
-          <%= simple_form_for @user_match do |f| %>
-            <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
-            <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
-            <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
-              <i class="fa-solid fa-x fa-xl"></i>
-            </a>
-            <% end %>
-        <% end %>
-          </div>
-          <div class="Bio"> <h1>BIO</h1></div>
-      <div><p class="card-text"><%= @potential_match.bio %></p></div>
-        <div class="gamelist-swipe">
-          <div class="header-gamelist">
-            <h4>Games I Play</h4>
-          </div>
-          <div class="card-games">
-          <% @user_games.each do |user_game| %>
-            <div class="game-swipe">
-                <span>
-                <i class="fa-solid fa-gamepad"></i><%= user_game.game.name %>
-                </span>
-            </div>
-          <% end %>
-        </div>
-      </div>
+  <div class="match-image">
+    <%= cl_image_tag @potential_match.photo.key, alt: @potential_match.username %>
+  </div>
+  <div class="px-4 form-accept">
+    <!-- user match exists -->
+    <% if @user_match_exists %>
+      <%= simple_form_for @user_match do |f| %>
+        <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
+        <%= f.button :submit, 'put yes', class: "button-accept", data: { controller: "match-pop-up", action: "click->match-pop-up#pop_up", match_pop_up_potential_match_username_value: @potential_match.username, match_pop_up_match_chatroom_id_value: @chatroom.id } %>
+      <% end %>
+      <%= simple_form_for @user_match, method: :put do |f| %>
+        <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
+        <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+            <i class="fa-solid fa-heart fa-xl"></i>
+        </a>
+      <% end %>
+    <!-- user match does not exist -->
+    <% else %>
+      <%= simple_form_for @user_match do |f| %>
+        <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
+        <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
+        <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+          <i class="fa-solid fa-heart fa-xl"></i>
+        </a>
+      <% end %>
+      <%= simple_form_for @user_match do |f| %>
+        <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
+        <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
+        <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+          <i class="fa-solid fa-x fa-xl"></i>
+        </a>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="px-4 pb-4 text-center">
+    <h3 class="pt-4 pb-2">
+      <%= @potential_match.username %>
+    </h3>
+    <div>
+      <p class="card-text">
+        <%= @potential_match.bio %>
+      </p>
     </div>
-    <div class="thebar"></div>
-    <div class="thebar2"></div>
-    <div class="thebar3"></div>
+    <div>
+      <h4 class="pt-4 pb-2">
+        Games I Play
+      </h4>
+      <% @user_games.each do |user_game| %>
+        <div class="game-swipe">
+          <span>
+            <i class="fa-solid fa-gamepad"></i><%= user_game.game.name %>
+          </span>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
+
 <%= render 'shared/navbar_bottom' %>
