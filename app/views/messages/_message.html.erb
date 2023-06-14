@@ -11,6 +11,6 @@
     <div class="appointment-message-header">
       <p><strong> <%= message.user == current_user ? "You sent a duel request" : "#{message.user.username} sent a duel request" %></strong></p>
     </div>
-    <%= link_to 'View your duels', appointments_path, class: "duel-path" %>
+    <%= link_to 'Duels ⚔️', appointments_path, class: "duel-path duel-button", style: "pl-6" %>
   </div>
 <% end %>
