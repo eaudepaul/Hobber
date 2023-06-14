@@ -34,6 +34,7 @@ p{
 
 .quest-button {
   text-decoration: none;
+  font-family: $light-font;
 }
 
 .Join-us-button{
@@ -51,6 +52,7 @@ p{
   color: whitesmoke;
   text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
   text-align: center;
+  font-family: $light-font;
 }
 
 .Sign-In-button{
@@ -71,6 +73,7 @@ p{
 .buttons{
   text-align: center;
   margin-bottom: 100px;
+  font-weight: bold !important;
 }
 
 .logo-container{
