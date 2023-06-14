@@ -1,9 +1,10 @@
-<h1>Choose your dueling time</h1>
+<h1>Schedule your duel</h1>
 <%= simple_form_for [@user_match, @appointment] do |f| %>
   <%= f.input :date,
 	        	 	as: :string,
 							input_html: { data: { controller: 'flatpickr', action: 'date' } },
-              placeholder: "Select a date"%>
+              placeholder: "Select a date",
+              error: "Invalid date for duel" %>
   <%= f.input :start_time,
               as: :string,
               input_html: { data: { controller: 'timepicker', action: 'time' } },
@@ -15,7 +16,8 @@
   <%= f.input :address %>
   <%= f.input :game,
               collection: @common_games,
-              prompt: "Select a game" %>
+              prompt: "Select a game",
+              error: "Game can't be blank" %>
   <%= f.submit "Send request"%>
 <% end %>
 
