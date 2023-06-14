@@ -4,13 +4,13 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
 
-  const avatarToggle = document.getElementById("avatar-toggle");
-  const dropdownMenu = document.getElementById("dropdown-menu");
+  // const avatarToggle = document.getElementById("avatar-toggle");
+  // const dropdownMenu = document.getElementById("dropdown-menu");
 
 
-  avatarToggle.addEventListener("click", function() {
-    dropdownMenu.classList.toggle("open");
-  });
+  // avatarToggle.addEventListener("click", function() {
+  //   dropdownMenu.classList.toggle("open");
+  // });
 
 
 // window.onload = function() {
