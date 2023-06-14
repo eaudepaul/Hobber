@@ -28,11 +28,11 @@
     display: none;
   }
 
-  .dropdown-menu.open {
+  .dropdown-menu.show {
     display: block;
     position: absolute;
     top: 50px;
-    right: 0;
+    left: -94px;
     background-color: #f1f1f1;
     padding: 10px;
     border-radius: 5px;

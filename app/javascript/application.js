@@ -2,6 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "@rails/actioncable"
+import "bootstrap"
+import "@popperjs/core"
 console.log('Hello from application.js')
-import Swal from 'sweetalert2';
-window.Swal = Swal;

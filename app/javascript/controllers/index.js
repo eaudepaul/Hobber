@@ -2,22 +2,22 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "controllers/application"
 
-import ChatroomSubscriptionController from "./chatroom_subscription_controller"
+import ChatroomSubscriptionController from "controllers/chatroom_subscription_controller"
 application.register("chatroom-subscription", ChatroomSubscriptionController)
 
-import HelloController from "./hello_controller"
+import HelloController from "controllers/hello_controller"
 application.register("hello", HelloController)
 
-import MatchPopUpController from "./match_pop_up_controller"
+import MatchPopUpController from "controllers/match_pop_up_controller"
 application.register("match-pop-up", MatchPopUpController)
 
-import TimepickerController from "./timepicker_controller"
+import TimepickerController from "controllers/timepicker_controller"
 application.register("timepicker", TimepickerController)
 
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
 
-import FlatpickrController from "./flatpickr_controller"
+import FlatpickrController from "controllers/flatpickr_controller"
 application.register("flatpickr", FlatpickrController)

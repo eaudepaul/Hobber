@@ -92,32 +92,32 @@ laura = User.create(email: 'laura@example.com', password: '123456', username: 'S
 laura.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 laura.save
 
-# puts 'Creating matches...'
+puts 'Creating matches...'
 
-# match = Match.create(secondary_user_id: antonio.id)
-# match2 = Match.create(secondary_user_id: katharine.id)
-# match3 = Match.create(secondary_user_id: charlotte.id)
-# match4 = Match.create(secondary_user_id: baran.id)
+match = Match.create(secondary_user_id: antonio.id)
+match2 = Match.create(secondary_user_id: katharine.id)
+match3 = Match.create(secondary_user_id: charlotte.id)
+match4 = Match.create(secondary_user_id: baran.id)
 
-# puts 'Creating user_matches...'
-# user_match1 = UserMatch.new(user_id: paul.id, match_id: match.id, status: 'pending')
-# user_match1.save!
+puts 'Creating user_matches...'
+user_match1 = UserMatch.new(user_id: paul.id, match_id: match.id, status: 'approved')
+user_match1.save!
 
-# user_match2 = UserMatch.new(user_id: paul.id, match_id: match2.id, status: 'pending')
-# user_match2.save!
+user_match2 = UserMatch.new(user_id: paul.id, match_id: match2.id, status: 'pending')
+user_match2.save!
 
-# user_match3 = UserMatch.new(user_id: paul.id, match_id: match3.id, status: 'approved')
-# user_match3.save!
-# Chatroom.create(user_match: user_match3,
-#                 name: user_match3.user == paul ? user_match3.match.secondary_user.username : user_match.user.username)
+user_match3 = UserMatch.new(user_id: paul.id, match_id: match3.id, status: 'approved')
+user_match3.save!
+Chatroom.create(user_match: user_match3,
+                name: user_match3.user == paul ? user_match3.match.secondary_user.username : user_match.user.username)
 
-# user_match4 = UserMatch.new(user_id: paul.id, match_id: match4.id, status: 'approved')
-# user_match4.save!
-# Chatroom.create(user_match: user_match4,
-#                 name: user_match4.user == paul ? user_match4.match.secondary_user.username : user_match.user.username)
+user_match4 = UserMatch.new(user_id: paul.id, match_id: match4.id, status: 'approved')
+user_match4.save!
+Chatroom.create(user_match: user_match4,
+                name: user_match4.user == paul ? user_match4.match.secondary_user.username : user_match.user.username)
 
-# puts 'Creating chatroom...'
-# Chatroom.create(name: 'My chatroom', user_match_id: user_match1.id)
+puts 'Creating chatroom...'
+Chatroom.create(name: 'My chatroom', user_match_id: user_match1.id)
 
 puts 'Creating games...'
 game1 = Game.create(name: 'Chess')
@@ -137,17 +137,20 @@ UserGame.create(user_id: antonio.id, game_id: game3.id)
 UserGame.create(user_id: paul.id, game_id: game2.id)
 UserGame.create(user_id: paul.id, game_id: game4.id)
 UserGame.create(user_id: paul.id, game_id: game5.id)
+UserGame.create(user_id: charlotte.id, game_id: game2.id)
+UserGame.create(user_id: charlotte.id, game_id: game4.id)
+UserGame.create(user_id: charlotte.id, game_id: game5.id)
 UserGame.create(user_id: katharine.id, game_id: game2.id)
 
-# puts 'Creating appointments...'
-# appointment1 = Appointment.create(address: 'Le Wagon, Berlin', date: Date.today, start_time: Time.now,
-#                                   end_time: Time.now, game_id: game1.id, user_match_id: user_match1.id, status: 'pending')
-# appointment2 = Appointment.create(address: "At Paul's, Berlin", date: Date.today, start_time: Time.now,
-#                                   end_time: Time.now, game_id: game2.id, user_match_id: user_match2.id, status: 'pending')
-# appointment3 = Appointment.create(address: 'Charlotte I Pizza, Berlin', date: Date.today, start_time: Time.now,
-#                                   end_time: Time.now, game_id: game1.id, user_match_id: user_match3.id, status: 'pending')
-# appointment4 = Appointment.create(address: 'La Gino, Berlin', date: Date.today, start_time: Time.now,
-#                                   end_time: Time.now, game_id: game2.id, user_match_id: user_match4.id, status: 'pending')
+puts 'Creating appointments...'
+appointment1 = Appointment.create(address: 'Le Wagon, Berlin', date: Date.today - 2, start_time: Time.now,
+                                  end_time: Time.now, game_id: game1.id, user_match_id: user_match1.id, status: 'approved')
+appointment2 = Appointment.create(address: "At Paul's, Berlin", date: Date.today, start_time: Time.now,
+                                  end_time: Time.now, game_id: game2.id, user_match_id: user_match2.id, status: 'pending')
+appointment3 = Appointment.create(address: 'Charlotte I Pizza, Berlin', date: Date.today, start_time: Time.now,
+                                  end_time: Time.now, game_id: game1.id, user_match_id: user_match3.id, status: 'pending')
+appointment4 = Appointment.create(address: 'La Gino, Berlin', date: Date.today, start_time: Time.now,
+                                  end_time: Time.now, game_id: game2.id, user_match_id: user_match4.id, status: 'pending')
 
 # puts 'Creating reviews...'
 # Review.create(content: "It was the best gaming session ever, Paul loses like it's nobody's business", rating: 10, appointment_id: appointment1.id, user_id: antonio.id)

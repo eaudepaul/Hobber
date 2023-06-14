@@ -82,11 +82,22 @@
             </div>
 
             <div class="appointment-buttons">
-              <% if appointment.status == 'approved' %>
+              <% if appointment.status == 'approved' && !review_exists(appointment.id) %>
                   <%= link_to "Write a review", new_appointment_review_path(appointment) %>
+                  <% elsif review_exists(appointment.id) %>
+                  <h6>Your review:</h6>
+                  <p>
+                    <% find_review(appointment.id).rating.times do %>
+                    <i class="fa-solid fa-star"></i>
+                    <% end %>
+                    <% empty_stars = 5 - find_review(appointment.id).rating %>
+                    <% empty_stars.times do %>
+                    <i class="fa-regular fa-star"></i>
+                    <% end %>
+                  </p>
+                  <p><%= find_review(appointment.id).content %></p>
               <% end %>
             </div>
-
         <% end %>
       </div>
     </div>
