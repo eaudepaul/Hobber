@@ -18,12 +18,13 @@ export default class extends Controller {
       showCloseButton: true,
       showCancelButton: true,
       focusConfirm: false,
-      cancelButtonColor: '#716add',
+      confirmButtonColor: '#FFBD00',
       confirmButtonText:
-      `<a href="/chatrooms/${this.matchChatroomIdValue}"><i class="fa-regular fa-comment fa-2xl" style="color: #FFFFFF;"></i></a>`,
+      `<a href="/chatrooms/${this.matchChatroomIdValue}" style="border-radius: 30%;"><i class="fa-regular fa-comment fa-2xl" style="color: #008000;"></i></a>`,
       confirmButtonAriaLabel: 'Match',
+      cancelButtonColor: '#FFBD00',
       cancelButtonText:
-      '<a href="/user_matches/new"><i class="fa-solid fa-person-walking-arrow-right" style="color: #FFFFFF;"></i></a>',
+      '<a href="/user_matches/new" style="border-radius: 30%;"><i class="fa-solid fa-gamepad fa-2xl" style="color: #008000;"></i></a>',
       cancelButtonAriaLabel: 'Keep swiping'
     })
   }
