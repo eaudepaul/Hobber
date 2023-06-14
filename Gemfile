@@ -52,7 +52,7 @@ gem 'sassc-rails'
 
 gem 'autoprefixer-rails'
 gem 'blazer'
-gem 'bootstrap', '~> 5.2'
+gem 'bootstrap', '~> 5.2.3'
 gem 'cloudinary'
 gem 'devise'
 gem 'faker'
@@ -84,4 +84,3 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
