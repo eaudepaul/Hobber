@@ -10,23 +10,32 @@
     color: black;
   }
 
-  .button-log-out {
-    font-size: 1rem;
-    padding: 1rem 2rem;
-    text-decoration: none;
-    border-radius: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #FFBD00;
-    border: none;
-    margin-top: 10px;
-    margin-left: 80px;
-  }
+.button-log-out {
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFBD00;
+  border: none;
+  margin-top: 10px;
+  margin-left: 80px;
+}
 
-  .button-sm {
-    background: #FFBD00;
-    border-radius: 30px;
-  }
+.button-sm {
+  background: #FFBD00;
+  border-radius: 30px;
+}
 
-  
+.button-sm-decline {
+  background: #ff7700;
+  border-radius: 30px;
+}
+
+.button-sm-accept {
+  background: #008000;
+  border-radius: 30px;
+  color: white; 
+}

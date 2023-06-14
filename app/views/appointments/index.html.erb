@@ -36,27 +36,29 @@
                   </div>
                 </div>
 
-                <div class="appointment-buttons">
+                <div class="appointment-buttons-container">
                   <% if appointment.status == 'pending' %>
-                    <%= simple_form_for appointment, method: :patch do |f| %>
-                      <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" } %>
-                      <%= f.button :submit, 'Accept', class: "btn btn-success" %>
-                    <% end %>
-                    <%= simple_form_for appointment, method: :patch do |f| %>
-                      <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
-                      <%= f.button :submit, 'Decline', class: "btn btn-danger" %>
-                    <% end %>
-                    <%= link_to "Chat", chatroom_path(appointment.user_match.chatrooms.first) %>
+                    <div class="appointment-buttons">
+                      <%= simple_form_for appointment, method: :patch do |f| %>
+                        <%= f.input :status, :as => :hidden, :input_html => { :value => "approved" } %>
+                        <%= f.button :submit, 'Accept', class: "button-sm-accept" %>
+                      <% end %>
+                      <%= simple_form_for appointment, method: :patch do |f| %>
+                        <%= f.input :status, :as => :hidden, :input_html => { :value => "denied" } %>
+                        <%= f.button :submit, 'Decline', class: "button-sm-decline" %>
+                      <% end %>
+                      <%= button_to "Chat", chatroom_path(appointment.user_match.chatrooms.first), method: :get, class: "btn button-sm" %>
+                    </div>
                   <% elsif appointment.status == 'approved' %>
-                    <%= simple_form_for appointment, method: :patch do |f| %>
-                      <%= f.input :status, :as => :hidden, :input_html => { :value => "cancelled" } %>
-                      <%= f.button :submit, 'cancel duel', data: {turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
-                      <%= link_to "Chat", chatroom_path(appointment.user_match.chatrooms.first) %>
-                    <% end %>
-                  <% elsif appointment.status == 'cancelled' %>
-                    <%= link_to "Reschedule", chatroom_path(appointment.user_match.chatrooms.first) %>
+                    <div class="appointment-buttons-status-approved">
+                      <%= simple_form_for appointment, method: :patch do |f| %>
+                        <%= f.input :status, :as => :hidden, :input_html => { :value => "cancelled" } %>
+                        <%= f.button :submit, 'cancel duel', data: {turbo_confirm: "Are you sure?"}, class: "button-sm-decline" %>
+                      <% end %>
+                      <%= button_to "Chat", chatroom_path(appointment.user_match.chatrooms.first), method: :get, class: "btn button-sm" %>
+                    </div>
                   <% else %>
-                    <%= link_to "Reschedule", chatroom_path(appointment.user_match.chatrooms.first) %>
+                    <%= button_to "Reschedule", chatroom_path(appointment.user_match.chatrooms.first), method: :get, class: "btn button-sm" %>
                   <% end %>
                 </div>
               </div>
@@ -74,23 +76,27 @@
                 <%= appointment.date.year < Date.today.year ? appointment.date.strftime('%d %b %Y') : appointment.date.strftime('%b %d') %>
               </div>
 
-              <div class="appointment-other-user">
-                <% if appointment.user_match.user == current_user %>
-                  <h2><%= appointment.game.name %> with <%= appointment.user_match.match.secondary_user.username %> </h2>
-                <% else %>
-                  <h2><%= appointment.game.name %> with <%= appointment.user_match.user.username %> </h2>
-                <% end %>
-              </div>
+              <div class="appointment-info-container">
+                <div class="appointment-other-user">
+                  <% if appointment.user_match.user == current_user %>
+                    <h2><%= appointment.game.name %> with <%= appointment.user_match.match.secondary_user.username %> </h2>
+                  <% else %>
+                    <h2><%= appointment.game.name %> with <%= appointment.user_match.user.username %> </h2>
+                  <% end %>
+                </div>
 
-              <div class="appointment-time-status">
-                <p><%= appointment.start_time.strftime('%l:%M %p') %> – <%= appointment.end_time.strftime('%l:%M %p %Z') %></p>
-                <p>Status: <%= appointment.status %></p>
-              </div>
+                <div class="appointment-time-status">
+                  <p><%= appointment.start_time.strftime('%l:%M %p') %> – <%= appointment.end_time.strftime('%l:%M %p %Z') %></p>
+                  <p>Status: <%= appointment.status %></p>
+                </div>
 
-              <div class="appointment-buttons">
-                <% if appointment.status == 'approved' %>
-                    <%= link_to "Write a review", new_appointment_review_path(appointment) %>
-                <% end %>
+                <div class="appointment-buttons-container">
+                  <div class="appointment-buttons-status-approved">
+                    <% if appointment.status == 'approved' %>
+                        <%= button_to "Write a review", new_appointment_review_path(appointment), method: :get, class: "btn button-sm" %>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             </div>
 

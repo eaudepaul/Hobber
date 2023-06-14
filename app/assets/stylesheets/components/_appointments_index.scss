@@ -14,14 +14,13 @@
     width: 86%;
   }
 
-
   .appointment-time-status {
     line-height: 0.5;
   }
 }
 
 .appointment-card {
-  border: 1px solid black;
+  box-shadow: 2px 2px 8px rgb(173, 173, 173);
   margin-top: 1em;
   border-radius: 10px;
 
@@ -36,5 +35,25 @@
 
   .appointment-info-container {
     padding: 0.5em 1em;
+  }
+
+}
+
+.appointment-buttons-container {
+  display: flex;
+  width: 100%;
+
+  .appointment-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 79%;
+    margin-bottom: 0.5em;
+  }
+
+  .appointment-buttons-status-approved {
+    display: flex;
+    justify-content: space-between;
+    width: 61%;
+    margin-bottom: 0.5em;
   }
 }
