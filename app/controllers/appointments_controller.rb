@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class AppointmentsController < ApplicationController
+  helper_method :review_exists
+  helper_method :find_review
+  
   def index
     @appointments = Appointment.joins(user_match: { match: :secondary_user }).where(
       "user_matches.status = 'approved' AND (user_matches.user_id = :user OR matches.secondary_user_id = :user)", user: current_user
@@ -52,6 +55,14 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     redirect_to appointments_path, notice: 'appointment successfully deleted.'
+  end
+
+  def review_exists(appointment_id)
+    Review.exists?(appointment_id:, user_id: current_user.id)
+  end
+
+  def find_review(appointment_id)
+    Review.find_by(appointment_id:, user_id: current_user.id)
   end
 
   private

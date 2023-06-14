@@ -20,6 +20,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @appointment = Appointment.find(params[:appointment_id])
     @review.appointment = @appointment
+    @review.user_id = current_user.id
     if @review.save!
       redirect_to appointments_path
     else
