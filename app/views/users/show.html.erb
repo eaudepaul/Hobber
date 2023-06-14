@@ -23,17 +23,19 @@
               <h5><%= @user.address %></h5>
             </div>
             <hr>
-            <div>
-              <a href="" style="text-decoration:none;">
-                <% @average_rating.times do %>
-                  <i class="fa-solid fa-star"></i>
-                <% end %>
-                <% empty_stars = 5 - @average_rating %>
-                <% empty_stars.times do %>
-                  <i class="fa-regular fa-star"></i>
-                <% end %>
-              </a>
-            </div>
+            <% unless @average_rating == 'none' %>
+              <div>
+                <a href="" style="text-decoration:none;">
+                  <% @average_rating.times do %>
+                    <i class="fa-solid fa-star"></i>
+                  <% end %>
+                  <% empty_stars = 5 - @average_rating %>
+                  <% empty_stars.times do %>
+                    <i class="fa-regular fa-star"></i>
+                  <% end %>
+                </a>
+              </div>
+            <% end %>
           </div>
         </div>
         <% if @user.id == current_user.id %>
