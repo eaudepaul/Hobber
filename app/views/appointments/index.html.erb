@@ -82,7 +82,7 @@
             </div>
 
             <div class="appointment-buttons">
-              <% if appointment.status == 'approved' %>
+              <% if appointment.status == 'approved' && !review_exists(appointment.id) %>
                   <%= link_to "Write a review", new_appointment_review_path(appointment) %>
               <% end %>
             </div>
