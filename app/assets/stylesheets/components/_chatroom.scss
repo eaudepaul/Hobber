@@ -2,6 +2,7 @@
   background: white;
   height: calc(100vh - 60px);
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: space-between;
   margin: 0;
@@ -34,7 +35,6 @@
     border-top: 1px solid $gray-200;
     padding: 1rem;
     border-radius: 5px;
-
     .form-group {
       margin-bottom: 0;
     }
@@ -66,6 +66,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0.5em;
+  margin-bottom: 2em;
 }
 
 .chat-name {
@@ -80,3 +82,4 @@
 .schedule {
   margin-bottom: 5;
 }
+

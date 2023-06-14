@@ -5,14 +5,16 @@
     <% end %>
   </div>
   <div class="navbar-right">
-    <div class="dropdown-toggle-container">
+    <div class="dropdown">
     <% if current_user %>
-      <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
-      <% else %>
-        <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
-      <% end %>
-      <div class="dropdown-menu" id="dropdown-menu">
+      <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
+        <% else %>
+          <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
+        <% end %>
+      </div>
+      <div class="dropdown-menu">
         <ul>
 
           <% if current_user %>
@@ -27,3 +29,4 @@
     </div>
   </div>
 </nav>
+

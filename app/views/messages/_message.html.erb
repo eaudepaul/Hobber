@@ -9,7 +9,7 @@
 <% else %>
   <div class="appointment-message <%= message.user == current_user ? 'current-user-message' : 'other-user-message' %>" id="message-<%= message.id %>">
     <div class="appointment-message-header">
-      <p><%= message.user == current_user ? "You sent a duel request" : "#{message.user.username} sent a duel request" %></p>
+      <p><strong> <%= message.user == current_user ? "You sent a duel request" : "#{message.user.username} sent a duel request" %></strong></p>
     </div>
     <%= link_to 'Duels ⚔️', appointments_path, class: "duel-path duel-button", style: "pl-6" %>
   </div>
