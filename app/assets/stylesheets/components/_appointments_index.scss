@@ -42,18 +42,26 @@
 .appointment-buttons-container {
   display: flex;
   width: 100%;
+  margin-bottom: 0.5em;
 
   .appointment-buttons {
     display: flex;
     justify-content: space-between;
-    width: 79%;
-    margin-bottom: 0.5em;
+    width: 75%;
   }
 
   .appointment-buttons-status-approved {
     display: flex;
     justify-content: space-between;
-    width: 61%;
-    margin-bottom: 0.5em;
+    width: 57%;
+  }
+
+  .your-review {
+    width: 100%;
+  }
+
+  .review-stars {
+    line-height: 1;
+    margin-top: 1.5em;
   }
 }

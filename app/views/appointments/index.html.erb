@@ -90,12 +90,12 @@
                   <p>Status: <%= appointment.status %></p>
                 </div>
                 <div class="appointment-buttons-container">
-                  <div class="appointment-buttons-status-approved">
-                    <% if appointment.status == 'approved' && !review_exists(appointment.id) %>
-                      <%= button_to "Write a review", new_appointment_review_path(appointment), method: :get, class: "btn button-sm" %>
-                    <% elsif review_exists(appointment.id) %>
-                      <div class="your-review">
-                        <hr>
+                  <% if appointment.status == 'approved' && !review_exists(appointment.id) %>
+                    <%= button_to "Write a review", new_appointment_review_path(appointment), method: :get, class: "btn button-sm" %>
+                  <% elsif review_exists(appointment.id) %>
+                    <div class="your-review">
+                      <hr>
+                      <div class="review-stars">
                         <h6>Your review:</h6>
                         <p>
                           <% find_review(appointment.id).rating.times do %>
@@ -108,8 +108,8 @@
                         </p>
                         <p><%= find_review(appointment.id).content %></p>
                       </div>
-                    <% end %>
-                  </div>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>
