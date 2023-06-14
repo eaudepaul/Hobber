@@ -14,7 +14,7 @@
               placeholder: "Select an end time" %>
   <%= f.input :address %>
   <%= f.input :game,
-              collection: @common_games.map { |game| [game.name, game.id] },
+              collection: @common_games,
               prompt: "Select a game" %>
   <%= f.submit "Send request"%>
 <% end %>

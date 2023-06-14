@@ -18,7 +18,7 @@
 }
 
 .large-image {
-  width: 80%; /* Adjust the width as needed */
+  width: 70%; /* Adjust the width as needed */
   height: auto;
   border-radius: 50%;
 }
@@ -35,7 +35,7 @@
 }
 
 .profile-details {
-  margin-left: 20px;
+  margin-left: 5px;
 }
 
 .profile-username {
@@ -72,4 +72,8 @@
 
 .profile-bio-container {
   margin-top: 10px;
+}
+.starbox{
+  // no wrap, single line
+  white-space: nowrap;
 }
