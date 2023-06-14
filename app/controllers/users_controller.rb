@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       reviews.each do |review|
         sum += review.rating
       end
-      @average_rating = sum / reviews.length
+      @average_rating = (sum.to_f / reviews.length).round
     else
       @average_rating = 'none'
     end
