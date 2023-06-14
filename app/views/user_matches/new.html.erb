@@ -17,7 +17,7 @@
             <i class="fa-solid fa-heart fa-xl"></i>
         </a>
       <% end %>
-    <!-- user match does not exist -->
+    <%# <!-- user match does not exist --> %>
     <% else %>
       <%= simple_form_for @user_match do |f| %>
         <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
