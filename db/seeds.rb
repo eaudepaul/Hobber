@@ -69,7 +69,7 @@ emma.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 emma.save
 
 file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1601461074/xrbi2mzjyawsdisknhdd.jpg')
-santi = User.create(email: 'emma@example.com', password: '123456', username: 'Sans-Chaise', age: 26,
+santi = User.create(email: 'santi@example.com', password: '123456', username: 'Sans-Chaise', age: 26,
                         bio: "Passionate strategist and avid Settlers of Catan enthusiast. With a keen eye for resource management, I conquer uncharted territories one roll at a time. When it comes to Catan, I am the embodiment of calculated moves and unwavering determination. Join me on this thrilling journey of expansion, trade, and victory. Together, we'll rewrite the rules of this legendary game. 🌾🏰", address: 'Berghain', admin: true)
 santi.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 santi.save
