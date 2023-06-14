@@ -7,10 +7,10 @@ export default class extends Controller {
   // const avatarToggle = document.getElementById("avatar-toggle");
   // const dropdownMenu = document.getElementById("dropdown-menu");
 
-
   // avatarToggle.addEventListener("click", function() {
   //   dropdownMenu.classList.toggle("open");
   // });
+=
 
 
 // window.onload = function() {
