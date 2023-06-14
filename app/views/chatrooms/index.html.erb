@@ -1,35 +1,34 @@
 <div class="all-chats">
   <h1>All chats</h1>
-
   <% if @user_matches.empty? %>
     <p><em>You haven't matched with anyone yet. Get swiping to start chatting!</em></p>
     <%= link_to "Find your fellow nerds!", new_user_match_path, class: "button-lg" %>
   <% else %>
-    <div class="chatroom-card">
-      <%  @user_matches.each do |user_match| %>
-        <% if user_match.user == current_user %>
-          <% if user_match.match.secondary_user.photo.attached? %>
-            <%= cl_image_tag user_match.match.secondary_user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
-          <% else %>
-            <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
+    <% @user_matches.each do |user_match| %>
+      <div class="chatroom-card">
+        <a href="/chatrooms/<%= user_match.chatrooms.first.id %>" style="display: block; height: 100%; width: 100%; text-decoration: none;">
+          <% if user_match.user == current_user %>
+            <% if user_match.match.secondary_user.photo.attached? %>
+              <%= cl_image_tag user_match.match.secondary_user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
+            <% else %>
+              <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
+            <% end %>
+          <% elsif user_match.match.secondary_user == current_user %>
+            <% if user_match.user.photo.attached? %>
+              <%= cl_image_tag user_match.user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
+            <% else %>
+              <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
+            <% end %>
+            <%= user_match.user.username %>
           <% end %>
-          <%= link_to user_match.match.secondary_user.username, chatroom_path(user_match.chatrooms.first, user_match_id: user_match.id) %>
-        <% elsif user_match.match.secondary_user == current_user %>
-          <% if user_match.user.photo.attached? %>
-            <%= cl_image_tag user_match.user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
+          <% if user_match.chatrooms.first.messages.empty? %>
+            <p><em>No messages yet! Start chatting with <%= user_match.user == current_user ? user_match.match.secondary_user.username : user_match.user.username %></em></p>
           <% else %>
-            <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
+            <p><%= user_match.chatrooms.first.messages.last.content %></p>
           <% end %>
-          <%= link_to user_match.user.username, chatroom_path(user_match.chatrooms.first, user_match_id: user_match.id) %>
-        <% end %>
-
-        <% if user_match.chatrooms.first.messages.empty? %>
-          <p><em>No messages yet! Start chatting with <%= user_match.user == current_user ? user_match.match.secondary_user.username : user_match.user.username %> </em></p>
-        <% else %>
-          <p><%= user_match.chatrooms.first.messages.last.content %></p>
-        <% end %>
-      <% end %>
-    </div>
+        </a>
+      </div>
+    <% end %>
   <% end %>
 </div>
 <%= render 'shared/navbar_bottom' %>
