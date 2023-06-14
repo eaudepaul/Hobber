@@ -24,13 +24,15 @@
             </div>
             <hr>
             <div>
-              <% @average_rating.times do %>
-                <i class="fa-solid fa-star"></i>
-              <% end %>
-              <% empty_stars = 5 - @average_rating %>
-              <% empty_stars.times do %>
-                <i class="fa-regular fa-star"></i>
-              <% end %>
+              <a href="" style="text-decoration:none;">
+                <% @average_rating.times do %>
+                  <i class="fa-solid fa-star"></i>
+                <% end %>
+                <% empty_stars = 5 - @average_rating %>
+                <% empty_stars.times do %>
+                  <i class="fa-regular fa-star"></i>
+                <% end %>
+              </a>
             </div>
           </div>
         </div>
