@@ -1,30 +1,36 @@
-<div class="container">
-  <h1>Schedule your duel</h1>
-  <div class="appointment">
-    <%= simple_form_for [@user_match, @appointment] do |f| %>
-      <%= f.input :date,
-                  as: :string,
-                  input_html: { data: { controller: 'flatpickr', action: 'date' } },
-                  placeholder: "Select a date",
-                  error: "Invalid date" %>
-      <div class="start-end-date-container">
-        <%= f.input :start_time,
-                  as: :string,
-                  input_html: { data: { controller: 'timepicker', action: 'time' } },
-                  placeholder: "Select a start time" %>
-        <%= f.input :end_time,
-                  as: :string,
-                  input_html: { data: { controller: 'timepicker', action: 'time' } },
-                  placeholder: "Select an end time" %>
-      </div>
-      <%= f.input :address %>
-      <%= f.input :game,
-                  collection: @common_games,
-                  prompt: "Select a game",
-                  error: "Game can't be blank" %>
-      <div class="submit">
-        <%= f.submit "Send request"%>
-      </div>
+<div class="background">
+  <div class="create-profile-wrapper">
+    <div class="create-profile">
+      <h1>Schedule your duel</h1>
+      <%= simple_form_for [@user_match, @appointment] do |f| %>
+        <div class="form-inputs">
+          <%= f.input :date,
+                      as: :string,
+                      input_html: { class: "create-profile-input", data: { controller: 'flatpickr', action: 'date' } },
+                      placeholder: "Select a date",
+                      error: "Invalid date" %>
+          <div class="start-end-date-container">
+            <%= f.input :start_time,
+                      as: :string,
+                      input_html: { class: "create-profile-input", data: { controller: 'timepicker', action: 'time' } },
+                      placeholder: "Select a start time" %>
+            <%= f.input :end_time,
+                      as: :string,
+                      input_html: { class: "create-profile-input", data: { controller: 'timepicker', action: 'time' } },
+                      placeholder: "Select an end time" %>
+          </div>
+          <%= f.input :address,
+                      input_html: { class: "create-profile-input" } %>
+          <%= f.input :game,
+                      collection: @common_games,
+                      prompt: "Select a game",
+                      input_html: { class: "create-profile-input" },
+                      error: "Game can't be blank" %>
+          <div class="submit-create-form-button">
+            <%= f.submit "Send request", class: "create-form-button" %>
+          </div>
+        </div>
+
     <% end %>
   </div>
   <%= render 'shared/navbar_bottom' %>

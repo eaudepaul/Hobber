@@ -1,6 +1,4 @@
-.match-image {
-  overflow: hidden;
-}
+
 
 .form-accept {
   display: flex;
@@ -16,5 +14,18 @@
   }
   .fa-radiation {
     color: red;
+  }
+}
+
+.match-image {
+  width: 390px;
+  height: 460px;
+  overflow: hidden;
+
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
