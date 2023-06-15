@@ -7,10 +7,6 @@
           <p><%= link_to "Add more games", games_path, class: "button-lg" %></p>
           <p><%= link_to "Go back to your chats", chatrooms_index_path, class: "button-lg mt-30" %></p>
         </div>
-    <% else %>
-      <div class="match-image">
-        <%= cl_image_tag @potential_match.photo.key, alt: @potential_match.username %>
-      </div>
   <% else %>
     <div class="match-image">
       <%= cl_image_tag @potential_match.photo.key, alt: @potential_match.username %>
