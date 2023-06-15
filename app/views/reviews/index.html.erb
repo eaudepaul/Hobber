@@ -1,5 +1,10 @@
 <% @reviews.each do |review| %>
-  <h4><%= review.rating %><h4>
+  <% review.rating.times do %>
+    <i class="fa-solid fa-star"></i>
+  <% end %>
+  <% empty_stars = 5 - review.rating %>
+  <% empty_stars.times do %>
+    <i class="fa-regular fa-star"></i>
+  <% end %>
   <p><%= review.content %></p>
 <% end %>
-<% raise %>
