@@ -28,13 +28,14 @@ class AppointmentsController < ApplicationController
     @appointment.user_match = UserMatch.find(params[:user_match_id]) unless params[:user_match_id].empty?
     if @appointment.save
       @message = Message.create!(
-        content: "New duel request",
+        content: 'New duel request',
         chatroom: @appointment.user_match.chatrooms.first,
         user: current_user,
-        message_type: "appointment")
+        message_type: 'appointment'
+      )
       redirect_to chatroom_path(@appointment.user_match.chatrooms.first)
     else
-      flash[:notice] = "Failed to schedule duel. Try again!"
+      flash[:notice] = 'Failed to schedule duel. Try again!'
       @user_match = UserMatch.find(params[:user_match_id])
       @current_user_games = @user_match.user.games
       @secondary_user_games = @user_match.match.secondary_user.games

@@ -299,3 +299,4 @@ puts 'Creating reviews...'
 Review.create(content: "Paul loses like it's nobody's business 😂😂😂", rating: 5, appointment_id: appointment5.id, user_id: emma.id)
 Review.create(content: "Na ja 🤷🏻‍♂", rating: 3, appointment_id: appointment6.id, user_id: baran.id)
 Review.create(content: "Meh 😐", rating: 3, appointment_id: appointment7.id, user_id: katharine.id)
+

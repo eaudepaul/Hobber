@@ -17,12 +17,11 @@ class GamesController < ApplicationController
     if @game.save
       gametest = UserGame.new(user_id: current_user.id, game_id: @game.id)
       gametest.save!
-        flash[:notice] = "#{@game.name} has been added to your list of games."
-        redirect_to games_path
+      flash[:notice] = "#{@game.name} has been added to your list of games."
     else
       flash[:notice] = "#{@game.name} already exists. Try searching."
-      redirect_to games_path
     end
+    redirect_to games_path
   end
 
   private
