@@ -8,11 +8,32 @@
   display: none;
 }
 
+.games-index-container {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * .5);
+  padding-left: calc(var(--bs-gutter-x) * .5);
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 0.5em;
+  padding-bottom: 5em;
+
+  h1 {
+    text-align: center;
+  }
+
+  .add-games {
+    margin-top: 0.5em;
+  }
+}
+
 .delete-link {
   text-decoration: none;
-  color: #e50404;
+  color: #005b2f;
   border-radius: 50%;
   background-color: #ffffff;
+  border: none;
 }
 
 .new-user-game {
@@ -24,13 +45,12 @@
   width: 20em;
 }
 
-.submit-button {
-  background-color: #008444;
-  border-radius: 10px;
-  color: rgb(255, 255, 255);
-  padding: 1em;
-  margin: 5px;
-  width: auto;
+.game-submit-button {
+  background-color: #ADC178;
+  border-radius: 24px;
+  color: #005b2f;
+  padding: 8px 24px;
+  border: none;
 }
 .submit-button:hover {
   background-color: #04ba62;
@@ -60,6 +80,7 @@
   height: auto;
   margin: 5px;
   text-align: center;
+  border: none;
 }
 
 .add-form .add-input {
@@ -79,6 +100,7 @@
   padding: .5em;
   height: auto;
   margin: 5px;
+  border: none;
 }
 
 .games-container {
@@ -91,11 +113,12 @@
   margin: 5px;
 }
 
-.submit-button {
-  background-color: #008444;
-  border-radius: 10px;
-  color: rgb(255, 255, 255);
-  padding: 1em;
+.game-button {
+  background-color: #ADC178;
+  border-radius: 24px;
+  color: #005b2f;
+  padding: 8px 24px;
+  border: none;
 }
 
 
