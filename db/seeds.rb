@@ -82,6 +82,12 @@ pedro = User.create(email: 'pedro@example.com', password: '123456', username: 'C
 pedro.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 pedro.save
 
+file = URI.open('https://ca.slack-edge.com/T02NE0241-U9KFW7V7V-e59494421ade-512')
+zak = User.create(email: 'zak@example.com', password: '123456', username: 'Zakaryaaa', age: 20,
+                    bio: "Captivating audiences with my mesmerizing performances, I am a magician who loves to bring wonder and astonishment to those around me.🪄♣️♥️♠️♦️🃏", address: 'Playa', admin: false)
+zak.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+zak.save
+
 file = URI.open('https://avatars.githubusercontent.com/u/76880152?v=4')
 nic = User.create(email: 'nic@example.com', password: '123456', username: 'Howdy', age: 24,
                   bio: "Dedicated World of Warcraft enthusiast. I traverse the depths of this virtual universe as a skilled hero. TEXASSSSSSS", address: 'Texas Baby!', admin: false)
@@ -179,7 +185,7 @@ joanna.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 joanna.save
 
 file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1681060939/vlrjqpbj7jccvv2x3us8.jpg')
-emily = User.create(email: 'joanna@example.com', password: '123456', username: 'Little Yetsko', age: 35,
+emily = User.create(email: 'emily@example.com', password: '123456', username: 'Little Yetsko', age: 35,
                     bio: "With a stack of board games by my side, I transform into a strategic genius. 💡", address: 'NYC forever', admin: false)
 emily.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 emily.save
@@ -299,4 +305,3 @@ puts 'Creating reviews...'
 Review.create(content: "Paul loses like it's nobody's business 😂😂😂", rating: 5, appointment_id: appointment5.id, user_id: emma.id)
 Review.create(content: "Na ja 🤷🏻‍♂", rating: 3, appointment_id: appointment6.id, user_id: baran.id)
 Review.create(content: "Meh 😐", rating: 3, appointment_id: appointment7.id, user_id: katharine.id)
-
