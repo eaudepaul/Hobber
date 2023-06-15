@@ -23,9 +23,12 @@ class AppointmentsController < ApplicationController
   end
 
   def create
+    raise
     @appointment = Appointment.new(appointment_params)
     @appointment.game = Game.find(params[:appointment][:game]) unless params[:appointment][:game].empty?
-    @appointment.user_match = UserMatch.find(params[:user_match_id]) unless params[:user_match_id].empty?
+    # @appointment.user_match = UserMatch.find(params[:user_match_id]) unless params[:user_match_id].empty?
+    # @appointment.host = current_user
+    # @appointment.guest = @appointment.user_match.match.secondary_user
     if @appointment.save
       @message = Message.create!(
         content: 'New duel request',
@@ -58,12 +61,12 @@ class AppointmentsController < ApplicationController
     redirect_to appointments_path, notice: 'appointment successfully deleted.'
   end
 
-  def review_exists(appointment_id)
-    Review.exists?(appointment_id:, user_id: current_user.id)
+  def review_exists(appointment)
+    Review.exists?(appointment:, reviewed: current_user)
   end
 
-  def find_review(appointment_id)
-    Review.find_by(appointment_id:, user_id: current_user.id)
+  def find_review(appointment)
+    Review.find_by(appointment:, reviewed: current_user)
   end
 
   private

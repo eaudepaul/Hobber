@@ -9,9 +9,9 @@ class ChatroomsController < ApplicationController
 
   def show
     @appointment = Appointment.new
-    @appointment.user_match = @user_match
+    # @appointment.user_match = @user_match
     @chatroom = Chatroom.find(params[:id])
-    @appointment_request = @chatroom.user_match.appointments.first
+    # @appointment_request = @chatroom.user_match.appointments.first
     @user_match = @chatroom.user_match
     @message = Message.new
   end

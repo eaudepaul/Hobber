@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_083933) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_145815) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,12 +48,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_083933) do
     t.time "start_time"
     t.time "end_time"
     t.bigint "game_id", null: false
-    t.bigint "user_match_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status", default: "pending"
+    t.bigint "host_id"
+    t.bigint "guest_id"
     t.index ["game_id"], name: "index_appointments_on_game_id"
-    t.index ["user_match_id"], name: "index_appointments_on_user_match_id"
+    t.index ["guest_id"], name: "index_appointments_on_guest_id"
+    t.index ["host_id"], name: "index_appointments_on_host_id"
   end
 
   create_table "blazer_audits", force: :cascade do |t|
@@ -154,8 +156,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_083933) do
     t.bigint "appointment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.bigint "reviewer_id"
+    t.bigint "reviewed_id"
     t.index ["appointment_id"], name: "index_reviews_on_appointment_id"
+    t.index ["reviewed_id"], name: "index_reviews_on_reviewed_id"
+    t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
   end
 
   create_table "user_games", force: :cascade do |t|
@@ -197,13 +202,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_083933) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "appointments", "games"
-  add_foreign_key "appointments", "user_matches"
+  add_foreign_key "appointments", "users", column: "guest_id"
+  add_foreign_key "appointments", "users", column: "host_id"
   add_foreign_key "chatrooms", "user_matches"
   add_foreign_key "matches", "users", column: "secondary_user_id"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "appointments"
-  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "users", column: "reviewed_id"
+  add_foreign_key "reviews", "users", column: "reviewer_id"
   add_foreign_key "user_games", "games"
   add_foreign_key "user_games", "users"
   add_foreign_key "user_matches", "matches"

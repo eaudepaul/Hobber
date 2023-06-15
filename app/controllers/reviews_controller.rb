@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   def index
     # Reviews that current user received: this finds all the reviews left by a secondary_user for the current user, who is defined in a Match instance
     user = User.find(params[:user_id])
-    @reviews = user.appointments.map { |appointment| appointment.reviews.where.not(user:) }.flatten
+    @reviews = user.reviewed
   end
 
   def show
@@ -21,7 +21,8 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @appointment = Appointment.find(params[:appointment_id])
     @review.appointment = @appointment
-    @review.user_id = current_user.id
+    @review.reviewer = current_user
+    @review.reviewed = @appointment.user_match.match
     if @review.save!
       redirect_to appointments_path
     else
