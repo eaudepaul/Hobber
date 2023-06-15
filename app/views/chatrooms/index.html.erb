@@ -1,31 +1,35 @@
 <div class="all-chats">
   <h1>All chats</h1>
   <% if @user_matches.empty? %>
-    <p><em>You haven't matched with anyone yet. Get swiping to start chatting!</em></p>
+    <p class="chat-no-matches"><em>You haven't matched with anyone yet. Get swiping to start chatting! <i class="fa-solid fa-rocket fa-xl"></i></em></p>
     <%= link_to "Find your fellow nerds!", new_user_match_path, class: "button-lg" %>
   <% else %>
     <% @user_matches.each do |user_match| %>
       <div class="chatroom-card">
-        <a href="/chatrooms/<%= user_match.chatrooms.first.id %>" style="display: block; height: 100%; width: 100%; text-decoration: none;">
+        <a href="/chatrooms/<%= user_match.chatrooms.first.id %>" style="display: block; height: 100%; width: 100%; text-decoration: none; color: black;">
           <% if user_match.user == current_user %>
             <% if user_match.match.secondary_user.photo.attached? %>
               <%= cl_image_tag user_match.match.secondary_user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
             <% else %>
               <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
             <% end %>
+            <i class="fa-solid fa-rocket"></i>
           <% elsif user_match.match.secondary_user == current_user %>
             <% if user_match.user.photo.attached? %>
               <%= cl_image_tag user_match.user.photo.key, class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar" %>
             <% else %>
               <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
             <% end %>
+            <i class="fa-solid fa-rocket fa-xl"></i>
             <%= user_match.user.username %>
           <% end %>
-          <% if user_match.chatrooms.first.messages.empty? %>
-            <p><em>No messages yet! Start chatting with <%= user_match.user == current_user ? user_match.match.secondary_user.username : user_match.user.username %></em></p>
-          <% else %>
-            <p><%= user_match.chatrooms.first.messages.last.content %></p>
-          <% end %>
+          <div class="last-message">
+            <% if user_match.chatrooms.first.messages.empty? %>
+              <p><em>No messages yet! Start chatting with <%= user_match.user == current_user ? user_match.match.secondary_user.username : user_match.user.username %></em></p>
+            <% else %>
+              <p><%= user_match.chatrooms.first.messages.last.content %></p>
+            <% end %>
+          </div>
         </a>
       </div>
     <% end %>
