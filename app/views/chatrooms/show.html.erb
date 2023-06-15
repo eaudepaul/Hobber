@@ -9,7 +9,7 @@
       <% end %>
     </div>
 
-    <div class="chatroom-name-avatar">
+    <div id="chatroom-name-avatar">
       <% if @user_match.user == current_user %>
           <div class="chatroom-avatar">
             <a href="/users/<%= @user_match.match.secondary_user.id %>">
@@ -20,7 +20,9 @@
               <% end %>
             </a>
           </div>
-          <h1><%= @user_match.match.secondary_user.username %></h1>
+          <div class="avatar-text">
+            <h1><%= @user_match.match.secondary_user.username %></h1>
+          </div>
         <% elsif @user_match.match.secondary_user == current_user %>
           <div class="chatroom-avatar">
             <a href="/users/<%= @user_match.user.id %>">
