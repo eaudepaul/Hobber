@@ -1,28 +1,31 @@
 <div class="background">
   <div class="create-profile-wrapper">
-    <h1>Create your profile</h1>
-    <%= simple_form_for @user do |f| %>
-      <div class="form-inputs">
-        <%= f.input :username,
-                    required: true,
-                    input_html: { autocomplete: "Username", class: "create-profile-input", placeholder: "BigNurgling2000" } %>
-        <%= f.input :age,
-                    required: true,
-                    input_html: { autocomplete: "age", class: "create-profile-input", placeholder: "9000" } %>
-        <%= f.input :address,
-                    required: true,
-                    input_html: { autocomplete: "Where are you from?", class: "create-profile-input", placeholder: "Berlin" } %>
-        <%= f.input :bio,
-                    as: :text,
-                    required: true,
-                    input_html: { autocomplete: "Tell us about yourself, what do you like?", class: "bio-input", rows: 5, placeholder: "Looking for fellow bridge trolls to roll some bones with." } %>
-        <%= f.input :photo,
-                    as: :file,
-                    required: true,
-                    input_html: { autocomplete: "Upload a photo or avatar", class: "create-profile-input" } %>
-        <%= f.submit "Let us know what you're playing", class: "quest-button" %>
+    <div class="create-profile">
+      <h1>Create your profile</h1>
+      <%= simple_form_for @user do |f| %>
+        <div class="form-inputs">
+          <%= f.input :username,
+                      required: true,
+                      input_html: { autocomplete: "Username", class: "create-profile-input", placeholder: "BigNurgling2000" } %>
+          <%= f.input :age,
+                      required: true,
+                      input_html: { autocomplete: "age", class: "create-profile-input", placeholder: "9000" } %>
+          <%= f.input :address,
+                      required: true,
+                      input_html: { autocomplete: "Where are you from?", class: "create-profile-input", placeholder: "Berlin" } %>
+          <%= f.input :bio,
+                      as: :text,
+                      required: true,
+                      input_html: { autocomplete: "Tell us about yourself, what do you like?", class: "bio-input", rows: 5, placeholder: "Looking for fellow bridge trolls to roll some bones with." } %>
+          <%= f.input :photo,
+                      as: :file,
+                      required: true,
+                      input_html: { autocomplete: "Upload a photo or avatar", class: "create-profile-input" } %>
+          <div class="submit-create-form-button">
+            <%= f.submit "Let us know what you're playing", class: "create-form-button" %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <% end %>
   </div>
-
 </div>
