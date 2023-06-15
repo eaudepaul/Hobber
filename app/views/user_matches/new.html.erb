@@ -11,7 +11,9 @@
       </div>
   <% else %>
     <div class="match-image">
+    <div class="image-wrapper">
       <%= cl_image_tag @potential_match.photo.key, alt: @potential_match.username %>
+      </div>
     </div>
   <div class="px-4 form-accept">
     <!-- user match exists -->
