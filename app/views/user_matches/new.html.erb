@@ -1,12 +1,14 @@
-<div class="backgroundlogo" style ="background: url('<%= image_url "no-more-matches.png" %>');background-size: cover;">
+
   <div class="back-no-matches">
     <% if @potential_match.nil? %>
+      <div class="backgroundlogo" style ="background: url('<%= image_url "no-more-matches.png" %>');background-size: cover;">
         <div class="container no-more-matches">
           <h2>S o r r y . . .</h2>
           <h2>You have no more people to match with, come back later! <i class="fa-solid fa-robot fa-sm robot-icon"></i></h2>
           <p><%= link_to "Add more games", games_path, class: "button-lg" %></p>
           <p><%= link_to "Go back to your chats", chatrooms_index_path, class: "button-lg mt-30" %></p>
         </div>
+      </div>
   <% else %>
     <div class="match-image">
       <%= cl_image_tag @potential_match.photo.key, alt: @potential_match.username %>
@@ -78,4 +80,3 @@
     <% end %>
   </div>
   <%= render 'shared/navbar_bottom' %>
-</div>

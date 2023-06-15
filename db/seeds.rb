@@ -32,100 +32,211 @@ User.destroy_all
 
 puts 'Creating users...'
 
+# Core users
 file = URI.open('https://res.cloudinary.com/di0qqolg7/image/upload/v1686230253/99729852_je3j5m.jpg')
 antonio = User.create(email: 'antonio@example.com', password: '123456', username: 'Antonio', age: 36,
-                      bio: 'I proudly embrace my inner nerd as a passionate League of Legends player. The strategic depth, intense team battles, and ever-evolving meta of the game captivate me. I spend hours honing my skills, analyzing professional matches, and theorycrafting new champion builds. From epic comebacks to heart-pounding moments in ranked matches, League of Legends is my virtual battlefield where I unleash my competitive spirit and immerse myself in a vibrant community of fellow gamers. Eleganza!', address: 'Italy', admin: true)
+                      bio: 'I proudly embrace my inner nerd as a passionate League of Legends player. The intense team battles captivate me. Eleganza!', address: 'Italy', admin: true)
 antonio.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 antonio.save
 
 file = URI.open('https://res.cloudinary.com/di0qqolg7/image/upload/v1686228858/128895388_b4wixu.jpg')
 paul = User.create(email: 'paul@example.com', password: '123456', username: 'Paul', age: 31,
-                   bio: 'I wear my nerd badge proudly as a devoted Warhammer fan. The intricately detailed miniatures, immersive lore, and strategic tabletop battles of the Warhammer universe have captured my heart. Spending countless hours painting and assembling armies, delving into the rich history of different factions, and strategizing complex battlefield maneuvers is where my passion truly shines. Whether participating in epic campaigns or engaging in friendly skirmishes, Warhammer is my gateway to a world of endless imagination and camaraderie among fellow hobbyists. Free muffins!', address: 'Ireland', admin: true)
+                   bio: 'I wear my nerd badge proudly as a devoted Warhammer fan. I spend countless hours painting and assembling miniature armies. Also, free muffins!', address: 'Ireland', admin: true)
 paul.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 paul.save
 
-file = URI.open('https://res.cloudinary.com/di0qqolg7/image/upload/v1686228958/130609951_xujihj.jpg')
+file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1683901315/soxbao44wpjyz8hlfwvb.jpg')
 baran = User.create(email: 'baran@example.com', password: '123456', username: 'Baran', age: 23,
-                    bio: "my life revolves around all things Pokemon. From the classic Game Boy games to the latest releases, I've dedicated countless hours to training, battling, and collecting these beloved creatures. My knowledge of type matchups, shiny hunting techniques, and competitive strategies is extensive, and I'm always ready for a friendly Pokemon battle or a spirited discussion about team composition. Whether trading Pokemon with friends, participating in tournaments, or immersing myself in the vibrant Pokemon community, my obsession with these pocket monsters knows no bounds. Gym, gym, gym", address: 'Turkey', admin: true)
+                    bio: "My life revolves around all things Pokemon and gym, gym, gym! I can also advise you on your finances.", address: 'Turkey', admin: true)
 baran.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 baran.save
 
 file = URI.open('https://res.cloudinary.com/di0qqolg7/image/upload/v1686228837/130290009_ichlgr.jpg')
 charlotte = User.create(email: 'charlotte@example.com', password: '123456', username: 'dejanze', age: 18,
-                        bio: "I proudly wear the label of a Dungeons and Dragons nerd. There's nothing quite like diving into fantastical realms, rolling dice, and embarking on epic quests with my trusty group of fellow adventurers. From creating intricate character backstories to immersing myself in the rich lore, D&D fuels my imagination and allows me to craft unforgettable stories. I'm always up for discussing the latest rulebooks, sharing campaign tales, and eagerly planning the next thrilling session. German baguette", address: 'Glasgow', admin: true)
+                        bio: "I'm a German baguette obsessed with Settlers of Catan. I am passionate about outwitting my opponents and becoming ruler of the island.", address: 'Glasgow', admin: true)
 charlotte.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 charlotte.save
 
 file = URI.open('https://res.cloudinary.com/di0qqolg7/image/upload/v1686228924/130281789_vbzwup.jpg')
 katharine = User.create(email: 'katharine@example.com', password: '123456', username: 'katzenjammer', age: 29,
-                        bio: "A proud nerd who absolutely adores everything about Lord of the Rings. You'll often find me completely immersed in Tolkien's world, eagerly exploring the rich lore and engaging in passionate discussions with fellow fans. Whether I'm quoting Gandalf or dissecting the symbolic depth of the One Ring, my love for Middle-earth is contagious, and I'm always up for embarking on Tolkien-inspired adventures with like-minded enthusiasts. Texas forever", address: 'Boulder', admin: true)
+                        bio: "A proud nerd who absolutely adores everything about Lord of the Rings. Always up for embarking on Tolkien-inspired adventures. Texas forever", address: 'Boulder', admin: true)
 katharine.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 katharine.save
 
 file = URI.open('https://avatars.githubusercontent.com/u/90188399?v=4')
 emma = User.create(email: 'emma@example.com', password: '123456', username: 'BEEEES', age: 21,
-                   bio: 'Avid Northgard enthusiast and Viking conqueror. Guiding my clan through treacherous lands, I thrive on resource management, warfare, and strategic alliances. With a thirst for glory, I forge a legacy as a fearless leader in the harsh realm of Northgard. From colonization to mythological encounters, I navigate every challenge with cunning tactics and unwavering resolve. Join me on this epic Norse adventure, where legends are born and empires rise! ALSO I LOVE BEES 🐝', address: 'Sweden', admin: true)
+                   bio: "Avid Northgard enthusiast. Join me on an epic Norse adventure, where legends are born and empires rise! ALSO I LOVE BEES 🐝", address: 'Sweden', admin: false)
 emma.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 emma.save
 
+# Other users
 file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1601461074/xrbi2mzjyawsdisknhdd.jpg')
 santi = User.create(email: 'santi@example.com', password: '123456', username: 'Sans-Chaise', age: 26,
-                    bio: "Passionate strategist and avid Settlers of Catan enthusiast. With a keen eye for resource management, I conquer uncharted territories one roll at a time. When it comes to Catan, I am the embodiment of calculated moves and unwavering determination. Join me on this thrilling journey of expansion, trade, and victory. Together, we'll rewrite the rules of this legendary game. 🌾🏰", address: 'Berghain', admin: true)
+                    bio: "Passionate SQL strategist and avid Settlers of Catan enthusiast. Together, we'll rewrite the rules of this legendary game. 🌾🏰", address: 'Berghain', admin: false)
 santi.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 santi.save
 
 file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1592696437/u31nytay6nl7hofmwg6s.jpg')
 pedro = User.create(email: 'pedro@example.com', password: '123456', username: 'Cabelo', age: 22,
-                    bio: "Avid God of War enthusiast, wielding the Blades of Chaos with unmatched ferocity. As Kratos, I journey through realms, battling gods and monsters alike. With a deep understanding of Greek mythology, I embrace the game's visceral combat and unravel a captivating tale of vengeance and redemption. From epic boss fights to emotional storytelling, I am immersed in the intricacies of Kratos' journey. Join me as we delve into the realm of Norse mythology, where new adventures and untold battles await. 🦄", address: 'Playa', admin: true)
+                    bio: "Avid God of War enthusiast, wielding the Blades of Chaos with unmatched ferocity. 🦄", address: 'Playa', admin: false)
 pedro.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 pedro.save
 
 file = URI.open('https://avatars.githubusercontent.com/u/76880152?v=4')
 nic = User.create(email: 'nic@example.com', password: '123456', username: 'Howdy', age: 24,
-                  bio: "Dedicated World of Warcraft enthusiast, immersed in a realm of limitless adventure. From Azeroth's sprawling landscapes to epic raids and PvP battles, I traverse the depths of this virtual universe. As a skilled hero, I master multiple classes, harness powerful spells, and forge alliances with fellow players. Whether exploring ancient dungeons or engaging in thrilling quests, I am fueled by the passion for this ever-evolving world. Join me as we uncover secrets, vanquish foes, and leave an indelible mark on the Warcraft legacy.", address: 'Texas Baby!', admin: true)
+                  bio: "Dedicated World of Warcraft enthusiast. I traverse the depths of this virtual universe as a skilled hero. TEXASSSSSSS", address: 'Texas Baby!', admin: false)
 nic.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 nic.save
 
+file = URI.open('https://ca.slack-edge.com/T02NE0241-U045BSBJQD6-f9f50ddff2bb-512')
+josh = User.create(email: 'josh@example.com', password: '123456', username: 'The best or worst TA depending on how you see it', age: 23,
+                  bio: "I'm deeply immersed in the gripping world of The Last of Us. ZOMBIES!!!! 🧟‍♀️🧟‍♂️", address: 'Le Wagon', admin: false)
+josh.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+josh.save
+
 file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1664610806/zlimmirbsqffvhtljmd2.jpg')
 laura = User.create(email: 'laura@example.com', password: '123456', username: 'Speedster', age: 19,
-                    bio: "Passionate Mario Kart lover, speeding through colorful tracks with lightning reflexes. From classic races to intense battles, I dominate the karting world with well-timed power-ups and expert drifting skills. With a competitive spirit and a dash of nostalgia, I embrace the joy of multiplayer mayhem and exhilarating challenges. Join me on this high-octane adventure, where turtle shells fly, banana peels slip, and victory awaits at the finish line. Let's race, drift, and create unforgettable Mario Kart memories together! 🏎️ 💨", address: 'Berlin Berlin', admin: true)
+                    bio: "Passionate Mario Kart lover, speeding through colorful tracks with lightning reflexes. 🏎️ 💨", address: 'Berlin Berlin', admin: false)
 laura.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 laura.save
+
+file = URI.open('https://avatars.githubusercontent.com/u/129849001?v=4')
+pamela = User.create(email: 'pamela@example.com', password: '123456', username: 'Pamela123', age: 30,
+                     bio: "As a master of virtual realms, I conquer galaxies in Mass Effect and slay demons in Devil May Cry. 🎀🌌🪐", address: 'Strawberry fields', admin: false)
+pamela.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+pamela.save
+
+file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1680906057/wvpvxivbjzsslr1zudf4.jpg')
+bruno = User.create(email: 'bruno@example.com', password: '123456', username: 'Brunooooo', age: 25,
+                    bio: "Armed with a controller, I embark on epic quests in The Elder Scrolls 📜.", address: 'Grunewald', admin: false)
+bruno.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+bruno.save
+
+file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1680798077/xvkfom6njqle804vkteg.jpg')
+rama = User.create(email: 'rama@example.com', password: '123456', username: 'RamaXtreme', age: 22,
+                    bio: "In the world of Magic: The Gathering, 🧙🏻‍♂️ I summon spells, craft intricate strategies, and rise as a formidable mage.🪄", address: 'Italia', admin: false)
+rama.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+rama.save
+
+file = URI.open('https://avatars.githubusercontent.com/u/23138486?v=4')
+william = User.create(email: 'william@example.com', password: '123456', username: 'Will-I-Am', age: 25,
+                    bio: "With a Dungeon Master's guide in hand, ✋🏼 I shape worlds and lead adventurers through perilous quests in Dungeons & Dragons. 🐉", address: 'Berlin', admin: false)
+william.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+william.save
+
+file = URI.open('https://avatars.githubusercontent.com/u/130440951?v=4')
+ahmed = User.create(email: 'ahmed@example.com', password: '123456', username: 'ahmedforever', age: 30,
+                    bio: "I dance across pixelated platforms, smashing blocks 🧊 in Mario and collecting rings with Sonic. 🦔", address: 'U6', admin: false)
+ahmed.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+ahmed.save
+
+file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1681067327/rlbeeocqksy18qyvfojn.jpg')
+madhava = User.create(email: 'madhava@example.com', password: '123456', username: 'Madhava5000', age: 900,
+                    bio: "Master tactician in XCOM. I lead squads against extraterrestrial threats, 👾🛸 ensuring humanity's survival.", address: "Rama's house", admin: false)
+madhava.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+madhava.save
+
+file = URI.open('https://avatars.githubusercontent.com/u/123891185?v=4')
+dabin = User.create(email: 'dabin@example.com', password: '123456', username: 'Dabs', age: 33,
+                    bio: "Armed with a paintbrush, 🖌️🎨 I bring miniatures to life, meticulously crafting armies for Warhammer battles. ⚔️", address: 'Mehringdamm', admin: false)
+dabin.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+dabin.save
+
+file = URI.open('https://avatars.githubusercontent.com/u/59374075?v=4')
+esther = User.create(email: 'esther@example.com', password: '123456', username: 'EstherAmazing', age: 27,
+                    bio: "seasoned archaeologist 🦴 in Tomb Raider, I uncover ancient secrets with Lara Croft.", address: 'Kochstraße', admin: false)
+esther.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+esther.save
+
+file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1681132323/fvcczs8pnj8mkthgl5ec.jpg')
+esti = User.create(email: 'esti@example.com', password: '123456', username: 'Esti_64', age: 27,
+                    bio: "As a cunning detective in Sherlock Holmes: Consulting Detective, I solve complex mysteries🕵🏻🔎", address: 'Berlino', admin: false)
+esti.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+esti.save
+
+file = URI.open('https://avatars.githubusercontent.com/u/130139542?v=4')
+agustin = User.create(email: 'agustin@example.com', password: '123456', username: 'Ultra_Agustin', age: 33,
+                    bio: "Armed with a guitar, I rock out in Guitar Hero,🎸 shredding solos and captivating audiences with my musical prowess.🎮", address: 'Nature', admin: false)
+agustin.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+agustin.save
+
+file = URI.open('https://avatars.githubusercontent.com/u/128507964?v=4')
+ana = User.create(email: 'ana@example.com', password: '123456', username: 'Ana loves puppies', age: 25,
+                    bio: "In the realm of Animal Crossing, I create a cozy virtual village, tend to adorable animal neighbors 🐻🐶🐷🦊", address: 'Portugal', admin: false)
+ana.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+ana.save
+
+file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1683808035/fbwkedfhwnpdhex6ey3f.jpg')
+marina = User.create(email: 'marina@example.com', password: '123456', username: 'GamerGirl666', age: 26,
+                    bio: "As a top-ranked sniper in Call of Duty, I dominate the battlefield with sharpshooter precision.🤘🏻", address: 'Moldova', admin: false)
+marina.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+marina.save
+
+file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1681054612/uxpiwevsnyrifzg8h2tj.jpg')
+joanna = User.create(email: 'joanna@example.com', password: '123456', username: 'JoannaJoyful', age: 35,
+                    bio: "In the realm of Assassin's Creed, I become a master assassin. 🥷🏻", address: 'Pottery studio', admin: false)
+joanna.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+joanna.save
+
+file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1681060939/vlrjqpbj7jccvv2x3us8.jpg')
+emily = User.create(email: 'joanna@example.com', password: '123456', username: 'Little Yetsko', age: 35,
+                    bio: "With a stack of board games by my side, I transform into a strategic genius. 💡", address: 'NYC forever', admin: false)
+emily.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+emily.save
 
 puts 'Creating matches...'
 
 match = Match.create(secondary_user_id: antonio.id)
+match1 = Match.create(secondary_user_id: paul.id)
 match2 = Match.create(secondary_user_id: katharine.id)
 match3 = Match.create(secondary_user_id: charlotte.id)
 match4 = Match.create(secondary_user_id: baran.id)
+match5 = Match.create(secondary_user_id: emma.id)
 
-puts 'Creating user_matches...'
+puts 'Creating user_matches and chatrooms...'
+
+# Paul x Antonio
 user_match1 = UserMatch.new(user_id: paul.id, match_id: match.id, status: 'approved')
 user_match1.save!
+Chatroom.create(user_match: user_match1,
+                name: user_match1.user == paul ? user_match1.match.secondary_user.username : user_match1.user.username)
 
-user_match2 = UserMatch.new(user_id: paul.id, match_id: match2.id, status: 'pending')
+# Paul x Katharine
+user_match2 = UserMatch.new(user_id: paul.id, match_id: match2.id, status: 'approved')
 user_match2.save!
+Chatroom.create(user_match: user_match2,
+                name: user_match2.user == paul ? user_match2.match.secondary_user.username : user_match2.user.username)
 
-user_match3 = UserMatch.new(user_id: paul.id, match_id: match3.id, status: 'approved')
+# Paul x Emma
+user_match3 = UserMatch.new(user_id: paul.id, match_id: match5.id, status: 'approved')
 user_match3.save!
 Chatroom.create(user_match: user_match3,
-                name: user_match3.user == paul ? user_match3.match.secondary_user.username : user_match.user.username)
+                name: user_match3.user == paul ? user_match3.match.secondary_user.username : user_match3.user.username)
 
+# Paul x Baran
 user_match4 = UserMatch.new(user_id: paul.id, match_id: match4.id, status: 'approved')
 user_match4.save!
 Chatroom.create(user_match: user_match4,
-                name: user_match4.user == paul ? user_match4.match.secondary_user.username : user_match.user.username)
+                name: user_match4.user == paul ? user_match4.match.secondary_user.username : user_match4.user.username)
 
-puts 'Creating chatroom...'
-Chatroom.create(name: 'My chatroom', user_match_id: user_match1.id)
+# Paul x Charlotte
+user_match5 = UserMatch.new(user_id: paul.id, match_id: match3.id, status: 'approved')
+user_match5.save!
+Chatroom.create(user_match: user_match5,
+                name: user_match5.user == paul ? user_match5.match.secondary_user.username : user_match5.user.username)
+
+# Antonio's matches
+user_match6 = UserMatch.new(user_id: antonio.id, match_id: match2.id, status: 'approved')
+user_match6.save!
+Chatroom.create(user_match: user_match6,
+                name: user_match6.user == antonio ? user_match6.match.secondary_user.username : user_match6.user.username)
 
 puts 'Creating games...'
-game1 = Game.create(name: 'Chess')
-game2 = Game.create(name: 'Clue')
-game3 = Game.create(name: 'Dice')
-game4 = Game.create(name: 'Poker')
-game5 = Game.create(name: 'Hearts')
-game6 = Game.create(name: 'klondike')
+game1 = Game.create(name: 'Warhammer AOS')
+game2 = Game.create(name: 'Settlers of Catan')
+game3 = Game.create(name: 'Dungeons & Dragons')
+game4 = Game.create(name: 'Warhammer 40K')
+game5 = Game.create(name: 'Middle Earth SBG')
 90.times do
   Game.create(name: Faker::Game.title)
 end
@@ -134,30 +245,58 @@ puts 'Creating user_games...'
 UserGame.create(user_id: antonio.id, game_id: game1.id)
 UserGame.create(user_id: antonio.id, game_id: game2.id)
 UserGame.create(user_id: antonio.id, game_id: game3.id)
+UserGame.create(user_id: paul.id, game_id: game1.id)
 UserGame.create(user_id: paul.id, game_id: game2.id)
+UserGame.create(user_id: paul.id, game_id: game3.id)
 UserGame.create(user_id: paul.id, game_id: game4.id)
 UserGame.create(user_id: paul.id, game_id: game5.id)
 UserGame.create(user_id: charlotte.id, game_id: game2.id)
 UserGame.create(user_id: charlotte.id, game_id: game4.id)
 UserGame.create(user_id: charlotte.id, game_id: game5.id)
 UserGame.create(user_id: katharine.id, game_id: game2.id)
+UserGame.create(user_id: katharine.id, game_id: game3.id)
+UserGame.create(user_id: katharine.id, game_id: game5.id)
+UserGame.create(user_id: baran.id, game_id: game1.id)
+UserGame.create(user_id: baran.id, game_id: game2.id)
+UserGame.create(user_id: baran.id, game_id: game3.id)
+UserGame.create(user_id: emma.id, game_id: game1.id)
+UserGame.create(user_id: emma.id, game_id: game2.id)
+UserGame.create(user_id: emma.id, game_id: game5.id)
 
 puts 'Creating appointments...'
-appointment1 = Appointment.create(address: 'Le Wagon, Berlin', date: Date.today - 2, start_time: Time.now,
+# Paul's upcoming appointments
+
+puts "Paul x Charlotte"
+appointment1 = Appointment.create(address: "Le Wagon, Berlin", date: Date.today, start_time: Time.now,
+                                   end_time: Time.now + 2.hours, game_id: game2.id, user_match_id: user_match5.id, status: 'pending')
+
+puts "Paul x Baran"
+appointment2 = Appointment.create(address: 'Chupenga', date: Date.today + 2, start_time: Time.now,
+                                  end_time: Time.now + 3.hours, game_id: game3.id, user_match_id: user_match4.id, status: 'pending')
+
+puts "Paul x Katharine"
+appointment3 = Appointment.create(address: 'Charlotte I Pizza', date: Date.today + 5, start_time: Time.now,
+                                  end_time: Time.now + 3.hours, game_id: game5.id, user_match_id: user_match2.id, status: 'approved')
+
+# Paul's past appointments
+puts "Paul x Antonio"
+appointment4 = Appointment.create(address: "Antonio's balcony", date: Date.today - 2, start_time: Time.now - 2.hours,
                                   end_time: Time.now, game_id: game1.id, user_match_id: user_match1.id, status: 'approved')
-appointment2 = Appointment.create(address: "At Paul's, Berlin", date: Date.today, start_time: Time.now,
-                                  end_time: Time.now, game_id: game2.id, user_match_id: user_match2.id, status: 'pending')
-appointment3 = Appointment.create(address: 'Charlotte I Pizza, Berlin', date: Date.today, start_time: Time.now,
-                                  end_time: Time.now, game_id: game1.id, user_match_id: user_match3.id, status: 'pending')
-appointment4 = Appointment.create(address: 'La Gino, Berlin', date: Date.today, start_time: Time.now,
-                                  end_time: Time.now, game_id: game2.id, user_match_id: user_match4.id, status: 'pending')
+
+puts "Paul x Emma"
+appointment5 = Appointment.create(address: "Paul's castle", date: Date.today - 3, start_time: Time.now + 3.hours,
+                                  end_time: Time.now + 6.hours, game_id: game5.id, user_match_id: user_match3.id, status: 'approved')
+
+puts "Paul x Baran"
+appointment6 = Appointment.create(address: "Charlotte I Pizza", date: Date.today - 4, start_time: Time.now - 4.hours,
+                                  end_time: Time.now, game_id: game3.id, user_match_id: user_match4.id, status: 'approved')
+
+puts "Antonio x Katharine"
+appointment7 = Appointment.create(address: "Eleganzina", date: Date.today - 4, start_time: Time.now - 4.hours,
+                                  end_time: Time.now, game_id: game3.id, user_match_id: user_match6.id, status: 'approved')
 
 puts 'Creating reviews...'
-Review.create(content: "It was the best gaming session ever, Paul loses like it's nobody's business", rating: 5,
-              appointment_id: appointment1.id, user_id: antonio.id)
-Review.create(content: 'Antonio won 10 times in a row, man is a legend', rating: 3, appointment_id: appointment1.id,
-              user_id: paul.id)
+Review.create(content: "Paul loses like it's nobody's business 😂😂😂", rating: 5, appointment_id: appointment5.id, user_id: emma.id)
+Review.create(content: "Na ja 🤷🏻‍♂", rating: 3, appointment_id: appointment6.id, user_id: baran.id)
+Review.create(content: "Meh 😐", rating: 3, appointment_id: appointment7.id, user_id: katharine.id)
 
-# Delete all after testing:
-Review.create(content: 'Paul freaks me out!', rating: 2, appointment_id: appointment1.id, user_id: antonio.id)
-Review.create(content: 'Paul is mean to me', rating: 1, appointment_id: appointment1.id, user_id: antonio.id)
