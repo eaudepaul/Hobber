@@ -13,7 +13,7 @@
             <% else %>
               <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
             <% end %>
-            <i class="fa-solid fa-rocket"></i>
+            <i class="fa-solid fa-rocket fa-lg"></i>
             <%= user_match.user == current_user ? user_match.match.secondary_user.username : user_match.user.username %>
           <% elsif user_match.match.secondary_user == current_user %>
             <% if user_match.user.photo.attached? %>
@@ -21,7 +21,7 @@
             <% else %>
               <%= image_tag("Hobber.png", class: "avatar-image", id: "avatar-toggle", tabindex: "0", alt: "Avatar") %>
             <% end %>
-            <i class="fa-solid fa-rocket fa-xl"></i>
+            <i class="fa-solid fa-rocket fa-lg"></i>
             <%= user_match.user == current_user ? user_match.match.secondary_user.username : user_match.user.username %>
           <% end %>
           <div class="last-message">
