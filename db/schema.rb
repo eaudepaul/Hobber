@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_145815) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_154601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -115,21 +115,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_145815) do
   end
 
   create_table "chatrooms", force: :cascade do |t|
-    t.bigint "user_match_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.index ["user_match_id"], name: "index_chatrooms_on_user_match_id"
+    t.bigint "user1_id"
+    t.bigint "user2_id"
+    t.index ["user1_id"], name: "index_chatrooms_on_user1_id"
+    t.index ["user2_id"], name: "index_chatrooms_on_user2_id"
   end
 
   create_table "games", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "matches", force: :cascade do |t|
-    t.integer "secondary_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -172,16 +167,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_145815) do
     t.index ["user_id"], name: "index_user_games_on_user_id"
   end
 
-  create_table "user_matches", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "match_id", null: false
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["match_id"], name: "index_user_matches_on_match_id"
-    t.index ["user_id"], name: "index_user_matches_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -204,8 +189,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_145815) do
   add_foreign_key "appointments", "games"
   add_foreign_key "appointments", "users", column: "guest_id"
   add_foreign_key "appointments", "users", column: "host_id"
-  add_foreign_key "chatrooms", "user_matches"
-  add_foreign_key "matches", "users", column: "secondary_user_id"
+  add_foreign_key "chatrooms", "users", column: "user1_id"
+  add_foreign_key "chatrooms", "users", column: "user2_id"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "appointments"
@@ -213,6 +198,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_145815) do
   add_foreign_key "reviews", "users", column: "reviewer_id"
   add_foreign_key "user_games", "games"
   add_foreign_key "user_games", "users"
-  add_foreign_key "user_matches", "matches"
-  add_foreign_key "user_matches", "users"
 end

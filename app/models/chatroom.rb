@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
 class Chatroom < ApplicationRecord
-  belongs_to :user_match
-  has_many :users, through: :user_matches
-  has_many :matches, through: :user_matches
-  has_many :appointments, through: :user_matches
-  has_many :messages
+  belongs_to :user1, class_name: 'User'
+  belongs_to :user2, class_name: 'User'
 
-  validates :user_match_id, uniqueness: true, presence: true
-  validates :name, presence: true
+  has_many :messages, dependent: :destroy
 end

@@ -21,12 +21,6 @@ Message.destroy_all
 puts 'Deleting chatrooms...'
 Chatroom.destroy_all
 
-puts 'Deleting user_matches...'
-UserMatch.destroy_all
-
-puts 'Deleting matches...'
-Match.destroy_all
-
 puts 'Deleting users...'
 User.destroy_all
 
@@ -34,38 +28,79 @@ puts 'Creating users...'
 
 # Core users
 file = URI.open('https://res.cloudinary.com/di0qqolg7/image/upload/v1686230253/99729852_je3j5m.jpg')
-antonio = User.create(email: 'antonio@example.com', password: '123456', username: 'Antonio', age: 36,
-                      bio: 'I proudly embrace my inner nerd as a passionate League of Legends player. The intense team battles captivate me. Eleganza!', address: 'Italy', admin: true)
+antonio = User.create(
+  email: 'antonio@example.com',
+  password: '123456',
+  username: 'Antonio', age: 36,
+  bio: 'I proudly embrace my inner nerd as a passionate League of Legends player. The intense team battles captivate me. Eleganza!',
+  address: 'Italy',
+  admin: true
+)
 antonio.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 antonio.save
 
 file = URI.open('https://res.cloudinary.com/di0qqolg7/image/upload/v1686228858/128895388_b4wixu.jpg')
-paul = User.create(email: 'paul@example.com', password: '123456', username: 'Paul', age: 31,
-                   bio: 'I wear my nerd badge proudly as a devoted Warhammer fan. I spend countless hours painting and assembling miniature armies. Also, free muffins!', address: 'Ireland', admin: true)
+paul = User.create(
+  email: 'paul@example.com',
+  password: '123456',
+  username: 'Paul',
+  age: 31,
+  bio: 'I wear my nerd badge proudly as a devoted Warhammer fan. I spend countless hours painting and assembling miniature armies. Also, free muffins!',
+  address: 'Ireland',
+  admin: true
+)
 paul.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 paul.save
 
 file = URI.open('https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1683901315/soxbao44wpjyz8hlfwvb.jpg')
-baran = User.create(email: 'baran@example.com', password: '123456', username: 'Baran', age: 23,
-                    bio: 'My life revolves around all things Pokemon and gym, gym, gym! I can also advise you on your finances.', address: 'Turkey', admin: true)
+baran = User.create(
+  email: 'baran@example.com',
+  password: '123456',
+  username: 'Baran',
+  age: 23,
+  bio: 'My life revolves around all things Pokemon and gym, gym, gym! I can also advise you on your finances.',
+  address: 'Turkey',
+  admin: true
+)
 baran.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 baran.save
 
 file = URI.open('https://res.cloudinary.com/di0qqolg7/image/upload/v1686228837/130290009_ichlgr.jpg')
-charlotte = User.create(email: 'charlotte@example.com', password: '123456', username: 'dejanze', age: 18,
-                        bio: "I'm a German baguette obsessed with Settlers of Catan. I am passionate about outwitting my opponents and becoming ruler of the island.", address: 'Glasgow', admin: true)
+charlotte = User.create(
+  email: 'charlotte@example.com',
+  password: '123456',
+  username: 'dejanze',
+  age: 18,
+  bio: "I'm a German baguette obsessed with Settlers of Catan. I am passionate about outwitting my opponents and becoming ruler of the island.",
+  address: 'Glasgow',
+  admin: true
+)
 charlotte.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 charlotte.save
 
 file = URI.open('https://res.cloudinary.com/di0qqolg7/image/upload/v1686228924/130281789_vbzwup.jpg')
-katharine = User.create(email: 'katharine@example.com', password: '123456', username: 'katzenjammer', age: 29,
-                        bio: 'A proud nerd who absolutely adores everything about Lord of the Rings. Always up for embarking on Tolkien-inspired adventures. Texas forever', address: 'Boulder', admin: true)
+katharine = User.create(
+  email: 'katharine@example.com',
+  password: '123456',
+  username: 'katzenjammer',
+  age: 29,
+  bio: 'A proud nerd who absolutely adores everything about Lord of the Rings. Always up for embarking on Tolkien-inspired adventures. Texas forever',
+  address: 'Boulder',
+  admin: true
+)
 katharine.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 katharine.save
 
 file = URI.open('https://avatars.githubusercontent.com/u/90188399?v=4')
-emma = User.create(email: 'emma@example.com', password: '123456', username: 'BEEEES', age: 21,
-                   bio: 'Avid Northgard enthusiast. Join me on an epic Norse adventure, where legends are born and empires rise! ALSO I LOVE BEES 🐝', address: 'Sweden', admin: false)
+emma = User.create(
+  email: 'emma@example.com',
+  password: '123456',
+  username: 'BEEEES',
+  age: 21,
+  bio: 'Avid Northgard enthusiast. Join me on an epic Norse adventure, where legends are born and empires rise! ALSO I LOVE BEES 🐝',
+  address: 'Sweden',
+  admin: false
+)
 emma.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 emma.save
 
@@ -190,52 +225,43 @@ emily = User.create(email: 'emily@example.com', password: '123456', username: 'L
 emily.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 emily.save
 
-puts 'Creating matches...'
-
-match = Match.create(secondary_user_id: antonio.id)
-match1 = Match.create(secondary_user_id: paul.id)
-match2 = Match.create(secondary_user_id: katharine.id)
-match3 = Match.create(secondary_user_id: charlotte.id)
-match4 = Match.create(secondary_user_id: baran.id)
-match5 = Match.create(secondary_user_id: emma.id)
-
-puts 'Creating user_matches and chatrooms...'
+puts 'Creating chatrooms...'
 
 # Paul x Antonio
-user_match1 = UserMatch.new(user_id: paul.id, match_id: match.id, status: 'approved')
-user_match1.save!
-Chatroom.create(user_match: user_match1,
-                name: user_match1.user == paul ? user_match1.match.secondary_user.username : user_match1.user.username)
+Chatroom.create(
+  user1: paul,
+  user2: antonio
+)
 
 # Paul x Katharine
-user_match2 = UserMatch.new(user_id: paul.id, match_id: match2.id, status: 'approved')
-user_match2.save!
-Chatroom.create(user_match: user_match2,
-                name: user_match2.user == paul ? user_match2.match.secondary_user.username : user_match2.user.username)
+Chatroom.create(
+  user1: paul,
+  user2: katharine
+)
 
 # Paul x Emma
-user_match3 = UserMatch.new(user_id: paul.id, match_id: match5.id, status: 'approved')
-user_match3.save!
-Chatroom.create(user_match: user_match3,
-                name: user_match3.user == paul ? user_match3.match.secondary_user.username : user_match3.user.username)
+Chatroom.create(
+  user1: paul,
+  user2: emma
+)
 
 # Paul x Baran
-user_match4 = UserMatch.new(user_id: paul.id, match_id: match4.id, status: 'approved')
-user_match4.save!
-Chatroom.create(user_match: user_match4,
-                name: user_match4.user == paul ? user_match4.match.secondary_user.username : user_match4.user.username)
+Chatroom.create(
+  user1: paul,
+  user2: baran
+)
 
 # Paul x Charlotte
-user_match5 = UserMatch.new(user_id: paul.id, match_id: match3.id, status: 'approved')
-user_match5.save!
-Chatroom.create(user_match: user_match5,
-                name: user_match5.user == paul ? user_match5.match.secondary_user.username : user_match5.user.username)
+Chatroom.create(
+  user1: paul,
+  user2: charlotte
+)
 
 # Antonio's matches
-user_match6 = UserMatch.new(user_id: antonio.id, match_id: match2.id, status: 'approved')
-user_match6.save!
-Chatroom.create(user_match: user_match6,
-                name: user_match6.user == antonio ? user_match6.match.secondary_user.username : user_match6.user.username)
+Chatroom.create(
+  user1: antonio,
+  user2: esther
+)
 
 puts 'Creating games...'
 game1 = Game.create(name: 'Warhammer AOS')
@@ -248,26 +274,26 @@ game5 = Game.create(name: 'Middle Earth SBG')
 end
 
 puts 'Creating user_games...'
-UserGame.create(user_id: antonio.id, game_id: game1.id)
-UserGame.create(user_id: antonio.id, game_id: game2.id)
-UserGame.create(user_id: antonio.id, game_id: game3.id)
-UserGame.create(user_id: paul.id, game_id: game1.id)
-UserGame.create(user_id: paul.id, game_id: game2.id)
-UserGame.create(user_id: paul.id, game_id: game3.id)
-UserGame.create(user_id: paul.id, game_id: game4.id)
-UserGame.create(user_id: paul.id, game_id: game5.id)
-UserGame.create(user_id: charlotte.id, game_id: game2.id)
-UserGame.create(user_id: charlotte.id, game_id: game4.id)
-UserGame.create(user_id: charlotte.id, game_id: game5.id)
-UserGame.create(user_id: katharine.id, game_id: game2.id)
-UserGame.create(user_id: katharine.id, game_id: game3.id)
-UserGame.create(user_id: katharine.id, game_id: game5.id)
-UserGame.create(user_id: baran.id, game_id: game1.id)
-UserGame.create(user_id: baran.id, game_id: game2.id)
-UserGame.create(user_id: baran.id, game_id: game3.id)
-UserGame.create(user_id: emma.id, game_id: game1.id)
-UserGame.create(user_id: emma.id, game_id: game2.id)
-UserGame.create(user_id: emma.id, game_id: game5.id)
+UserGame.create(user: antonio, game: game1)
+UserGame.create(user: antonio, game: game2)
+UserGame.create(user: antonio, game: game3)
+UserGame.create(user: paul, game: game1)
+UserGame.create(user: paul, game: game2)
+UserGame.create(user: paul, game: game3)
+UserGame.create(user: paul, game: game4)
+UserGame.create(user: paul, game: game5)
+UserGame.create(user: charlotte, game: game2)
+UserGame.create(user: charlotte, game: game4)
+UserGame.create(user: charlotte, game: game5)
+UserGame.create(user: katharine, game: game2)
+UserGame.create(user: katharine, game: game3)
+UserGame.create(user: katharine, game: game5)
+UserGame.create(user: baran, game: game1)
+UserGame.create(user: baran, game: game2)
+UserGame.create(user: baran, game: game3)
+UserGame.create(user: emma, game: game1)
+UserGame.create(user: emma, game: game2)
+UserGame.create(user: emma, game: game5)
 
 puts 'Creating appointments...'
 # Paul's upcoming appointments
