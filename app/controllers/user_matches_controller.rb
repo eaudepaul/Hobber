@@ -34,7 +34,12 @@ class UserMatchesController < ApplicationController
 
   def update
     @user_match = UserMatch.find(params[:id])
-    render :new, status: :unprocessable_entity unless @user_match.update(status: params[:user_match][:status])
+    if @user_match.status == 'approved'
+      @user_match.update(status: params[:user_match][:status])
+      redirect_back(fallback_location: root_path)
+    else
+      render :new, status: :unprocessable_entity unless @user_match.update(status: params[:user_match][:status])
+    end
   end
 
   def user_match_exists
