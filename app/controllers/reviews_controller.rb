@@ -6,7 +6,6 @@ class ReviewsController < ApplicationController
     # Reviews that current user received: this finds all the reviews left by a secondary_user for the current user, who is defined in a Match instance
     user = User.find(params[:user_id])
     @reviews = user.appointments.map { |appointment| appointment.reviews.where.not(user:) }.flatten
-    raise
   end
 
   def show
