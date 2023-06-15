@@ -1,5 +1,5 @@
 .chatroom {
-  background: white;
+  background: #f0dfc853;
   height: calc(100vh - 60px);
   display: flex;
   width: 100%;
@@ -8,22 +8,6 @@
   margin: 0;
   padding: 5;
   margin-bottom: 0;
-
-  .h1 {
-    border-bottom: 1px solid $gray-200;
-    margin-bottom: 0;
-    padding: 1rem;
-    justify-content: center;
-    align-items: center;
-  }
-  .chatroom-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-top: 5px;
-    justify-content: center;
-    align-items: center;
-  }
 
   .messages {
     height: 100%;
@@ -47,15 +31,19 @@
   }
 
   .chatroom-show-header .chatroom-back-arrow {
-    margin-right: 10px;
+    margin-right: 20px;
   }
 
-  .chatroom-show-header .chatroom-name-avatar {
+  .chatroom-show-header #chatroom-name-avatar {
     display: flex;
+
     align-items: center;
   }
   }
 
+.avatar-text {
+  margin-top: 18px;
+}
 
 .chat-input {
   border-radius: 10px;

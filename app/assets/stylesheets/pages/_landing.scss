@@ -1,6 +1,5 @@
 // Specific CSS for your home-page
 
-
 #banner {
   background-image: url(BackgroundHomepage.png);
   background-size: cover;
@@ -10,7 +9,6 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
 
 .baran-container {
   align-items: center;
@@ -23,18 +21,19 @@ h1 {
   font-weight: bold;
   text-align: center;
   font-family: $headers-font;
-  color: #B4A184;
+  color: #a6752a;
 }
 
 p{
   font-family: $headers-font;
   text-align: center;
-  color: #B4A184;
+  color: #a6752a;
 }
 
 .quest-button {
   text-decoration: none;
   font-family: $light-font;
+  border: none;
 }
 
 .Join-us-button{

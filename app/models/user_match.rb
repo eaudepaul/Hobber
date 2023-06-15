@@ -8,6 +8,6 @@ class UserMatch < ApplicationRecord
   belongs_to :user
   belongs_to :match
 
-  validates :user_id, :match_id, presence: true
+  validates :user_id, presence: true
   validates :status, inclusion: { in: %w[pending approved denied] }
 end

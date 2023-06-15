@@ -11,13 +11,13 @@ class UsersController < ApplicationController
     @chatroom = Chatroom.new
     reviews = @user.appointments.map { |appointment| appointment.reviews.where.not(user: @user) }.flatten
     sum = 0
-    unless reviews.empty?
+    if reviews.empty?
+      @average_rating = 'none'
+    else
       reviews.each do |review|
         sum += review.rating
       end
       @average_rating = (sum.to_f / reviews.length).round
-    else
-      @average_rating = 'none'
     end
   end
 
