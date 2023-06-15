@@ -26,7 +26,8 @@ class UserMatchesController < ApplicationController
     @user_match.match_id = match.id
     @user_match.save!
     if @user_match.status == 'pending'
-      @chatroom = Chatroom.create!(user_match: @user_match, name: @user_match.user == current_user ? @user_match.match.secondary_user.username : @user_match.user.username)
+      @chatroom = Chatroom.create!(user_match: @user_match,
+                                   name: @user_match.user == current_user ? @user_match.match.secondary_user.username : @user_match.user.username)
     end
     redirect_to new_user_match_path
   end
