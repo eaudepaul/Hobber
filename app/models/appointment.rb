@@ -9,4 +9,5 @@ class Appointment < ApplicationRecord
   validates :user_match_id, presence: true
   validates :start_time, :end_time, :address, presence: true
   validates :status, inclusion: { in: ["pending", "approved", "denied", "cancelled"] }
+  validates :date, presence: true, comparison: { greater_than_or_equal_to: Date.today }
 end
