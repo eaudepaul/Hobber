@@ -1,0 +1,41 @@
+.reviews-wrapper {
+  background-color: #fffaf3cf;
+  border-radius: 27px;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 8em;
+  padding-bottom: 3em;
+  opacity: 0.9;
+
+  h1 {
+    text-align: center;
+    padding-top: 2em;
+  }
+
+  .sign-in-form {
+    padding: 1em 2em 0em;
+  }
+
+  .review-bio-input{
+    border-radius: 27px;
+    padding: 1em 1.25em;
+  }
+
+  .form-label {
+    margin-left: 0.5rem;
+  }
+
+  .form-check {
+    margin-left: 0.5rem;
+  }
+
+  .form-actions {
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  .form-text {
+    margin-left: 0.5rem;
+    color: #F0F0F0;
+  }
+}
