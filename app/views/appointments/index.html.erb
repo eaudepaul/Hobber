@@ -88,6 +88,7 @@
 
                 <div class="appointment-time-status">
                   <p><%= appointment.start_time.strftime('%l:%M %p') %> – <%= appointment.end_time.strftime('%l:%M %p %Z') %></p>
+                  <p>Status: <%= appointment.location %></p>
                   <p>Status: <%= appointment.status %></p>
                 </div>
                 <div class="appointment-buttons-container">
