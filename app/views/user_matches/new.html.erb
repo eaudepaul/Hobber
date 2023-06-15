@@ -1,11 +1,15 @@
-<div class="back-no-matches">  
-  <% if @potential_match.nil? %>
-      <div class="container no-more-matches">
-        <h2>S o r r y  <i class="fa-solid fa-face-sad-cry fa-sm"></i></h2>
-        <h2>You have no more people to match with, come back later! <i class="fa-solid fa-robot fa-sm"></i></h2>
-        <h4>Add more games to your profile, to match with more people <i class="fa-solid fa-gamepad fa-sm"></i> </h4>
-        <p><%=   link_to "Add more games", new_user_match_path, class: "button-lg" %></p>
-        <p><%= link_to "Go back to your chats", chatrooms_index_path, class: "button-lg mt-30" %></p>
+<div class="backgroundlogo" style ="background: url('<%= image_url "no-more-matches.png" %>');background-size: cover;">
+  <div class="back-no-matches">
+    <% if @potential_match.nil? %>
+        <div class="container no-more-matches">
+          <h2>S o r r y . . .</h2>
+          <h2>You have no more people to match with, come back later! <i class="fa-solid fa-robot fa-sm robot-icon"></i></h2>
+          <p><%=   link_to "Add more games", new_user_match_path, class: "button-lg" %></p>
+          <p><%= link_to "Go back to your chats", chatrooms_index_path, class: "button-lg mt-30" %></p>
+        </div>
+    <% else %>
+      <div class="match-image">
+        <%= cl_image_tag @potential_match.photo.key, alt: @potential_match.username %>
       </div>
   <% else %>
     <div class="match-image">
@@ -53,19 +57,29 @@
         <%= @potential_match.bio %>
       </p>
       </div>
-      <div>
-        <h4 class="pt-4 pb-2">
-          Games I Play
-        </h4>
-        <% @user_games.each do |user_game| %>
-          <div class="game-swipe">
-            <span>
-              <i class="fa-solid fa-gamepad"></i><%= user_game.game.name %>
-            </span>
-          </div>
-        <% end %>
+      <div class="px-4 pb-4 text-center">
+        <h3 class="pt-4 pb-2">
+          <%= @potential_match.username %>
+        </h3>
+        <div>
+          <p class="card-text">
+            <%= @potential_match.bio %>
+          </p>
+        </div>
+        <div>
+          <h4 class="pt-4 pb-2">
+            Games I Play
+          </h4>
+          <% @user_games.each do |user_game| %>
+            <div class="game-swipe">
+              <span>
+                <i class="fa-solid fa-gamepad"></i><%= user_game.game.name %>
+              </span>
+            </div>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+  <%= render 'shared/navbar_bottom' %>
 </div>
-<%= render 'shared/navbar_bottom' %>
