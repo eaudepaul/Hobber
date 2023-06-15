@@ -11,36 +11,51 @@
       <div class="match-image">
         <%= cl_image_tag @potential_match.photo.key, alt: @potential_match.username %>
       </div>
-      <div class="px-4 form-accept">
-        <!-- user match exists -->
-        <% if @user_match_exists %>
-          <%= simple_form_for @user_match do |f| %>
-            <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
-            <%= f.button :submit, 'put yes', class: "button-accept", data: { controller: "match-pop-up", action: "click->match-pop-up#pop_up", match_pop_up_potential_match_username_value: @potential_match.username, match_pop_up_match_chatroom_id_value: @chatroom.id } %>
-          <% end %>
-          <%= simple_form_for @user_match, method: :put do |f| %>
-            <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
-            <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
-                <i class="fa-solid fa-heart fa-xl"></i>
-            </a>
-          <% end %>
-        <%# <!-- user match does not exist --> %>
-        <% else %>
-          <%= simple_form_for @user_match do |f| %>
-            <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
-            <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
-            <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
-              <i class="fa-solid fa-dice fa-xl"></i>
-            </a>
-          <% end %>
-          <%= simple_form_for @user_match do |f| %>
-            <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
-            <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
-            <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
-              <i class="fa-solid fa-radiation fa-xl"></i>
-            </a>
-          <% end %>
-        <% end %>
+  <% else %>
+    <div class="match-image">
+      <%= cl_image_tag @potential_match.photo.key, alt: @potential_match.username %>
+    </div>
+  <div class="px-4 form-accept">
+    <!-- user match exists -->
+    <% if @user_match_exists %>
+      <%= simple_form_for @user_match, method: :put do |f| %>
+        <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
+              <a href="#" class="submit" onclick="this.closest('form').submit();return false;" data-controller="match-pop-up" data-action="click->match-pop-up#pop_up" data-match_pop_up_potential_match_username_value="@potential_match.username" data-match_pop_up_match_chatroom_id_value="@chatroom.id" >
+            <i class="fa-solid fa-heart fa-xl"></i>
+              </a>
+      <% end %>
+      <%= simple_form_for @user_match, method: :put do |f| %>
+        <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
+        <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+          <i class="fa-solid fa-x fa-xl"></i>
+        </a>
+      <% end %>
+    <%# <!-- user match does not exist --> %>
+    <% else %>
+      <%= simple_form_for @user_match do |f| %>
+        <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
+        <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
+        <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+          <i class="fa-solid fa-heart fa-xl"></i>
+        </a>
+      <% end %>
+      <%= simple_form_for @user_match do |f| %>
+        <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
+        <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
+        <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+          <i class="fa-solid fa-x fa-xl"></i>
+        </a>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="px-4 pb-4 text-center">
+    <h3 class="pt-4 pb-2">
+      <%= @potential_match.username %>
+    </h3>
+    <div>
+      <p class="card-text">
+        <%= @potential_match.bio %>
+      </p>
       </div>
       <div class="px-4 pb-4 text-center">
         <h3 class="pt-4 pb-2">
