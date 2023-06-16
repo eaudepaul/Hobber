@@ -3,17 +3,16 @@
 .form-accept {
   display: flex;
   justify-content: space-around;
-  background-color: #fff;
 
   .submit {
     padding: 20px 30px;
     display: block;
   }
 
-  .fa-heart {
+  .fa-dice {
     color: green;
   }
-  .fa-x {
+  .fa-radiation {
     color: red;
   }
 }
