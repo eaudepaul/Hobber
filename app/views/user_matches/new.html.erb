@@ -18,24 +18,24 @@
     <% if @user_match_exists %>
       <%= simple_form_for @user_match, method: :put do |f| %>
         <%= f.input :status, as: :hidden, input_html: { value: "approved" } %>
-              <a href="#" class="submit" onclick="this.closest('form').submit();return false;" data-controller="match-pop-up" data-action="click->match-pop-up#pop_up" data-match_pop_up_potential_match_username_value="@potential_match.username" data-match_pop_up_match_chatroom_id_value="@chatroom.id" >
+              <div class="submit" onclick="this.closest('form').submit();return false;" data-controller="match-pop-up" data-action="click->match-pop-up#pop_up" data-match_pop_up_potential_match_username_value="@potential_match.username" data-match_pop_up_match_chatroom_id_value="@chatroom.id" >
                 <i class="fa-solid fa-dice fa-xl"></i>
-              </a>
+              </div>
       <% end %>
       <%= simple_form_for @user_match, method: :put do |f| %>
         <%= f.input :status, as: :hidden, input_html: { value: "denied" } %>
-        <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+        <div class="submit" onclick="this.closest('form').submit();return false;">
           <i class="fa-solid fa-radiation fa-xl"></i>
-        </a>
+        </div>
       <% end %>
     <%# <!-- user match does not exist --> %>
     <% else %>
       <%= simple_form_for @user_match do |f| %>
         <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
         <%= f.input :status, as: :hidden, input_html: { value: "pending" } %>
-        <a href="#" class="submit" onclick="this.closest('form').submit();return false;">
+        <div href="#" class="submit" onclick="this.closest('form').submit();return false;">
           <i class="fa-solid fa-dice fa-xl"></i>
-        </a>
+        </div>
       <% end %>
       <%= simple_form_for @user_match do |f| %>
         <%= f.input :match_id, as: :hidden, input_html: { value: @potential_match.id } %>
