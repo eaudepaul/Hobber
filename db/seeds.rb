@@ -202,34 +202,40 @@ match5 = Match.create(secondary_user_id: emma.id)
 puts 'Creating user_matches and chatrooms...'
 
 # Paul x Antonio
-user_match1 = UserMatch.new(user_id: paul.id, match_id: match.id, status: 'approved')
+user_match1 = UserMatch.new(user_id: antonio.id, match_id: match1.id, status: 'approved')
 user_match1.save!
 Chatroom.create(user_match: user_match1,
-                name: user_match1.user == paul ? user_match1.match.secondary_user.username : user_match1.user.username)
+                name: user_match1.user == antonio ? user_match1.match.secondary_user.username : user_match1.user.username)
 
 # Paul x Katharine
-user_match2 = UserMatch.new(user_id: paul.id, match_id: match2.id, status: 'approved')
+user_match2 = UserMatch.new(user_id: katharine.id, match_id: match1.id, status: 'approved')
 user_match2.save!
 Chatroom.create(user_match: user_match2,
-                name: user_match2.user == paul ? user_match2.match.secondary_user.username : user_match2.user.username)
+                name: user_match2.user == katharine ? user_match2.match.secondary_user.username : user_match2.user.username)
 
 # Paul x Emma
-user_match3 = UserMatch.new(user_id: paul.id, match_id: match5.id, status: 'approved')
+user_match3 = UserMatch.new(user_id: emma.id, match_id: match1.id, status: 'approved')
 user_match3.save!
 Chatroom.create(user_match: user_match3,
-                name: user_match3.user == paul ? user_match3.match.secondary_user.username : user_match3.user.username)
+                name: user_match3.user == emma ? user_match3.match.secondary_user.username : user_match3.user.username)
+
+# Paul x Santi
+user_match7 = UserMatch.new(user_id: santi.id, match_id: match1.id, status: 'pending')
+user_match7.save!
+Chatroom.create(user_match: user_match7,
+                name: user_match7.user == santi ? user_match7.match.secondary_user.username : user_match7.user.username)
 
 # Paul x Baran
-user_match4 = UserMatch.new(user_id: paul.id, match_id: match4.id, status: 'approved')
+user_match4 = UserMatch.new(user_id: baran.id, match_id: match1.id, status: 'pending')
 user_match4.save!
 Chatroom.create(user_match: user_match4,
-                name: user_match4.user == paul ? user_match4.match.secondary_user.username : user_match4.user.username)
+                name: user_match4.user == baran ? user_match4.match.secondary_user.username : user_match4.user.username)
 
 # Paul x Charlotte
-user_match5 = UserMatch.new(user_id: paul.id, match_id: match3.id, status: 'approved')
+user_match5 = UserMatch.new(user_id: charlotte.id, match_id: match1.id, status: 'approved')
 user_match5.save!
 Chatroom.create(user_match: user_match5,
-                name: user_match5.user == paul ? user_match5.match.secondary_user.username : user_match5.user.username)
+                name: user_match5.user == charlotte ? user_match5.match.secondary_user.username : user_match5.user.username)
 
 # Antonio's matches
 user_match6 = UserMatch.new(user_id: antonio.id, match_id: match2.id, status: 'approved')
@@ -268,6 +274,65 @@ UserGame.create(user_id: baran.id, game_id: game3.id)
 UserGame.create(user_id: emma.id, game_id: game1.id)
 UserGame.create(user_id: emma.id, game_id: game2.id)
 UserGame.create(user_id: emma.id, game_id: game5.id)
+UserGame.create(user_id: ahmed.id, game_id: game1.id)
+UserGame.create(user_id: ahmed.id, game_id: game2.id)
+UserGame.create(user_id: ahmed.id, game_id: game3.id)
+UserGame.create(user_id: william.id, game_id: game1.id)
+UserGame.create(user_id: william.id, game_id: game2.id)
+UserGame.create(user_id: rama.id, game_id: game2.id)
+UserGame.create(user_id: rama.id, game_id: game4.id)
+UserGame.create(user_id: rama.id, game_id: game5.id)
+UserGame.create(user_id: bruno.id, game_id: game2.id)
+UserGame.create(user_id: bruno.id, game_id: game3.id)
+UserGame.create(user_id: bruno.id, game_id: game5.id)
+UserGame.create(user_id: laura.id, game_id: game1.id)
+UserGame.create(user_id: laura.id, game_id: game2.id)
+UserGame.create(user_id: laura.id, game_id: game3.id)
+UserGame.create(user_id: josh.id, game_id: game1.id)
+UserGame.create(user_id: josh.id, game_id: game2.id)
+UserGame.create(user_id: josh.id, game_id: game5.id)
+UserGame.create(user_id: zak.id, game_id: game1.id)
+UserGame.create(user_id: zak.id, game_id: game2.id)
+UserGame.create(user_id: zak.id, game_id: game3.id)
+UserGame.create(user_id: pedro.id, game_id: game2.id)
+UserGame.create(user_id: pedro.id, game_id: game4.id)
+UserGame.create(user_id: pedro.id, game_id: game5.id)
+UserGame.create(user_id: santi.id, game_id: game2.id)
+UserGame.create(user_id: santi.id, game_id: game3.id)
+UserGame.create(user_id: santi.id, game_id: game5.id)
+UserGame.create(user_id: nic.id, game_id: game1.id)
+UserGame.create(user_id: nic.id, game_id: game2.id)
+UserGame.create(user_id: nic.id, game_id: game3.id)
+UserGame.create(user_id: pamela.id, game_id: game1.id)
+UserGame.create(user_id: pamela.id, game_id: game2.id)
+UserGame.create(user_id: pamela.id, game_id: game5.id)
+UserGame.create(user_id: madhava.id, game_id: game1.id)
+UserGame.create(user_id: madhava.id, game_id: game2.id)
+UserGame.create(user_id: madhava.id, game_id: game5.id)
+UserGame.create(user_id: dabin.id, game_id: game2.id)
+UserGame.create(user_id: dabin.id, game_id: game3.id)
+UserGame.create(user_id: dabin.id, game_id: game5.id)
+UserGame.create(user_id: esther.id, game_id: game1.id)
+UserGame.create(user_id: esther.id, game_id: game2.id)
+UserGame.create(user_id: esther.id, game_id: game3.id)
+UserGame.create(user_id: esti.id, game_id: game1.id)
+UserGame.create(user_id: esti.id, game_id: game2.id)
+UserGame.create(user_id: esti.id, game_id: game5.id)
+UserGame.create(user_id: agustin.id, game_id: game1.id)
+UserGame.create(user_id: agustin.id, game_id: game2.id)
+UserGame.create(user_id: agustin.id, game_id: game3.id)
+UserGame.create(user_id: ana.id, game_id: game1.id)
+UserGame.create(user_id: ana.id, game_id: game2.id)
+UserGame.create(user_id: marina.id, game_id: game2.id)
+UserGame.create(user_id: marina.id, game_id: game4.id)
+UserGame.create(user_id: marina.id, game_id: game5.id)
+UserGame.create(user_id: joanna.id, game_id: game2.id)
+UserGame.create(user_id: joanna.id, game_id: game3.id)
+UserGame.create(user_id: joanna.id, game_id: game5.id)
+UserGame.create(user_id: emily.id, game_id: game1.id)
+UserGame.create(user_id: emily.id, game_id: game2.id)
+UserGame.create(user_id: emily.id, game_id: game3.id)
+
 
 puts 'Creating appointments...'
 # Paul's upcoming appointments
@@ -293,6 +358,10 @@ puts "Paul x Emma"
 appointment5 = Appointment.create(address: "Paul's castle", date: Date.today - 3, start_time: Time.now + 3.hours,
                                   end_time: Time.now + 6.hours, game_id: game5.id, user_match_id: user_match3.id, status: 'approved')
 
+puts "Paul x Emma"
+appointment8 = Appointment.create(address: "Paul's castle", date: Date.today - 3, start_time: Time.now + 3.hours,
+                                  end_time: Time.now + 6.hours, game_id: game1.id, user_match_id: user_match3.id, status: 'approved')
+
 puts "Paul x Baran"
 appointment6 = Appointment.create(address: "Charlotte I Pizza", date: Date.today - 4, start_time: Time.now - 4.hours,
                                   end_time: Time.now, game_id: game3.id, user_match_id: user_match4.id, status: 'approved')
@@ -302,6 +371,6 @@ appointment7 = Appointment.create(address: "Eleganzina", date: Date.today - 4, s
                                   end_time: Time.now, game_id: game3.id, user_match_id: user_match6.id, status: 'approved')
 
 puts 'Creating reviews...'
-Review.create(content: "Paul loses like it's nobody's business 😂😂😂", rating: 5, appointment_id: appointment5.id, user_id: emma.id)
-Review.create(content: "Na ja 🤷🏻‍♂", rating: 3, appointment_id: appointment6.id, user_id: baran.id)
+Review.create(content: "Emma is a cheater!!!", rating: 1, appointment_id: appointment5.id, user_id: paul.id)
+Review.create(content: "Na ja 🤷🏻‍♂", rating: 3, appointment_id: appointment8.id, user_id: paul.id)
 Review.create(content: "Meh 😐", rating: 3, appointment_id: appointment7.id, user_id: katharine.id)
